@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "useDefineForClassFields": true,
+    "lib": ["ES6", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "allowJs": false,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "removeComments": true,
+
+
+    "typeRoots": ["node_modules/@types", "types/"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "app/*": ["src/app/*"],
+      "pages/*": ["src/pages/*"],
+      "shared/*": ["src/shared/*"]
+    }
+  },
+  "include": ["src", "eslint.config.ts", "types", "vite.config.ts"]
+}
