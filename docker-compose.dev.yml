@@ -1,0 +1,37 @@
+# 로컬 개발용 오버라이드 (docker-compose.yaml 와 함께 사용)
+#
+# 활성 프론트 개발(권장): backend/db만 도커로 띄우고 프론트는 Vite HMR
+#   docker compose -f docker-compose.yaml -f docker-compose.dev.yml up -d api db
+#   cd frontend && pnpm dev        # http://localhost:3000 , /api → :9000 프록시
+#
+# 풀스택 로컬 확인(HMR 없음, web 컨테이너까지 로컬 빌드)
+#   docker compose -f docker-compose.yaml -f docker-compose.dev.yml up --build
+#
+# ※ 이 파일은 EC2(prod)에는 두지 마라 — prod는 docker-compose.yaml 단독 사용.
+services:
+  web:
+    build: ./frontend
+    image: ifa-web:dev
+
+  api:
+    build: ./backend
+    image: ifa-api:dev
+    environment:
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_NAME: IFA_2026
+      DB_USER: ifa
+      DB_PASS: devpass
+    ports:
+      - "9000:80"
+    volumes:
+      - ./backend:/var/www/html   # 코드 라이브 편집(재빌드 불필요)
+
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: devroot
+      MYSQL_DATABASE: IFA_2026
+      MYSQL_USER: ifa
+      MYSQL_PASSWORD: devpass
+    ports:
+      - "3306:3306"
