@@ -20,31 +20,3 @@ export const generateHeadingId = (text: string) => {
         .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
         .replace(/^-|-$/g, ''); // Remove leading/traling hyphens
 }
-
-export const readMarkdownFile = async (
-    filename: string,
-    contentDir: string,
-    fallbackTitle: string,
-): Promise<string> => {
-    if (typeof window !== 'undefined') return `@@@ ${fallbackTitle} \n\n Content loading...`;
-
-    try {
-        const fs = await import('fs');
-        const path = await import('path');
-        const filePath = path.join(
-            process.cwd(),
-            `src/app/${contentDir}/content`,
-            filename
-        );
-
-        return fs.readFileSync(filePath, 'utf-8')
-
-    } catch (e) {
-        console.error(
-            `Error reading ${fallbackTitle.toLowerCase()} file ${filename}`,
-            e
-        );
-
-        return `@@@ ${fallbackTitle} \n\n Error loading content for this versions.`
-    }
-}
