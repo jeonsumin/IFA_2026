@@ -1,7 +1,11 @@
 import {createRoot} from 'react-dom/client'
 import {AppRouter} from "./routes";
-import 'shared/styles/global.css'
+import {DeviceProvider} from "./provider";
+
+import "shared/styles/global.css"
 
 createRoot(document.getElementById('root')!).render(
-    <AppRouter/>
+    <DeviceProvider>
+        <AppRouter/>
+    </DeviceProvider>
 )

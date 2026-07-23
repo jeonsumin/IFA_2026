@@ -24,15 +24,17 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
     "removeComments": true,
+    "ignoreDeprecations": "6.0",
 
 
-    "typeRoots": ["node_modules/@types", "types/"],
-    "baseUrl": ".",
+    "typeRoots": ["node_modules/@types"],
+    "baseUrl": "./src",
     "paths": {
-      "@/*": ["./src/*"],
-      "app/*": ["src/app/*"],
-      "pages/*": ["src/pages/*"],
-      "shared/*": ["src/shared/*"]
+      "@/*": ["./*"],
+      "app/*": ["./app/*"],
+      "pages/*": ["./pages/*"],
+      "shared/*": ["./shared/*"],
+      "widget/*": ["./widget/*"]
     }
   },
   "include": ["src", "eslint.config.ts", "types", "vite.config.ts"]

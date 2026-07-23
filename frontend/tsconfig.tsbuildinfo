@@ -1,0 +1,1 @@
+{"root":["./src/vite-env.d.ts","./src/app/index.tsx","./src/app/provider/device-provider.tsx","./src/app/provider/index.ts","./src/app/routes/app-router.tsx","./src/app/routes/index.ts","./src/pages/home/index.ts","./src/pages/home/ui/home.tsx","./src/pages/promotion/index.ts","./src/pages/promotion/ui/promotion.tsx","./vite.config.ts"],"version":"6.0.3"}
