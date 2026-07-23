@@ -111,6 +111,8 @@
     --maxWidth: 600px;
     --maxFixedWidth: 560px;
     --pcContentWidth: 680px;
+    --headerHeight: 50px;
+    --footerHeight: 56px;
 }
 
 .dark {

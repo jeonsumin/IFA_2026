@@ -12,14 +12,16 @@ export const Mobile = (props: Props) => {
     const layout = useLayoutStore();
 
     return (
-        <div className="w-full max-w-[var(--maxWidth)]">
-            <div className="max-w-screen-sm mx-auto w-full scrollbar-hide bg-lg-gray-6">
-                {layout.hasHeader && headerSlot}
-                <div className="w-full scrollbar relative min-h-[calc(100dvh-50px)] bg-red">
-                    <Outlet/>
-                </div>
-            </div>
-            {layout.hasFooter && navigationSlot}
+        <div className="mx-auto flex flex-col w-full max-w-[var(--maxWidth)] h-[100dvh] bg-lg-gray-6 scrollbar-hide">
+            {layout.hasHeader && headerSlot && (
+                <div className="shrink-0 h-[var(--headerHeight)]">{headerSlot}</div>
+            )}
+            <main className="flex-1 overflow-y-auto scrollbar relative">
+                <Outlet/>
+            </main>
+            {layout.hasFooter && navigationSlot && (
+                <div className="shrink-0 h-[var(--footerHeight)]">{navigationSlot}</div>
+            )}
         </div>
     );
 };

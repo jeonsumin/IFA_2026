@@ -2,7 +2,6 @@ import {create} from 'zustand';
 import {LayoutState} from '../types';
 
 export const useLayoutStore = create<LayoutState>((set) => ({
-    component: 'mobile',
     headerComponentName: undefined,
     routeName: undefined,
     hasFooter: true,

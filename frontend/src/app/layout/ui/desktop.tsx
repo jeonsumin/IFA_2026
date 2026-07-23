@@ -5,21 +5,26 @@ import {useLayoutStore} from "../model/use-layout-store";
 type Props = {
     headerSlot?: ReactNode;
     footerSlot?: ReactNode;
-    isFooter?: boolean;
 }
+
 export const Desktop = (props: Props) => {
-    const {headerSlot, footerSlot, isFooter = true} = props
+    const {headerSlot, footerSlot} = props;
     const layout = useLayoutStore();
 
     return (
-        <div className="w-full h-[100dvh] scrollbar">
-            {layout.hasHeader && headerSlot}
-            <main className={`overflow-y-auto scrollbar `}
-                  style={{height: layout.hasFooter ? "100dvh" : "calc(100dvh - 56px)"}}
-            >
-                <Outlet/>
+        <div className="flex flex-col w-full h-[100dvh] scrollbar">
+            {/* ponytail: header/footer are fixed chrome; heights via --headerHeight/--footerHeight tokens (tunable) */}
+            {layout.hasHeader && headerSlot && (
+                <div className="shrink-0 h-[var(--headerHeight)]">{headerSlot}</div>
+            )}
+            <main className="flex-1 overflow-y-auto scrollbar">
+                <div className="mx-auto w-full max-w-[var(--pcContentWidth)]">
+                    <Outlet/>
+                </div>
             </main>
-            {isFooter && footerSlot}
+            {layout.hasFooter && footerSlot && (
+                <div className="shrink-0 h-[var(--footerHeight)]">{footerSlot}</div>
+            )}
         </div>
-    )
-}
+    );
+};

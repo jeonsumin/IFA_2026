@@ -1,5 +1,4 @@
 export type LayoutState = {
-    component: string;
     headerComponentName?: string;
     routeName?: string;
     hasFooter: boolean;

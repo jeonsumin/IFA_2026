@@ -1,12 +1,12 @@
-import {useLayoutStore} from "../model/use-layout-store";
+import {useDevice} from "app/provider";
 import {Mobile} from "./mobile";
 import {Desktop} from "./desktop";
 import {MobileHeader} from "widget/header";
 
 export const PageLayout = () => {
-    const layout = useLayoutStore();
+    const {isMobile} = useDevice();
 
-    return layout.component == "mobile"
+    return isMobile
         ? <Mobile headerSlot={<MobileHeader/>}/>
-        : <Desktop/>
-}
+        : <Desktop/>;
+};
