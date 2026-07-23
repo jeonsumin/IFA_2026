@@ -1,12 +1,12 @@
 import {createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode} from "react";
-import type {AlertOptions, ModalContextValue} from "../types/types";
+import type {AlertOptions, FullPageOptions, ModalContextValue} from "../types/types";
 import {Alert} from "./alert";
 import {FullPage} from "./full-page";
 
 // ponytail: single active modal (한 번에 하나). 스택이 필요해지면 배열로 확장.
 type ModalState =
     | {type: 'alert'; options: AlertOptions}
-    | {type: 'fullPage'; content: ReactNode}
+    | {type: 'fullPage'; options: FullPageOptions}
     | null;
 
 const ModalContext = createContext<ModalContextValue | undefined>(undefined);
@@ -16,7 +16,7 @@ export const ModalProvider = ({children}: {children: ReactNode}) => {
 
     const close = useCallback(() => setModal(null), []);
     const openAlert = useCallback((options: AlertOptions) => setModal({type: 'alert', options}), []);
-    const openFullPage = useCallback((content: ReactNode) => setModal({type: 'fullPage', content}), []);
+    const openFullPage = useCallback((options: FullPageOptions) => setModal({type: 'fullPage', options}), []);
 
     // 모달 열림 동안 배경 스크롤 잠금
     useEffect(() => {
@@ -34,7 +34,7 @@ export const ModalProvider = ({children}: {children: ReactNode}) => {
         <ModalContext.Provider value={value}>
             {children}
             {modal?.type === 'alert' && <Alert options={modal.options} close={close}/>}
-            {modal?.type === 'fullPage' && <FullPage content={modal.content} close={close}/>}
+            {modal?.type === 'fullPage' && <FullPage options={modal.options} close={close}/>}
         </ModalContext.Provider>
     );
 };
