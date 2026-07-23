@@ -1,6 +1,6 @@
 import {createRoot} from 'react-dom/client'
 import {AppRouter} from "./routes";
-import {DeviceProvider} from "./provider";
+import {DeviceProvider} from "./provider/device";
 
 import "shared/styles/global.css"
 

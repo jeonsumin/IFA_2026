@@ -1,18 +1,12 @@
 import {createContext, useContext, useState} from "react";
+import {ContextType, DeviceType} from "../types/types";
 
-export type DeviceType = 'mobile' | 'tablet' | 'desktop';
-
-type ContextType = {
-    deviceType: DeviceType;
-    isMobile: boolean;
-};
 
 export const DeviceContext = createContext<ContextType | undefined>(undefined);
 
 // Pure helper: resolve device type from UA string and touch point count.
 // Kept pure (no navigator access) for testability.
 export const resolveDeviceType = (ua: string, maxTouchPoints: number): DeviceType => {
-
 
     // iPadOS 13+ masquerades as "Macintosh"; distinguish by touch points.
     const isIPadOS = /Macintosh/.test(ua) && maxTouchPoints > 1;
