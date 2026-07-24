@@ -1,5 +1,5 @@
 import {ModalProvider, useModal} from './ui/modal-provider'
-import type {AlertOptions, ModalContextValue} from './types/types'
+import type {AlertOptions, FullPageScreen, ModalContextValue} from './types/types'
 
 export {ModalProvider, useModal}
-export type {AlertOptions, ModalContextValue}
+export type {AlertOptions, FullPageScreen, ModalContextValue}

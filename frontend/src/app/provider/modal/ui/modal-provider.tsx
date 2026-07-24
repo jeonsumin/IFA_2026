@@ -1,12 +1,12 @@
 import {createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode} from "react";
-import type {AlertOptions, FullPageOptions, ModalContextValue} from "../types/types";
+import type {AlertOptions, FullPageScreen, ModalContextValue} from "../types/types";
 import {Alert} from "./alert";
 import {FullPage} from "./full-page";
 
-// ponytail: single active modal (한 번에 하나). 스택이 필요해지면 배열로 확장.
+// ponytail: single active modal. fullPage는 화면 스택으로 관리(push/pop).
 type ModalState =
     | {type: 'alert'; options: AlertOptions}
-    | {type: 'fullPage'; options: FullPageOptions}
+    | {type: 'fullPage'; stack: FullPageScreen[]}
     | null;
 
 const ModalContext = createContext<ModalContextValue | undefined>(undefined);
@@ -16,7 +16,17 @@ export const ModalProvider = ({children}: {children: ReactNode}) => {
 
     const close = useCallback(() => setModal(null), []);
     const openAlert = useCallback((options: AlertOptions) => setModal({type: 'alert', options}), []);
-    const openFullPage = useCallback((options: FullPageOptions) => setModal({type: 'fullPage', options}), []);
+    const openFullPage = useCallback((screen: FullPageScreen) => setModal({type: 'fullPage', stack: [screen]}), []);
+    const pushFullPage = useCallback((screen: FullPageScreen) => {
+        setModal((m) => (m?.type === 'fullPage' ? {type: 'fullPage', stack: [...m.stack, screen]} : m));
+    }, []);
+    const popFullPage = useCallback(() => {
+        setModal((m) => {
+            if (m?.type !== 'fullPage') return m;
+            const next = m.stack.slice(0, -1);
+            return next.length ? {type: 'fullPage', stack: next} : null;
+        });
+    }, []);
 
     // 모달 열림 동안 배경 스크롤 잠금
     useEffect(() => {
@@ -26,15 +36,15 @@ export const ModalProvider = ({children}: {children: ReactNode}) => {
     }, [modal]);
 
     const value = useMemo<ModalContextValue>(
-        () => ({openAlert, openFullPage, close}),
-        [openAlert, openFullPage, close]
+        () => ({openAlert, openFullPage, pushFullPage, popFullPage, close}),
+        [openAlert, openFullPage, pushFullPage, popFullPage, close]
     );
 
     return (
         <ModalContext.Provider value={value}>
             {children}
             {modal?.type === 'alert' && <Alert options={modal.options} close={close}/>}
-            {modal?.type === 'fullPage' && <FullPage options={modal.options} close={close}/>}
+            {modal?.type === 'fullPage' && <FullPage stack={modal.stack} pop={popFullPage} close={close}/>}
         </ModalContext.Provider>
     );
 };
