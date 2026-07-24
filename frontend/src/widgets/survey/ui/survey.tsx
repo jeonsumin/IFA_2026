@@ -1,11 +1,10 @@
 import {useState} from "react";
 import {Button} from "shared/ui";
+import type {SurveyAnswers} from "entities/survey";
 import {surveyData} from "../model/survey";
 import {CircleItem} from "./circle-item";
 import {ButtonItem} from "./button-item";
 import {TextfieldItem} from "./textfield-item";
-
-export type SurveyAnswers = Record<string, string | string[]>;
 
 interface SurveyProps {
     onSubmit: (answers: SurveyAnswers) => void;

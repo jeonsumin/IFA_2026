@@ -1,13 +1,6 @@
-type SurveyType = {
-    surveyId: string;
-    title: string;
-    type: "circle" | "list" | "text";
-    questions?: { content: string }[];
-    required?: boolean;
-    mult?: boolean;
-};
+import type {SurveyQuestion} from "entities/survey";
 
-export const surveyData: SurveyType[] = [
+export const surveyData: SurveyQuestion[] = [
     {
         surveyId: "Q1",
         title: "009_survey01_001",
