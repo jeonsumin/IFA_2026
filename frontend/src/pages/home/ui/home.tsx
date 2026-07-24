@@ -1,5 +1,5 @@
-import {lazy, Suspense} from "react";
-import {Button, Checkbox, Select} from "shared/ui";
+import {lazy, Suspense, useState} from "react";
+import {Button, Checkbox, Select, OtpInput} from "shared/ui";
 import {useModal} from "app/provider/modal";
 import {Survey} from "widgets/survey";
 
@@ -7,6 +7,27 @@ import {Survey} from "widgets/survey";
 const QrScanner = lazy(() =>
     import("widgets/qr-scanner").then((m) => ({default: m.QrScanner}))
 );
+
+// ponytail: 데모용 하드코딩 코드. 실제 검증은 백엔드 연동 시 교체
+const OTP_CODE = "1234";
+
+const OtpDemo = () => {
+    const [error, setError] = useState(false);
+    return (
+        <div className="flex flex-col items-center gap-4 p-6">
+            <p>4자리 인증 코드를 입력하세요</p>
+            <OtpInput
+                autoFocus
+                error={error}
+                onComplete={(code) => {
+                    const ok = code === OTP_CODE;
+                    setError(!ok);
+                }}
+            />
+            {error && <span className="text-sm text-destructive">인증 코드가 올바르지 않습니다.</span>}
+        </div>
+    );
+};
 
 export const Home = () => {
 
@@ -23,6 +44,13 @@ export const Home = () => {
                     />
                 </Suspense>
             ),
+        });
+    };
+
+    const openOtp = () => {
+        openFullPage({
+            title: "OTP 인증",
+            content: <OtpDemo/>,
         });
     };
 
@@ -60,6 +88,7 @@ export const Home = () => {
             <Button>button</Button>
             <Button onClick={openQrScan}>QR 스캔</Button>
             <Button onClick={openSurvey}>설문</Button>
+            <Button onClick={openOtp}>OTP 인증</Button>
         </div>
     )
 }
