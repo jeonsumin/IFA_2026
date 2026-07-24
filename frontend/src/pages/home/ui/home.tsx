@@ -1,10 +1,11 @@
 import {lazy, Suspense} from "react";
 import {Button, Checkbox, Select} from "shared/ui";
 import {useModal} from "app/provider/modal";
+import {Survey} from "widgets/survey";
 
 // @zxing(~480kB)는 QR 스캔 모달을 열 때만 로드하도록 코드 스플릿
 const QrScanner = lazy(() =>
-    import("widget/qr-scanner").then((m) => ({default: m.QrScanner}))
+    import("widgets/qr-scanner").then((m) => ({default: m.QrScanner}))
 );
 
 export const Home = () => {
@@ -21,6 +22,21 @@ export const Home = () => {
                         onError={(message) => openAlert({title: "오류", message})}
                     />
                 </Suspense>
+            ),
+        });
+    };
+
+    const openSurvey = () => {
+        openFullPage({
+            title: "설문",
+            content: (
+                <div className="p-4">
+                    <Survey
+                        onSubmit={(answers) =>
+                            openAlert({title: "제출 완료", message: JSON.stringify(answers, null, 2)})
+                        }
+                    />
+                </div>
             ),
         });
     };
@@ -43,6 +59,7 @@ export const Home = () => {
             ]}/>
             <Button>button</Button>
             <Button onClick={openQrScan}>QR 스캔</Button>
+            <Button onClick={openSurvey}>설문</Button>
         </div>
     )
 }
