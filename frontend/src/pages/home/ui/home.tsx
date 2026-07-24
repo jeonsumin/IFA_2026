@@ -1,30 +1,25 @@
-import {useModal} from "app/provider/modal";
-import {PrivacyMarkup} from "widget/privacy";
+import {Button, Checkbox, Select} from "shared/ui";
 
 export const Home = () => {
 
-    const { openFullPage } = useModal();
-
-    const openPopup = () => {
-        /*openAlert({
-            title: "알림",
-            message: "팝업 예시입니다.\n확인/취소를 눌러보세요.",
-            cancelText: "취소",
-            onConfirm: () => console.log("confirmed"),
-            onCancel: () => console.log("canceled"),
-        });*/
-
-        openFullPage({ title: "개인정보 처리방침", content: <PrivacyMarkup/> })
-    }
 
     return (
         <div>
             <h1>home</h1>
 
-            <button
-                onClick={openPopup}>
-                open Popup
-            </button>
+            <Checkbox label={'checkbox'}/>
+            <Select options={[
+                {
+                    label: 'label1',
+                    value: '1'
+                },
+                {
+                    label: 'label2',
+                    value: '2',
+                    disabled: true
+                },
+            ]}/>
+            <Button>button</Button>
         </div>
     )
 }
