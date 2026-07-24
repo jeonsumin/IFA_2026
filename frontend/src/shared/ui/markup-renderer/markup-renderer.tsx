@@ -2,7 +2,7 @@ import React from 'react';
 import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
 import ReactMarkdown from 'react-markdown';
-import {generateHeadingId} from '../utiles';
+import {generateHeadingId} from 'shared/lib';
 import type {Options} from 'react-markdown';
 
 const remarkBreakTags = () => {

@@ -15,8 +15,10 @@ export default defineConfig({
     alias: {
       app: filePath('app'),
       pages: filePath('pages'),
+      widgets: filePath('widgets'),
+      features: filePath('features'),
+      entities: filePath('entities'),
       shared: filePath('shared'),
-      widget: filePath('widget'),
     },
   },
   server: {

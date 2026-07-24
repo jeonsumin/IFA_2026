@@ -1,6 +1,6 @@
 import {useEffect, useId, useRef, useState, type KeyboardEvent} from "react";
 import {ChevronDown} from "lucide-react";
-import {cn} from "shared/utiles/cn";
+import {cn} from "shared/lib/cn";
 
 interface SelectOption {
     label: string;

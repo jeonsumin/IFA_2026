@@ -33,8 +33,10 @@
       "@/*": ["./*"],
       "app/*": ["./app/*"],
       "pages/*": ["./pages/*"],
-      "shared/*": ["./shared/*"],
-      "widget/*": ["./widget/*"]
+      "widgets/*": ["./widgets/*"],
+      "features/*": ["./features/*"],
+      "entities/*": ["./entities/*"],
+      "shared/*": ["./shared/*"]
     }
   },
   "include": ["src", "eslint.config.ts", "types", "vite.config.ts"]

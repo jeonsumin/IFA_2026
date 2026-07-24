@@ -1,6 +1,6 @@
 import {Mobile} from "./mobile";
 import {Desktop} from "./desktop";
-import {MobileHeader} from "widget/header";
+import {MobileHeader} from "widgets/header";
 import {useDevice} from "app/provider/device";
 
 export const PageLayout = () => {

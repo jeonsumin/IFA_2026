@@ -1,4 +1,4 @@
-import MarkdownRenderer from "shared/markup/markup-renderer.tsx";
+import {MarkdownRenderer} from "shared/ui";
 import privacyEn from "../content/privacy_en.md?raw";
 
 export const PrivacyMarkup = () => {

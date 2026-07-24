@@ -1,3 +1,3 @@
 export * from './cn'
 export * from './markup'
-export * from './request'
+export * from './validator'

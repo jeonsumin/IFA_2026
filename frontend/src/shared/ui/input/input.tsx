@@ -1,5 +1,5 @@
 import {forwardRef, type InputHTMLAttributes} from "react";
-import {cn} from "shared/utiles/cn";
+import {cn} from "shared/lib/cn";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     error?: boolean;
