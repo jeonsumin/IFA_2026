@@ -1,38 +1,24 @@
 services:
   web:
-    image: ${ECR_REGISTRY}/ifa-web:${IMAGE_TAG:-latest}
-    restart: unless-stopped
+    build: .
     ports:
       - "80:80"
     depends_on:
-      - api
+      - mysql
 
-  api:
-    image: ${ECR_REGISTRY}/ifa-api:${IMAGE_TAG:-latest}
-    restart: unless-stopped
-    environment:
-      DB_HOST: db
-      DB_PORT: "3306"
-      DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASS: ${DB_PASS}
-    depends_on:
-      - db
-    volumes:
-      - api_uploads:/var/www/html/data
+  mysql:
+    image: mysql:8.4
+    restart: always
 
-  db:
-    image: mysql:8.0
-    restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASS}
+      MYSQL_DATABASE: app
+      MYSQL_USER: app
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
+
     volumes:
-      - db_data:/var/lib/mysql
+      - ifa-data:/var/lib/mysql
       - ./db/init:/docker-entrypoint-initdb.d:ro
 
 volumes:
-  db_data:
-  api_uploads:
+  ifa-data:
