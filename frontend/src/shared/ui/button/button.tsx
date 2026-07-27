@@ -1,4 +1,5 @@
 import {forwardRef, type ButtonHTMLAttributes} from "react";
+import {Check} from "lucide-react";
 import {cn} from "shared/lib/cn";
 
 type Variant = "primary" | "outline" | "ghost";
@@ -7,13 +8,27 @@ type Size = "sm" | "md" | "lg";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: Variant;
     size?: Size;
+    /** outline 변형에서 활성(선택) 여부 — 그라데이션 테두리/텍스트로 전환 */
+    active?: boolean;
 }
 
-const variantClass: Record<Variant, string> = {
-    primary: "bg-primary text-primary-foreground hover:opacity-90",
-    outline: "border border-button-border bg-white hover:bg-muted",
-    ghost: "bg-transparent hover:bg-muted",
+const baseVariant: Record<Exclude<Variant, "outline">, string> = {
+    // NEXT: 빨강→핑크→퍼플 그라데이션 채움
+    primary:
+        "bg-gradient-to-r from-lg-red via-lg-ai-pink to-lg-ai-purple text-white",
+    ghost: "bg-transparent",
 };
+
+// 활성
+const outlineActive =
+    "border-2 border-transparent [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(90deg,var(--lg-red),var(--lg-ai-pink),var(--lg-ai-purple))_border-box]";
+
+// 비활성
+const outlineInactive = "border border-lg-gray-5 bg-white text-lg-gray-3";
+
+// 활성 outline 텍스트는 그라데이션 (배경은 테두리 트릭이 점유하므로 별도 span)
+const outlineActiveText =
+    "bg-gradient-to-r from-lg-red via-lg-ai-pink to-lg-ai-purple bg-clip-text text-primary font-medium";
 
 const sizeClass: Record<Size, string> = {
     sm: "h-8 px-3 text-sm",
@@ -21,22 +36,59 @@ const sizeClass: Record<Size, string> = {
     lg: "h-12 px-6 text-lg",
 };
 
+// outline 우측 체크 (Lucide): 활성=그라데이션 stroke, 비활성=연한 회색
+const CheckIcon = ({active}: {active: boolean}) =>
+    active ? (
+        <>
+            <svg width="0" height="0" className="absolute">
+                <defs>
+                    <linearGradient id="btn-check-grad" x1="0" y1="0" x2="24" y2="0">
+                        <stop offset="0%" stopColor="var(--lg-red)" />
+                        <stop offset="50%" stopColor="var(--lg-ai-pink)" />
+                        <stop offset="100%" stopColor="var(--lg-ai-purple)" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            <Check className="shrink-0" stroke="url(#btn-check-grad)" />
+        </>
+    ) : (
+        <Check className="shrink-0 text-lg-gray-4" />
+    );
+
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-    ({variant = "primary", size = "md", type = "button", className, ...props}, ref) => (
-        <button
-            ref={ref}
-            type={type}
-            className={cn(
-                "inline-flex items-center justify-center rounded font-medium transition-colors",
-                "disabled:opacity-50 disabled:pointer-events-none",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                variantClass[variant],
-                sizeClass[size],
-                className
-            )}
-            {...props}
-        />
-    )
+    (
+        {variant = "primary", size = "md", active = false, type = "button", className, children, ...props},
+        ref
+    ) => {
+        const isOutline = variant === "outline";
+        const variantCls = isOutline ? (active ? outlineActive : outlineInactive) : baseVariant[variant];
+
+        return (
+            <button
+                ref={ref}
+                type={type}
+                className={cn(
+                    "w-full rounded-full",
+                    isOutline && "flex items-center justify-between gap-2 text-left",
+                    "disabled:opacity-50 disabled:pointer-events-none",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    variantCls,
+                    sizeClass[size],
+                    className
+                )}
+                {...props}
+            >
+                {isOutline ? (
+                    <>
+                        <span className={active ? outlineActiveText : undefined}>{children}</span>
+                        <CheckIcon active={active} />
+                    </>
+                ) : (
+                    children
+                )}
+            </button>
+        );
+    }
 );
 
 Button.displayName = "Button";

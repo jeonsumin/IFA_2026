@@ -37,7 +37,8 @@ export const ButtonItem = ({title, questions, required, mult, error, value, onCh
                 {questions.map((q) => (
                     <Button
                         key={q.content}
-                        variant={isSelected(q.content) ? "primary" : "outline"}
+                        variant="outline"
+                        active={isSelected(q.content)}
                         onClick={() => handleClick(q.content)}
                     >
                         {q.content}
