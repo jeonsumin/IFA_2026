@@ -1,5 +1,5 @@
 import {lazy, Suspense, useState} from "react";
-import {Button, Checkbox, Select, OtpInput} from "shared/ui";
+import {Button, Checkbox, Select, OtpInput, BottomSheet} from "shared/ui";
 import {useModal} from "app/provider/modal";
 import {Survey} from "widgets/survey";
 
@@ -32,6 +32,7 @@ const OtpDemo = () => {
 export const Home = () => {
 
     const {openFullPage, openAlert} = useModal();
+    const [sheetOpen, setSheetOpen] = useState(false);
 
     const openQrScan = () => {
         openFullPage({
@@ -89,6 +90,15 @@ export const Home = () => {
             <Button onClick={openQrScan}>QR 스캔</Button>
             <Button onClick={openSurvey}>설문</Button>
             <Button onClick={openOtp}>OTP 인증</Button>
+            <Button onClick={() => setSheetOpen(true)}>바텀시트</Button>
+
+            <BottomSheet open={sheetOpen} onClose={() => setSheetOpen(false)} title="바텀시트 데모">
+                <div className="flex flex-col gap-4">
+                    <p className="text-lg-gray-2">아래에서 슬라이드업으로 올라옵니다.</p>
+                    <p className="text-lg-gray-2">오버레이를 클릭하거나 핸들을 아래로 드래그하면 닫힙니다.</p>
+                    <Button onClick={() => setSheetOpen(false)}>닫기</Button>
+                </div>
+            </BottomSheet>
         </div>
     )
 }
