@@ -24,9 +24,9 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      // 로컬 개발: /api → dev backend 컨테이너(:9000). prod nginx와 동일하게 /api 접두 제거
+      // 로컬 개발: /api → dev backend 컨테이너. prod nginx와 동일하게 /api 접두 제거
       '/api': {
-        target: 'http://localhost:9000',
+        target: 'http://backend',
         changeOrigin: true,
         rewrite: (p) => p.replace(/^\/api/, ''),
       },
