@@ -85,7 +85,8 @@ export const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
                     role="dialog"
                     aria-modal="true"
                     className={cn(
-                        "w-full max-w-[var(--maxWidth)] rounded-t-[var(--radius)] bg-white",
+                        // 디자인 팝업 높이(≈프레임의 79%) 참고 → 뷰포트의 85%로 상한, 내부 스크롤
+                        "flex max-h-[85dvh] w-full max-w-[var(--maxWidth)] flex-col rounded-t-[var(--radius)] bg-bg-default",
                         "transition-transform duration-[250ms] ease-out",
                         dragging && "transition-none",
                         className
@@ -95,7 +96,7 @@ export const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
                     onTransitionEnd={handleTransitionEnd}
                 >
                     <div
-                        className="flex justify-center py-3 touch-none cursor-grab"
+                        className="flex shrink-0 justify-center py-3 touch-none cursor-grab"
                         onPointerDown={handlePointerDown}
                         onPointerMove={handlePointerMove}
                         onPointerUp={handlePointerUp}
@@ -103,7 +104,7 @@ export const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
                         <span className="h-1 w-10 rounded-full bg-lg-gray-5" />
                     </div>
                     {title && (
-                        <header className="relative flex items-center justify-center px-6 pb-3">
+                        <header className="relative flex shrink-0 items-center justify-center px-6 pb-3">
                             <h2 className="text-lg font-bold">{title}</h2>
                             <button
                                 type="button"
@@ -115,7 +116,9 @@ export const BottomSheet = forwardRef<HTMLDivElement, BottomSheetProps>(
                             </button>
                         </header>
                     )}
-                    <div className="px-6 pb-6">{children}</div>
+                    <div className="flex-1 overflow-y-auto">
+                        {children}
+                    </div>
                 </div>
             </div>
         );

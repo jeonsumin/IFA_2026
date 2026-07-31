@@ -1,7 +1,10 @@
 import {useState} from "react";
-import {Button} from "shared/ui";
+import {BottomSheet, Button} from "shared/ui";
 import {cn} from "shared/lib/cn";
 import {PERSONAS} from '../model/persona'
+import {PERSONA_OPTIONS} from "pages/persona/model/persona-options.ts";
+import {ButtonItem} from "widgets/survey/ui/button-item.tsx";
+
 // 인물 사진 좌측 경계를 카드 배경으로 부드럽게 페이드(디자인 alpha 마스크 근사)
 const photoFade =
     "[mask-image:linear-gradient(to_right,transparent,#000_45%)] [-webkit-mask-image:linear-gradient(to_right,transparent,#000_45%)]";
@@ -11,6 +14,17 @@ const outlineActive =
 
 export const Persona = () => {
     const [selected, setSelected] = useState<number | null>(null);
+    const [sheetOpen, setSheetOpen] = useState(false);
+
+    const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
+    const setAnswer = (surveyId: string, value: string | string[]) => {
+        setAnswers((prev) => ({...prev, [surveyId]: value}));
+    };
+
+    const selectedPersona = (target: number) => {
+        setSelected(target)
+        setSheetOpen(true);
+    }
 
     return (
         <div className="relative min-h-full bg-bg-default">
@@ -55,7 +69,7 @@ export const Persona = () => {
                                     <button
                                         key={i}
                                         type="button"
-                                        onClick={() => setSelected(i)}
+                                        onClick={() => selectedPersona(i)}
                                         aria-pressed={on}
                                         className={cn(
                                             "relative  w-full overflow-hidden rounded-2xl bg-white/70 text-left",
@@ -75,12 +89,12 @@ export const Persona = () => {
                                             )}>
                                                 {p.desc.map((l) => <p key={l}>{l}</p>)}
                                             </div>
-                                            <p className={cn(
+                                            <div className={cn(
                                                 "text-xl font-bold leading-[1.2]",
                                                 on ? "text-lg-active-red" : "text-black"
                                             )}>
-                                                {p.title.map(t => <p key={t}>{t}</p>)}
-                                            </p>
+                                                {p.title.map((t) => <p key={t}>{t}</p>)}
+                                            </div>
                                         </div>
                                     </button>
                                 );
@@ -99,6 +113,46 @@ export const Persona = () => {
                     </div>
                 </div>
             </div>
+
+            <BottomSheet open={sheetOpen} onClose={() => setSheetOpen(false)}>
+                {/* 로봇(그라데이션 링 + 원형 페이스) */}
+                <div className="flex flex-col items-center gap-10 text-center">
+                    <div className="flex items-center justify-center">
+                        <div className="relative size-[190px]">
+                            <img src="/images/persona/robot-ring.svg" alt="" aria-hidden
+                                 className="absolute inset-0 size-full"/>
+                            <div
+                                className="absolute left-1/2 top-1/2 size-[180px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full">
+                                <img src="/images/persona/robot-face.png" alt="" aria-hidden
+                                     className="size-full object-cover"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="items-center">
+                        <p>이 라이프 스타일을 선택한 </p>
+                        <p>가장 큰 이유는 무엇인가요? </p>
+                    </div>
+
+                    <div className="w-full px-5 space-y-4 pb-10">
+                        {PERSONA_OPTIONS.map((item) =>
+                            <ButtonItem
+                                key={item.id}
+                                title={''}
+                                questions={item.item ?? []}
+                                value={answers[item.id]}
+                                onChange={(v) => setAnswer(item.id, v)}
+                            />
+                        )}
+                        <Button
+                            variant="ghost"
+                            disabled={selected === null}
+                            className={`bg-lg-ai-gradient font-bold text-white  ${selected === null ? 'bg-disabled' : ''}`}
+                        >
+                            다음
+                        </Button>
+                    </div>
+                </div>
+            </BottomSheet>
         </div>
     );
 };

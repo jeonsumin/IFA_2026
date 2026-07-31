@@ -1,8 +1,8 @@
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {Home} from 'pages/home';
 import {Promotion} from 'pages/promotion';
 import {CheckIn} from 'pages/check-in';
-import {Intro} from 'pages/intro';
+import {Welcome} from 'pages/welcome';
 import {Persona} from 'pages/persona';
 import {Experience} from 'pages/experience';
 import {useDevice} from 'app/provider/device';
@@ -14,7 +14,7 @@ export const AppRouter = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path={'/intro'} element={<Intro/>}/>
+                <Route path={'/welcome'} element={<Welcome/>}/>
                 <Route element={<PageLayout/>}>
                     {/* 체크인 완료자는 홈으로 (역방향 가드) */}
                     <Route element={<RedirectIfCheckedIn/>}>
@@ -28,6 +28,7 @@ export const AppRouter = () => {
                     </Route>
                 </Route>
 
+                <Route path={'*'} element={<Navigate to="/" replace/>}/>
             </Routes>
         </BrowserRouter>
     )
