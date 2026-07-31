@@ -1,6 +1,10 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Home} from 'pages/home';
 import {Promotion} from 'pages/promotion';
+import {CheckIn} from 'pages/check-in';
+import {Intro} from 'pages/intro';
+import {Persona} from 'pages/persona';
+import {Experience} from 'pages/experience';
 import {useDevice} from 'app/provider/device';
 import { PageLayout } from "../layout";
 
@@ -9,8 +13,12 @@ export const AppRouter = () => {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path={'/intro'} element={<Intro/>}/>
                 <Route element={<PageLayout/>}>
                     <Route path={'/'} element={isMobile ? <Home/> : <Promotion/>}/>
+                    <Route path={'/check-in'} element={<CheckIn/>}/>
+                    <Route path={'/persona'} element={<Persona/>}/>
+                    <Route path={'/experience'} element={<Experience/>}/>
                 </Route>
 
             </Routes>

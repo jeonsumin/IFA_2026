@@ -1,0 +1,25 @@
+import {useState} from "react";
+import type {CheckInPayload} from "entities/user";
+import {submitCheckIn} from "../api/submit-check-in";
+
+// 제출 API를 loading/error 상태와 함께 감싼 훅
+export const useSubmitCheckIn = () => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const submit = async (payload: CheckInPayload): Promise<boolean> => {
+        setLoading(true);
+        setError(null);
+        try {
+            await submitCheckIn(payload);
+            return true;
+        } catch (e) {
+            setError(e instanceof Error ? e.message : "저장에 실패했습니다.");
+            return false;
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return {submit, loading, error};
+};
