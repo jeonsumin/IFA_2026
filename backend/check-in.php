@@ -1,8 +1,5 @@
 <?php
-// 레거시 common.php 경고가 응답에 섞여 http_response_code를 막지 않도록 화면 출력만 끔
-ini_set('display_errors', '0');
 include_once "./_common.php";
-header('Content-Type: application/json; charset=utf-8');
 
 if (isset($zx) && $zx == 'y') {
     $name = "TEST";
