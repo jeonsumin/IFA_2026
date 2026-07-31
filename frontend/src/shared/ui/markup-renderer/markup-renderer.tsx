@@ -234,23 +234,23 @@ const MarkdownRenderer: React.FC<MarkupRendererProps> = (
         .replace(/^(\d+)\) /gm, '$1\\) ');
 
     const components = {
-        h1: heading('h1', 'text-3xl font-bold text-primary mt-8 mb-4 first:mt-0'),
-        h2: heading('h2', 'text-2xl font-semibold text-primary mt-8 mb-3 first:mt-0'),
-        h3: heading('h3', 'text-xl font-semibold text-primary mt-6 mb-2'),
-        h4: heading('h4', 'text-lg font-semibold text-primary mt-4 mb-2'),
+        h1: heading('h1', 'text-3xl font-bold mt-8 mb-4 first:mt-0'),
+        h2: heading('h2', 'text-2xl font-semibold  mt-8 mb-3 first:mt-0'),
+        h3: heading('h3', 'text-xl font-semibold  mt-6 mb-2'),
+        h4: heading('h4', 'text-lg font-semibold  mt-4 mb-2'),
 
         p: (props: any) => (
-            <p className='text-base leading-7 text-primary my-3' {...props} />
+            <p className='text-base leading-7  my-3' {...props} />
         ),
         strong: (props: any) => (
-            <strong className='font-semibold text-primary' {...props} />
+            <strong className='font-semibold ' {...props} />
         ),
         em: (props: any) => <em className='italic' {...props} />,
         hr: () => <hr className='my-8 border-border'/>,
 
         ul: (props: any) => <ul className='list-disc pl-6 my-3 space-y-1' {...props} />,
         ol: (props: any) => <ol className='list-decimal pl-6 my-3 space-y-1' {...props} />,
-        li: (props: any) => <li className='text-base leading-7 text-primary' {...props} />,
+        li: (props: any) => <li className='text-base leading-7 ' {...props} />,
 
         a: (props: any) => CustomLink({...props, convertEmailtoLink: convertEmailToLink}),
 
@@ -282,7 +282,7 @@ const MarkdownRenderer: React.FC<MarkupRendererProps> = (
     if (!content) return <div/>;
 
     return (
-        <div className='markup text-primary'>
+        <div className='markup '>
             <Markdown
                 remarkPlugins={[remarkGfm, remarkBreaks, remarkBreakTags]}
                 components={components}

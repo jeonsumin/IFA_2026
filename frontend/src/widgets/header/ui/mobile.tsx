@@ -18,7 +18,7 @@ export const MobileHeader = () => {
                     </button>
                 </div>
             ) : (
-                <img src="/assets/images/logo.svg" alt={"logo"}/>
+                <img src="/images/logo.svg" alt={"logo"}/>
             )}
         </header>
     );

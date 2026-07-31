@@ -22,7 +22,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             />
             <span
                 className={cn(
-                    "w-4 h-4 border rounded flex items-center justify-center",
+                    "w-4 h-4 border rounded-full flex items-center justify-center",
                     "border-input bg-white",
                     "peer-checked:bg-primary peer-checked:border-primary peer-checked:[&>svg]:block",
                     className

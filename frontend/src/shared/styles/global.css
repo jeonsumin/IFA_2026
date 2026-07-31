@@ -2,6 +2,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* LG EI Headline — 가변폰트 1개로 전 weight(100~700) 커버 */
+@font-face {
+    font-family: "LG EI Headline";
+    src: url("./fonts/LGEIHeadlineVF.woff2") format("woff2-variations");
+    font-weight: 100 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 @theme inline {
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
@@ -53,6 +62,14 @@
     --color-lg-gray-6: var(--lg-gray-6);
     --color-lg-gray-7: var(--lg-gray-7);
     --color-black: var(--black);
+
+    /* LG DDX 화면 토큰 */
+    --color-bg-default: #f0ece4;
+    --color-placeholder: #c2c2c2;
+    --color-lg-active-red: #fd312e;
+
+    /* 전역 기본 폰트 */
+    --font-sans: "LG EI Headline", ui-sans-serif, system-ui, sans-serif;
 
     --font-fz-da-hei-b02s: "FZDaHei-B02S";
     --font-fz-lan-ting-hei-s-r-gb: "FZLanTingHeiS-R-GB";
@@ -169,3 +186,8 @@
 }
 .modal-slide-forward { animation: modalSlideForward 0.25s ease; }
 .modal-slide-back { animation: modalSlideBack 0.25s ease; }
+
+/* LG AI 그라데이션(레드→핑크→퍼플). 여러 화면에서 재사용 */
+.bg-lg-ai-gradient {
+    background-image: linear-gradient(137.5deg, #fd312e 8%, #f914eb 55%, #b432f5 74%, #8227ff 93%);
+}

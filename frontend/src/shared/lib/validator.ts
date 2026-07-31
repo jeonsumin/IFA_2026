@@ -2,6 +2,8 @@ type Value = any;
 type ErrorMessage = false | string;
 type FieldValues = { [key: string]: Value };
 
+export const EMAIL_REGEX = /^[^\s@]+@([^\s@_]+\.)+[^\s@_]+$/;
+
 export const is = {
     match: (testFn: Function, message = '') => (
         value: Value,
@@ -26,8 +28,8 @@ export const is = {
     notEmptyObject: () => (value: Value): ErrorMessage =>
         Object.keys(value).length === 0 && 'Object must not be empty',
 
-    email: () => (value: Value): ErrorMessage =>
-        !!value && /^[^\s@]+@([^\s@_]+\.)+[^\s@_]+$/.test(value) && 'Must be a valid email',
+    email: (message = 'Must be a valid email') => (value: Value): ErrorMessage =>
+        !!value && !EMAIL_REGEX.test(value) && message,
 
     phone: () => (value: Value): ErrorMessage =>
         !!value && !/^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/.test(value) && 'Must be a valid phone',

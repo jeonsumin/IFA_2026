@@ -16,6 +16,8 @@ interface SelectProps {
     disabled?: boolean;
     className?: string;          // 트리거 className
     onValueChange?: (value: string) => void;
+    name?: string;               // 폼 필드 키 — 닫힘 시 onBlur(name)로 전달
+    onBlur?: (name: string) => void;  // 닫힐 때(선택/바깥클릭/ESC/토글) name과 함께 fire — 폼 touched 공통 처리용
 }
 
 export const Select = ({
@@ -26,6 +28,8 @@ export const Select = ({
     disabled,
     className,
     onValueChange,
+    name,
+    onBlur,
 }: SelectProps) => {
     const isControlled = value !== undefined;
     const [internal, setInternal] = useState<string | undefined>(defaultValue);
@@ -37,6 +41,13 @@ export const Select = ({
     const listId = useId();
 
     const selectedOption = options.find((o) => o.value === selected);
+
+    // 닫힘(open true→false) 시점에 onBlur fire — native input과 동일한 touched 시점
+    const wasOpen = useRef(false);
+    useEffect(() => {
+        if (wasOpen.current && !open) onBlur?.(name ?? "");
+        wasOpen.current = open;
+    }, [open, onBlur, name]);
 
     // 바깥 클릭 닫기
     useEffect(() => {

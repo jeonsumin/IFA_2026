@@ -3,7 +3,7 @@ import {Check} from "lucide-react";
 import {cn} from "shared/lib/cn";
 
 type Variant = "primary" | "outline" | "ghost";
-type Size = "sm" | "md" | "lg";
+type Size = "default" | "sm" | "md" | "lg";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: Variant;
@@ -31,6 +31,7 @@ const outlineActiveText =
     "bg-gradient-to-r from-lg-red via-lg-ai-pink to-lg-ai-purple bg-clip-text text-primary font-medium";
 
 const sizeClass: Record<Size, string> = {
+    default: "text-base py-[17px]",
     sm: "h-8 px-3 text-sm",
     md: "h-10 px-4 text-base",
     lg: "h-12 px-6 text-lg",
@@ -57,7 +58,7 @@ const CheckIcon = ({active}: {active: boolean}) =>
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     (
-        {variant = "primary", size = "md", active = false, type = "button", className, children, ...props},
+        {variant = "primary", size = "default", active = false, type = "button", className, children, ...props},
         ref
     ) => {
         const isOutline = variant === "outline";
@@ -70,7 +71,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 className={cn(
                     "w-full rounded-full",
                     isOutline && "flex items-center justify-between gap-2 text-left",
-                    "disabled:opacity-50 disabled:pointer-events-none",
+                    "disabled:bg-disable disabled:pointer-events-none",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     variantCls,
                     sizeClass[size],
