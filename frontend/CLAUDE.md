@@ -29,6 +29,20 @@ shared/    범용 UI/유틸/설정 (ui, lib, api, styles)
 - import는 alias 사용: `shared/*`, `entities/*`, `features/*`, `widgets/*`, `pages/*`, `app/*` (`vite.config.ts`에 정의).
 - 슬라이스는 `index.ts` 배럴로 공개 API만 export. 내부 파일 직접 import 금지.
 
+### 레이어 책임 (엄수 — 페이지에 로직 몰빵 금지)
+
+**pages는 조립 + 네비게이션만 한다.** API 호출·폼 검증·비즈니스 상태를 페이지 컴포넌트 안에 인라인으로 넣지 마라. 아래로 뺀다:
+
+- **API 호출** → `entities/<name>/api` (조회) 또는 `features/<action>/api` (액션). 페이지에서 `request.post(...)` 직접 호출 금지.
+- **도메인 타입** → `entities/<name>/model/types.ts` (여러 슬라이스가 공유하는 단일 출처).
+- **사용자 액션 + 상태(loading/error)** → `features/<action>/model/use-*.ts` 훅으로.
+- **폼 상태·검증** → 해당 슬라이스의 `model/use-*.ts` 훅으로 분리 (페이지 UI 파일에 `errors`/검증 로직 인라인 금지).
+- 페이지의 이벤트 핸들러(`handleX`)는 위 훅들을 **조합**하고 `navigate`만 호출한다.
+
+참고 패턴: `features/submit-check-in`(api+훅) + `entities/user`(타입) + `pages/check-in/model/use-check-in-form.ts`(폼/검증 훅) → `pages/check-in/ui/check-in.tsx`는 조립만. `features/submit-survey` + `entities/survey`도 동일.
+
+새 화면 구현 시: 제출/검증/API가 있으면 **먼저 features/entities/model 훅부터 만들고** 페이지는 그걸 쓰기만 하라. 인라인으로 시작해서 나중에 빼지 말 것.
+
 ## 스타일
 
 - **인라인 CSS 금지.** Tailwind 유틸 + 디자인 토큰만 사용.
