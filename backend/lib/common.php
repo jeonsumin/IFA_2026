@@ -54,12 +54,12 @@ error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED);
 $mobile_agent = '/(iPod|iPhone|Android|BlackBerry|SymbianOS|SCH-M\d+|Opera Mini|Windows CE|Nokia|SonyEricsson|webOS|PalmOS)/';
 $device = 'W';
 
-//$ipaddr = 0;
-//$ref_url = 0;
-//$query_string = 0;
-//$self = 0;
-//$ref = 0;
-//$path = '..';
+$ipaddr = 0;
+$ref_url = 0;
+$query_string = 0;
+$self = 0;
+$ref = 0;
+$path = '..';
 
 if(preg_match($mobile_agent, $_SERVER['HTTP_USER_AGENT'])) $device = 'M';
 if( strlen( $ipaddr ) == 0 ) $ipaddr = $_SERVER["REMOTE_ADDR"];
@@ -70,7 +70,7 @@ if( strlen( $self ) == 0 ) $self = $_SERVER['PHP_SELF'];
 
 $action_param = array( 'ipaddr'=>$ipaddr, 'referer'=>$ref_url, 'ref'=>$ref, 'self'=> $self, 'param'=>$query_string );
 
-$root_f = "";
+$root_f = "api";
 include_once realpath($_SERVER["DOCUMENT_ROOT"]."")."/".$root_f."/lib/config.php";
 include_once realpath($_SERVER["DOCUMENT_ROOT"]."")."/".$root_f."/lib/config.db.php";
 include_once realpath($_SERVER["DOCUMENT_ROOT"]."")."/".$root_f."/lib/function.php";
