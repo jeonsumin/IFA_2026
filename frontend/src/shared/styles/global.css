@@ -112,7 +112,7 @@
     --sidebar-border: oklch(0.92 0.004 286.32);
     --sidebar-ring: oklch(0.704 0.191 22.216);
 
-    --lg-red: oklch(0.4587 0.1834 15.4);
+    --lg-red: oklch(0.644 0.237 27.639);
     --lg-ai-pink: oklch(0.6844 0.3036 331.49);
     --lg-ai-pink-purple: oklch(0.606 0.2705 310.77);
     --lg-ai-purple: oklch(0.5477 0.2792 293.43);
@@ -177,17 +177,33 @@
 }
 
 @keyframes modalSlideForward {
-    from { transform: translateX(100%); }
-    to   { transform: translateX(0); }
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
 }
-@keyframes modalSlideBack {
-    from { transform: translateX(-100%); }
-    to   { transform: translateX(0); }
-}
-.modal-slide-forward { animation: modalSlideForward 0.25s ease; }
-.modal-slide-back { animation: modalSlideBack 0.25s ease; }
 
-/* LG AI 그라데이션(레드→핑크→퍼플). 여러 화면에서 재사용 */
-.bg-lg-ai-gradient {
-    background-image: linear-gradient(137.5deg, #fd312e 8%, #f914eb 55%, #b432f5 74%, #8227ff 93%);
+@keyframes modalSlideBack {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.modal-slide-forward {
+    animation: modalSlideForward 0.25s ease;
+}
+
+.modal-slide-back {
+    animation: modalSlideBack 0.25s ease;
+}
+
+/* LG AI 그라데이션(레드→핑크→퍼플). 여러 화면에서 재사용.
+   @utility로 정의해 Tailwind 유틸리티 레이어에 포함 → disabled:bg-none 등 변형이 정상 override됨 */
+@utility bg-lg-ai-gradient {
+    background-image: linear-gradient(100deg, #FD312E 8.23%, #F914EB 54.69%, #B432F5 74.12%, #8227FF 92.71%);
 }

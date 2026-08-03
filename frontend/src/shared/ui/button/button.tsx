@@ -18,7 +18,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const baseVariant: Record<Exclude<Variant, "outline">, string> = {
     // NEXT: 빨강→핑크→퍼플 그라데이션 채움
     primary:
-        "bg-gradient-to-r from-lg-red via-lg-ai-pink to-lg-ai-purple text-white",
+        "bg-lg-ai-gradient text-white",
     ghost: "bg-transparent",
 };
 
@@ -31,7 +31,7 @@ const outlineInactive = "border border-lg-gray-5 bg-white text-lg-gray-3";
 
 // 활성 outline 텍스트는 그라데이션 (배경은 테두리 트릭이 점유하므로 별도 span)
 const outlineActiveText =
-    "bg-gradient-to-r from-lg-red via-lg-ai-pink to-lg-ai-purple bg-clip-text text-primary font-medium";
+    "bg-lg-ai-gradient bg-clip-text text-primary font-medium";
 
 const sizeClass: Record<Size, string> = {
     default: "text-base py-[17px]",
@@ -84,7 +84,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 className={cn(
                     "w-full rounded-full",
                     isOutline && "",
-                    "disabled:bg-disable disabled:pointer-events-none",
+                    "disabled:bg-none disabled:bg-disable disabled:pointer-events-none",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     variantCls,
                     sizeClass[size],
