@@ -1,10 +1,10 @@
 import {Mobile} from "./mobile";
 import {Desktop} from "./desktop";
 import {MobileHeader} from "widgets/header";
-import {useDevice} from "app/provider/device";
+import {isMobile} from 'react-device-detect';
+
 
 export const PageLayout = () => {
-    const {isMobile} = useDevice();
 
     return isMobile
         ? <Mobile headerSlot={<MobileHeader/>}/>
