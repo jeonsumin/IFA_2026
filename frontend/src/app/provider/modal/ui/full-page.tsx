@@ -1,28 +1,21 @@
-import {useRef} from "react";
 import type {FullPageScreen} from "../types/types";
 
 type Props = {
     stack: FullPageScreen[];
+    progress: boolean;
+    steps?: number;
     pop: () => void;
     close: () => void;
 };
 
-export const FullPage = ({stack, pop, close}: Props) => {
+export const FullPage = ({stack, progress, steps, pop, close}: Props) => {
     const depth = stack.length;
     const top = stack[depth - 1];
-
-    // 첫 페이지(초기 오픈)는 애니메이션 없음. 깊이가 변할 때만 push=forward / pop=back
-    const prevDepth = useRef<number | null>(null);
-    const prev = prevDepth.current;
-    const slideClass =
-        prev === null || depth === prev
-            ? ''
-            : depth > prev
-                ? 'modal-slide-forward'
-                : 'modal-slide-back';
-    prevDepth.current = depth;
-
     const canGoBack = depth > 1;
+
+    // 진행률 = 현재 단계 / 전체 단계. steps 미지정 시 스택 길이로 대체(항상 100%)
+    const total = steps ?? depth;
+    const percent = Math.min(100, Math.round((depth / total) * 100));
 
     return (
         <div className="fixed inset-0 z-[100] flex justify-center bg-black/50">
@@ -43,6 +36,7 @@ export const FullPage = ({stack, pop, close}: Props) => {
                             ←
                         </button>
                     )}
+                    {!top.title && <img src="/images/logo.svg" alt={"logo"}/>}
                     {top.title && <h2 className="text-lg font-bold">{top.title}</h2>}
                     <button
                         type="button"
@@ -53,9 +47,21 @@ export const FullPage = ({stack, pop, close}: Props) => {
                         ✕
                     </button>
                 </header>
+                {progress && (
+                    <div className="h-[3px] w-full shrink-0 bg-lg-gray-5">
+                        <div
+                            role="progressbar"
+                            aria-valuenow={percent}
+                            aria-valuemin={0}
+                            aria-valuemax={100}
+                            className="h-full bg-lg-ai-gradient transition-[width] duration-300 ease-out"
+                            style={{width: `${percent}%`}}
+                        />
+                    </div>
+                )}
                 <div
                     key={depth}
-                    className={`flex-1 overflow-y-auto scrollbar-hide bg-white ${slideClass}`}
+                    className="flex-1 overflow-y-auto scrollbar-hide bg-white"
                 >
                     {top.content}
                 </div>
