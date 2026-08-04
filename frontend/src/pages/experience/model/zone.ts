@@ -10,7 +10,7 @@ export const ZONES: Zone[] = [
         img: "/images/experience/zone-entertainment.jpg",
         title: "Entertainment in Tune",
         desc: ["AI가 완성하는", "몰입형 엔터테인먼트", "경험을 만나보세요."],
-        clear: false,
+        clear: true,
     },
     {
         img: "/images/experience/zone-living.jpg",
@@ -22,7 +22,7 @@ export const ZONES: Zone[] = [
         img: "/images/experience/zone-harmony.png",
         title: "Harmony in Tune",
         desc: ["집안의 모든 공간을 연결하는 LG AI", "Home을 경험해 보세요."],
-        clear: false,
+        clear: true,
     },
     {
         img: "/images/experience/zone-elegance.png",
