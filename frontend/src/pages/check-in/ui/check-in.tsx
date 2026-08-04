@@ -122,7 +122,7 @@ export const CheckIn = () => {
 
             <div className="mt-auto px-5 pt-12 pb-15">
                 {/* 비활성 시 디자인대로 그라데이션 대신 solid 회색(#999) */}
-                <Button disabled={!valid} onClick={handleNext} className={!valid ? "bg-none bg-disable" : undefined}>
+                <Button disabled={!valid} onClick={handleNext}>
                     다음
                 </Button>
             </div>

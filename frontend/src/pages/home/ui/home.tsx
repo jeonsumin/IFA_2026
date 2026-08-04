@@ -1,104 +1,76 @@
-import {lazy, Suspense, useState} from "react";
-import {Button, Checkbox, Select, OtpInput, BottomSheet} from "shared/ui";
-import {useModal} from "app/provider/modal";
-import {Survey} from "widgets/survey";
+import {Button} from "shared/ui";
+import {useNavigate} from "react-router-dom";
 
-// @zxing(~480kB)는 QR 스캔 모달을 열 때만 로드하도록 코드 스플릿
-const QrScanner = lazy(() =>
-    import("widgets/qr-scanner").then((m) => ({default: m.QrScanner}))
-);
-
-// ponytail: 데모용 하드코딩 코드. 실제 검증은 백엔드 연동 시 교체
-const OTP_CODE = "1234";
-
-const OtpDemo = () => {
-    const [error, setError] = useState(false);
-    return (
-        <div className="flex flex-col items-center gap-4 p-6">
-            <p>4자리 인증 코드를 입력하세요</p>
-            <OtpInput
-                autoFocus
-                error={error}
-                onComplete={(code) => {
-                    const ok = code === OTP_CODE;
-                    setError(!ok);
-                }}
-            />
-            {error && <span className="text-sm text-destructive">인증 코드가 올바르지 않습니다.</span>}
-        </div>
-    );
-};
 
 export const Home = () => {
-
-    const {openFullPage, openAlert} = useModal();
-    const [sheetOpen, setSheetOpen] = useState(false);
-
-    const openQrScan = () => {
-        openFullPage({
-            title: "QR 스캔",
-            content: (
-                <Suspense fallback={<div className="flex h-full items-center justify-center">카메라 로딩 중…</div>}>
-                    <QrScanner
-                        onScan={(value) => openAlert({title: "스캔 완료", message: value})}
-                        onError={(message) => openAlert({title: "오류", message})}
-                    />
-                </Suspense>
-            ),
-        });
-    };
-
-    const openOtp = () => {
-        openFullPage({
-            title: "OTP 인증",
-            content: <OtpDemo/>,
-        });
-    };
-
-    const openSurvey = () => {
-        openFullPage({
-            title: "설문",
-            content: (
-                <div className="p-4">
-                    <Survey
-                        onSubmit={(answers) =>
-                            openAlert({title: "제출 완료", message: JSON.stringify(answers, null, 2)})
-                        }
-                    />
-                </div>
-            ),
-        });
-    };
+    const navigate = useNavigate();
 
     return (
-        <div>
-            <h1>home</h1>
+        <div className="relative mx-auto h-[100dvh] w-full max-w-[var(--maxWidth)] overflow-hidden bg-lg-gray-1">
+            {/* 배경 텍스처 */}
+            <img
+                src="/images/welcome/bg-main.jpg"
+                alt=""
+                aria-hidden
+                className="pointer-events-none absolute inset-0 size-full object-cover"
+            />
 
-            <Checkbox label={'checkbox'}/>
-            <Select options={[
-                {
-                    label: 'label1',
-                    value: '1'
-                },
-                {
-                    label: 'label2',
-                    value: '2',
-                    disabled: true
-                },
-            ]}/>
-            <Button>button</Button>
-            <Button onClick={openQrScan}>QR 스캔</Button>
-            <Button onClick={openSurvey}>설문</Button>
-            <Button onClick={openOtp}>OTP 인증</Button>
-            <Button onClick={() => setSheetOpen(true)}>바텀시트</Button>
+            {/* 장식 오브젝트 */}
+            <img src="/images/welcome/object-wood.png" alt="" aria-hidden
+                 className="pointer-events-none absolute left-[-51%] top-[73%] w-[111%]"/>
+            <img src="/images/welcome/object-glass.png" alt="" aria-hidden
+                 className="pointer-events-none absolute left-[70%] top-[11%] w-[33%] opacity-80"/>
+            <img src="/images/welcome/object-redstone.png" alt="" aria-hidden
+                 className="pointer-events-none absolute right-[35%] top-[-3%] w-[90%] rotate-[173.31deg]"/>
+            <img src="/images/welcome/object-circle.png" alt="" aria-hidden
+                 className="pointer-events-none absolute left-[61%] top-[46%] w-[32%] opacity-70"/>
 
-            <BottomSheet open={sheetOpen} onClose={() => setSheetOpen(false)} title="바텀시트 데모">
-                <div className="flex flex-col gap-4">
-                    <p className="text-lg-gray-2">아래에서 슬라이드업으로 올라옵니다.</p>
-                    <p className="text-lg-gray-2">오버레이를 클릭하거나 핸들을 아래로 드래그하면 닫힙니다.</p>
-                    <Button onClick={() => setSheetOpen(false)}>닫기</Button>
+            {/* 붉은 톤 블러 오버레이 */}
+            <div
+                className="pointer-events-none absolute left-0 top-[45%] h-[55%] w-full bg-[rgba(154,29,29,0.11)] backdrop-blur-[2.5px]"/>
+            <div
+                className="pointer-events-none absolute left-0 top-[45%] h-[55%] w-full bg-[rgba(154,29,29,0.02)] backdrop-blur-[2.5px]"/>
+            {/* 상단 dim */}
+            <div
+                className="pointer-events-none absolute left-0 top-0 h-[13%] w-full bg-gradient-to-b from-black/50 to-transparent"/>
+
+            {/* 콘텐츠 */}
+            <div className="absolute inset-0 flex flex-col text-white">
+                <div className="flex justify-center pt-[54px]">
+                    <img src="/images/welcome/logo.svg" alt="LG IFA" className="h-10"/>
                 </div>
-            </BottomSheet>
+
+                <div className="mt-[9%] flex flex-col items-center gap-4 px-5 text-center">
+                    <p className="text-2xl font-bold">Innovation in tune with you</p>
+                    <img src="/images/welcome/lifes-good.svg" alt="Life's Good." className="w-[83%] max-w-[300px]"/>
+                </div>
+
+                <div className="mt-auto flex flex-col bg-gradient-to-b from-transparent to-black/70 pt-10">
+                    <div
+                        className="flex flex-col items-center gap-4 px-5 text-center text-base leading-[1.4] tracking-[-0.32px]">
+                        <p>가전, 공간, 라이프스타일</p>
+                        <p>
+                            흩어진 일상을<br/>
+                            LG AI가 하나의 완벽한 리듬으로<br/>
+                            조율합니다.
+                        </p>
+                        <p>
+                            지금, 당신을 위한<br/>
+                            오케스트라가 시작됩니다.
+                        </p>
+                    </div>
+
+                    <div className="px-5 py-[60px]">
+                        <Button
+                            variant="ghost"
+                            onClick={() => navigate("/check-in")}
+                            className="bg-white text-xl font-bold text-black"
+                        >
+                            시작하기
+                        </Button>
+                    </div>
+                </div>
+            </div>
         </div>
-    )
+    );
 }
