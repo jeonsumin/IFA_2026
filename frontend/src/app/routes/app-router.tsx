@@ -10,49 +10,56 @@ import {RequireCheckIn, RedirectIfCheckedIn} from "./guards";
 import {Dashboard} from "pages/dashboard";
 import {Promotion} from "pages/promotion";
 import {Report} from "pages/report";
+import {QrScanner} from "pages/qr-scanner";
+import {ModalProvider} from "app/provider/modal";
+import {ExperienceSuccess} from "pages/experience-success";
 
 export const AppRouter = () => {
 
     return (
         <BrowserRouter>
+            <ModalProvider>
 
+                <BrowserView>
+                    <Routes>
+                        <Route path='/' element={<Promotion/>}/>
+                        <Route path={'*'} element={<Navigate to="/" replace/>}/>
+                    </Routes>
+                </BrowserView>
 
-            <BrowserView>
-                <Routes>
-                    <Route path='/' element={<Promotion/>}/>
-                    <Route path={'*'} element={<Navigate to="/" replace/>}/>
-                </Routes>
-            </BrowserView>
+                <TabletView>
+                    <Routes>
+                        <Route path='/' element={<Promotion/>}/>
+                        <Route path={'*'} element={<Navigate to="/" replace/>}/>
+                    </Routes>
+                </TabletView>
 
-            <TabletView>
-                <Routes>
-                    <Route path='/' element={<Promotion/>}/>
-                    <Route path={'*'} element={<Navigate to="/" replace/>}/>
-                </Routes>
-            </TabletView>
-
-            <MobileOnlyView>
-                <Routes>
-                    <Route element={<PageLayout/>}>
-                        {/* 인트로(공개) — 미체크인자도 봐야 체크인으로 진입 가능 */}
+                <MobileOnlyView>
+                    <Routes>
                         <Route path={'/'} element={<Home/>}/>
 
-                        <Route element={<RedirectIfCheckedIn/>}>
-                            <Route path={'/check-in'} element={<CheckIn/>}/>
-                        </Route>
                         <Route element={<RequireCheckIn/>}>
-                            <Route path={'/welcome'} element={<Welcome/>}/>
-                            <Route path={'/persona'} element={<Persona/>}/>
-                            <Route path={'/experience'} element={<Experience/>}/>
-                            <Route path={'/dashboard'} element={<Dashboard/>}/>
-                            <Route path={'/report'} element={<Report/>}/>
+                            <Route path={'/qr'} element={<QrScanner/>}/>
                         </Route>
-                        <Route path={'*'} element={<Navigate to="/" replace/>}/>
-                    </Route>
-                </Routes>
-            </MobileOnlyView>
+                        <Route element={<PageLayout/>}>
+                            {/* 인트로(공개) — 미체크인자도 봐야 체크인으로 진입 가능 */}
 
-
+                            <Route element={<RedirectIfCheckedIn/>}>
+                                <Route path={'/check-in'} element={<CheckIn/>}/>
+                            </Route>
+                            <Route element={<RequireCheckIn/>}>
+                                <Route path={'/welcome'} element={<Welcome/>}/>
+                                <Route path={'/persona'} element={<Persona/>}/>
+                                <Route path={'/experience'} element={<Experience/>}/>
+                                <Route path={'/experience-success'} element={<ExperienceSuccess/>}/>
+                                <Route path={'/dashboard'} element={<Dashboard/>}/>
+                                <Route path={'/report'} element={<Report/>}/>
+                            </Route>
+                            <Route path={'*'} element={<Navigate to="/" replace/>}/>
+                        </Route>
+                    </Routes>
+                </MobileOnlyView>
+            </ModalProvider>
         </BrowserRouter>
     )
 }

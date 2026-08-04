@@ -47,7 +47,7 @@ export const QrScanner = ({onScan, onError}: Props) => {
     }, []);
 
     return (
-        <div className="relative flex h-full w-full items-center justify-center bg-black">
+        <div className="relative flex h-[350px] w-full items-center justify-center bg-black">
             <video ref={videoRef} autoPlay muted playsInline className="h-full w-full object-cover"/>
             {/* 조준 가이드 */}
             <div className="pointer-events-none absolute inset-0 flex items-center justify-center">

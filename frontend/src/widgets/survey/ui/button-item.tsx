@@ -6,11 +6,13 @@ interface ButtonItemProps {
     required?: boolean;
     mult?: boolean;
     error?: boolean;
+    startIcon?: boolean;
+    endIcon?: boolean;
     value?: string | string[];
     onChange: (v: string | string[]) => void;
 }
 
-export const ButtonItem = ({title, questions, required, mult, error, value, onChange}: ButtonItemProps) => {
+export const ButtonItem = ({title, questions, required, mult, error, value, endIcon, startIcon, onChange}: ButtonItemProps) => {
     const isSelected = (content: string) =>
         mult ? Array.isArray(value) && value.includes(content) : value === content;
 
@@ -39,6 +41,8 @@ export const ButtonItem = ({title, questions, required, mult, error, value, onCh
                         key={q.content}
                         variant="outline"
                         active={isSelected(q.content)}
+                        endIcon={endIcon}
+                        startIcon={startIcon}
                         onClick={() => handleClick(q.content)}
                     >
                         {q.content}

@@ -1,6 +1,5 @@
 import {createRoot} from 'react-dom/client'
 import {AppRouter} from "./routes";
-import {ModalProvider} from "./provider/modal";
 import {ensureDeviceId} from "entities/session";
 
 import "shared/styles/global.css"
@@ -9,7 +8,5 @@ import "shared/styles/global.css"
 ensureDeviceId();
 
 createRoot(document.getElementById('root')!).render(
-    <ModalProvider>
-        <AppRouter/>
-    </ModalProvider>
+    <AppRouter/>
 )

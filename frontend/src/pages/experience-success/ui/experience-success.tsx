@@ -1,13 +1,14 @@
 import {Button} from "shared/ui";
 import {useNavigate} from "react-router-dom";
 
-export const Welcome = () => {
+export const ExperienceSuccess = () => {
     const navigate = useNavigate();
 
     return (
         <div className="relative flex min-h-full flex-col bg-bg-default">
             {/* 상단 핑크 → 하단 베이지 그라데이션 */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-lg-active-red/25 to-bg-default/25"/>
+            <div
+                className="pointer-events-none absolute inset-0 bg-gradient-to-b from-lg-active-red/25 to-bg-default/25"/>
 
             {/* 로봇(핑크 글로우) */}
             <div className="relative flex flex-1 items-center justify-center mt-10">
@@ -35,20 +36,18 @@ export const Welcome = () => {
                 />
                 <div className="-mt-px flex flex-col bg-white/40 px-5 pb-15 ">
                     <div className="flex flex-col items-center gap-4 text-center">
-                        <p className="text-4xl font-bold leading-none text-black">Welcome !</p>
+                        <p className="text-5xl font-bold leading-none text-black">CLEAR!</p>
                         {/* ponytail: 체크인 이름 연동 전까지 플레이스홀더 */}
-                        <p className="text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">ABCDEFGH 님</p>
                         <div className="text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">
-                            <p>당신의 라이프스타일을 발견하고,</p>
-                            <p>LG AI가 제안하는 맞춤 경험을 만나보세요.</p>
+                            <p>체험을 완료하였습니다.</p>
                         </div>
                     </div>
 
-                    <Button onClick={() => navigate("/persona")} className="mt-12 font-bold">
-                        시작하기
+                    <Button onClick={() => navigate("/dashboard")} className="mt-12 font-bold">
+                        추가 에피소드 만나기
                     </Button>
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}

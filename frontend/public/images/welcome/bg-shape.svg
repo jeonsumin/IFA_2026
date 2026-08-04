@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="360" height="350" viewBox="0 0 360 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g id="bg_shape" clip-path="url(#clip0_0_69)">
+        <path id="blur bg" d="M334.339 -0.166506C366.45 -0.166505 392.481 25.8647 392.481 57.9759L392.482 1128C392.482 1227.41 311.894 1308 212.482 1308L179.63 1308L146.777 1308C47.3659 1308 -33.2229 1227.41 -33.223 1128L-33.2236 57.9758C-33.2236 25.8647 -7.19239 -0.166521 24.9188 -0.16652C31.7158 -0.16652 38.4602 1.0253 44.8455 3.3548L117.939 30.0205C157.781 44.5558 201.476 44.5558 241.319 30.0205L314.412 3.35481C320.798 1.02531 327.542 -0.166507 334.339 -0.166506Z" fill="white" fill-opacity="0.4"/>
+    </g>
+    <defs>
+        <clipPath id="clip0_0_69">
+            <rect width="360" height="350" fill="white"/>
+        </clipPath>
+    </defs>
+</svg>
