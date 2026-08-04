@@ -27,4 +27,4 @@ debug($sql);
 rf_mysql_query($sql, $DB);
 
 
-echo json_encode(array('status' => 200, 'success' => flase))
+echo json_encode(array('status' => 200, 'success' => true));
