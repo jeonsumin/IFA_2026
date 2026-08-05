@@ -1,59 +1,58 @@
 import type {SurveyQuestion} from "entities/survey";
 
+// 카피는 카피덱(survey.*)에 저장, 렌더에서 t()로 해석
 export const surveyData: SurveyQuestion[] = [
     {
         surveyId: "Q1",
-        title: "How satisfied are you with your visit \n to the LG Booth?",
+        titleKey: "survey.q1.title",
         type: "circle",
         required: true
     },
     {
         surveyId: "Q2",
-        title: "Which zone of the booth do you like \n the most ",
+        titleKey: "survey.q2.title",
         type: "list",
         questions: [
-            {content: "Attractor"},
-            {content: "Entertainment in Tune"},
-            {content: "Living in Tune"},
-            {content: "Harmony in Tune"},
-            {content: "Elegance in Tune"},
+            {contentKey: "survey.q2.options.0"},
+            {contentKey: "survey.q2.options.1"},
+            {contentKey: "survey.q2.options.2"},
+            {contentKey: "survey.q2.options.3"},
+            {contentKey: "survey.q2.options.4"},
         ],
         required: true,
     },
     {
         surveyId: "Q3",
-        title: "Which aspects of the booth are you most satisfied with? (Multi-select)",
+        titleKey: "survey.q3.title",
         type: "list",
         questions: [
-            {content: 'Overall booth design & atmosphere'},
-            {content: 'New LG AI Appliances for European living'},
-            {content: 'LG AI Appliances Orchestra Showcase (Hero Stage)'},
-            {content: 'Find Your Routine in Tune (Mobile experience)'},
+            {contentKey: "survey.q3.options.0"},
+            {contentKey: "survey.q3.options.1"},
+            {contentKey: "survey.q3.options.2"},
+            {contentKey: "survey.q3.options.3"},
         ]
-
     },
     {
         surveyId: "Q4",
-        title: "Which products impressed you most? (Multi-select)",
+        titleKey: "survey.q4.title",
         type: "list",
         questions: [
-            {content: 'LG Best TV, Gallery TV'},
-            {content: 'UltraGear'},
-            {content: 'StanbyME 2 Max'},
-            {content: 'Sound Suite, xboom'},
-            {content: 'WebOS'},
-            {content: 'LG Fit&Max Refrigerator'},
-            {content: 'LG Fit&Max Laundry'},
-            {content: 'LG Fit&Max Dishwasher'},
-            {content: 'LG SIGNATURE Refrigerator'},
-            {content: 'LG SIGNATURE OLED T'},
-            {content: 'LG SIGNATURE Laundry '},
-
+            {contentKey: "survey.q4.options.0"},
+            {contentKey: "survey.q4.options.1"},
+            {contentKey: "survey.q4.options.2"},
+            {contentKey: "survey.q4.options.3"},
+            {contentKey: "survey.q4.options.4"},
+            {contentKey: "survey.q4.options.5"},
+            {contentKey: "survey.q4.options.6"},
+            {contentKey: "survey.q4.options.7"},
+            {contentKey: "survey.q4.options.8"},
+            {contentKey: "survey.q4.options.9"},
+            {contentKey: "survey.q4.options.10"},
         ]
     },
     {
         surveyId: "Q5",
-        title: "What experience are you most looking forward to at the LG IFA 2027 exhibition?",
+        titleKey: "survey.q5.title",
         type: "text",
     }
 ];

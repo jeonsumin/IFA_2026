@@ -166,5 +166,53 @@
     "next2": "LG Sound Suite가 재생되는 콘텐츠를 분석해\n공간에 맞는 입체 사운드와\n최적의 음향을 자동으로 조율하고,\n집에서도 새로운 공간에 있는 듯한 몰입감을 선사합니다.",
     "next3": "새로운 공간을 만들어주는\n사운드를 경험 해 보세요",
     "qrScan": "QR 스캔하기"
+  },
+  "survey": {
+    "intro": "This survey is designed to\ncollect feedback on your experience\nat the LG booth during IFA 2026.\nWe kindly ask you to share\nyour honest opinions, which will be\nused for internal purposes only.",
+    "questionCount": "※ This survey consists of 5 questions.",
+    "submit": "Submit",
+    "scaleMin": "Strongly disagree",
+    "scaleMax": "Strongly agree",
+    "q1": {
+      "title": "How satisfied are you with your visit\nto the LG Booth?"
+    },
+    "q2": {
+      "title": "Which zone of the booth do you like\nthe most",
+      "options": {
+        "0": "Attractor",
+        "1": "Entertainment in Tune",
+        "2": "Living in Tune",
+        "3": "Harmony in Tune",
+        "4": "Elegance in Tune"
+      }
+    },
+    "q3": {
+      "title": "Which aspects of the booth are you most satisfied with? (Multi-select)",
+      "options": {
+        "0": "Overall booth design & atmosphere",
+        "1": "New LG AI Appliances for European living",
+        "2": "LG AI Appliances Orchestra Showcase (Hero Stage)",
+        "3": "Find Your Routine in Tune (Mobile experience)"
+      }
+    },
+    "q4": {
+      "title": "Which products impressed you most? (Multi-select)",
+      "options": {
+        "0": "LG Best TV, Gallery TV",
+        "1": "UltraGear",
+        "2": "StanbyME 2 Max",
+        "3": "Sound Suite, xboom",
+        "4": "WebOS",
+        "5": "LG Fit&Max Refrigerator",
+        "6": "LG Fit&Max Laundry",
+        "7": "LG Fit&Max Dishwasher",
+        "8": "LG SIGNATURE Refrigerator",
+        "9": "LG SIGNATURE OLED T",
+        "10": "LG SIGNATURE Laundry"
+      }
+    },
+    "q5": {
+      "title": "What experience are you most looking forward to at the LG IFA 2027 exhibition?"
+    }
   }
 }
