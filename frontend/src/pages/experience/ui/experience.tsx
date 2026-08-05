@@ -26,9 +26,11 @@ export const Experience = () => {
     const {t} = useTranslate();
     const navigate = useNavigate();
 
-    const openPopup = () => {
+    const openPopup = (zone) => {
+        console.log(zone)
+
         openFullPage(
-            {title: '', content: <Situation/>},
+            {title: '', content: <Situation />},
             {progress: true, steps: 2}
         )
     }
@@ -79,7 +81,7 @@ export const Experience = () => {
                         <div
                             key={z.title || "clear"}
                             className="relative h-[170px] overflow-hidden rounded-2xl border border-white bg-[#E6E1D600]"
-                            onClick={openPopup}
+                            onClick={() => openPopup(z)}
                         >
                             <img
                                 src={z.img}

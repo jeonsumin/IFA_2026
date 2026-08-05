@@ -79,19 +79,100 @@
   "zone": {
     "entertainment": {
       "title": "Entertainment in Tune",
-      "desc": "AI가 완성하는\n몰입형 엔터테인먼트\n경험을 만나보세요."
+      "desc": "AI가 완성하는\n몰입형 엔터테인먼트\n경험을 만나보세요.",
+      "options": [
+        {
+          "0": {
+            "title": "LG Sound Suite",
+            "desc": "공간을 사운드로 더욱 MAX하게\nTune해주는 LG Sound Suite\n 최적화 사운드로 홈 오디오 루틴을 만나보세요"
+          },
+          "1": {
+            "title": "SBM2 Max",
+            "desc": "집안 곳곳에서 일과 휴식을 \nTune해주는 SBM2 Max\n 공간의 제약 없는 라이프 루틴을 만나보세요"
+          },
+          "2": {
+            "title": "UltraGear",
+            "desc": "일이 끝난 후 스트레스를 Tune 하는 UltraGear\n게임의 몰입도를 높여주는 \n최적의 모니터 루틴을 만나보세요"
+          },
+          "3": {
+            "title": "GALLERY",
+            "desc": "집을 다양한 무드로 Tune해주는 Art TV\n스마트한 AI 라이프 공간을 만들어주는 \nTV를 만나보세요"
+          }
+        }
+      ],
+      "result": ["일과 휴식이 공존하는 공간에서는\n휴식의 몰입감도 중요합니다", "" ,""],
     },
     "living": {
       "title": "Living in Tune",
-      "desc":"공간은 FIT하게,\n생활은 MAX하게. 더 스마트한\nAI 가전을 경험해 보세요."
+      "desc": "공간은 FIT하게,\n생활은 MAX하게. 더 스마트한\nAI 가전을 경험해 보세요.",
+      "options": [
+        {
+          "0": {
+            "title": "LG Sound Suite",
+            "desc": "공간을 사운드로 더욱 MAX하게\nTune해주는 LG Sound Suite\n 최적화 사운드로 홈 오디오 루틴을 만나보세요"
+          },
+          "1": {
+            "title": "SBM2 Max",
+            "desc": "집안 곳곳에서 일과 휴식을 \nTune해주는 SBM2 Max\n 공간의 제약 없는 라이프 루틴을 만나보세요"
+          },
+          "2": {
+            "title": "UltraGear",
+            "desc": "일이 끝난 후 스트레스를 Tune 하는 UltraGear\n게임의 몰입도를 높여주는 \n최적의 모니터 루틴을 만나보세요"
+          },
+          "3": {
+            "title": "GALLERY",
+            "desc": "집을 다양한 무드로 Tune해주는 Art TV\n스마트한 AI 라이프 공간을 만들어주는 \nTV를 만나보세요"
+          }
+        }
+      ]
     },
     "harmony": {
       "title": "Harmony in Tune",
-      "desc": "집안의 모든 공간을 연결하는 LG AI\nHome을 경험해 보세요."
+      "desc": "집안의 모든 공간을 연결하는 LG AI\nHome을 경험해 보세요.",
+      "options": [
+        {
+          "0": {
+            "title": "LG Sound Suite",
+            "desc": "공간을 사운드로 더욱 MAX하게\nTune해주는 LG Sound Suite\n 최적화 사운드로 홈 오디오 루틴을 만나보세요"
+          },
+          "1": {
+            "title": "SBM2 Max",
+            "desc": "집안 곳곳에서 일과 휴식을 \nTune해주는 SBM2 Max\n 공간의 제약 없는 라이프 루틴을 만나보세요"
+          },
+          "2": {
+            "title": "UltraGear",
+            "desc": "일이 끝난 후 스트레스를 Tune 하는 UltraGear\n게임의 몰입도를 높여주는 \n최적의 모니터 루틴을 만나보세요"
+          },
+          "3": {
+            "title": "GALLERY",
+            "desc": "집을 다양한 무드로 Tune해주는 Art TV\n스마트한 AI 라이프 공간을 만들어주는 \nTV를 만나보세요"
+          }
+        }
+      ]
     },
     "elegance": {
       "title": "Elegance in Tune",
-      "desc": "AI와 프리미엄 디자인이 완성하는\n럭셔리 라이프를 경험해 보세요."
+      "desc": "AI와 프리미엄 디자인이 완성하는\n럭셔리 라이프를 경험해 보세요.",
+      "options": [
+        {
+          "0": {
+            "title": "LG Sound Suite",
+            "desc": "공간을 사운드로 더욱 MAX하게\nTune해주는 LG Sound Suite\n 최적화 사운드로 홈 오디오 루틴을 만나보세요"
+          },
+          "1": {
+            "title": "SBM2 Max",
+            "desc": "집안 곳곳에서 일과 휴식을 \nTune해주는 SBM2 Max\n 공간의 제약 없는 라이프 루틴을 만나보세요"
+          },
+          "2": {
+            "title": "UltraGear",
+            "desc": "일이 끝난 후 스트레스를 Tune 하는 UltraGear\n게임의 몰입도를 높여주는 \n최적의 모니터 루틴을 만나보세요"
+          },
+          "3": {
+            "title": "GALLERY",
+            "desc": "집을 다양한 무드로 Tune해주는 Art TV\n스마트한 AI 라이프 공간을 만들어주는 \nTV를 만나보세요"
+          }
+        }
+      ]
     }
   },
   "persona": {
