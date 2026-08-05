@@ -25,6 +25,8 @@ export const surveyData: SurveyQuestion[] = [
         surveyId: "Q3",
         titleKey: "survey.q3.title",
         type: "list",
+        mult: true,
+        required: true,
         questions: [
             {contentKey: "survey.q3.options.0"},
             {contentKey: "survey.q3.options.1"},
@@ -36,6 +38,8 @@ export const surveyData: SurveyQuestion[] = [
         surveyId: "Q4",
         titleKey: "survey.q4.title",
         type: "list",
+        mult: true,
+        required: true,
         questions: [
             {contentKey: "survey.q4.options.0"},
             {contentKey: "survey.q4.options.1"},
@@ -53,6 +57,7 @@ export const surveyData: SurveyQuestion[] = [
     {
         surveyId: "Q5",
         titleKey: "survey.q5.title",
+        required: true,
         type: "text",
     }
 ];

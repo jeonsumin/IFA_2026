@@ -260,6 +260,7 @@
     "qrScan": "QR 스캔하기"
   },
   "survey": {
+    "popupTitle": "서베이 참여하기",
     "intro": "This survey is designed to\ncollect feedback on your experience\nat the LG booth during IFA 2026.\nWe kindly ask you to share\nyour honest opinions, which will be\nused for internal purposes only.",
     "questionCount": "※ This survey consists of 5 questions.",
     "submit": "Submit",

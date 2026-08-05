@@ -3,6 +3,8 @@ import {Button} from "shared/ui";
 import {useTranslate, Trans} from "app/provider/lang";
 import {useModal} from "app/provider/modal";
 import {Survey} from "widgets/survey";
+import {SuccessView} from "widgets/success-view";
+import {OtpView} from "widgets/otp-view";
 
 // 리포트 존 목록 (badge/title은 브랜드 고정, desc는 카피덱 키)
 const ZONES = [
@@ -14,16 +16,52 @@ const ZONES = [
 
 export const Report = () => {
     const {t} = useTranslate();
-    const { openFullPage } = useModal();
+    const {openFullPage, pushFullPage} = useModal();
 
-    const handleSurvey = () => {
+    // 서베이 플로우: Survey → (제출) → SuccessView → (확인) → RewardView.
+    // 각 단계를 명명 핸들러로 분리해 중첩 콜백을 평탄화한다.
+    const openReward = () => pushFullPage({
+        title: "리워드",
+        content: <OtpView/>
+    });
+
+    const openSurveyDone = () => pushFullPage({
+        content: (
+            <SuccessView
+                title="THANK YOU!"
+                desc={"서베이 참여를 완료하였습니다. \n\n 당신의 의견은 더 나은 LG를 만드는 데 활용됩니다."}
+                btnLabel="확인"
+                section
+                onClick={openReward}
+            />
+        ),
+    });
+
+    const handleSurvey = () => openFullPage({
+        title: t("survey.popupTitle"),
+        content: (
+            <Survey onSubmit={(answers) => {
+                console.log("answers : ", JSON.stringify(answers));
+                openSurveyDone();
+            }}/>
+        ),
+    });
+    const handleReward = () => {
+
         openFullPage({
-            title: "서베이 참여하기",
-            content:<Survey onSubmit={() => {}} />
+            title: "리워드",
+            content: <SuccessView
+                title="리워드 수령 안내"
+                desc={"서베이 참여를 완료하였습니다. \n\n 당신의 의견은 더 나은 LG를 만드는 데 활용됩니다."}
+                btnLabel="확인"
+                section
+                onClick={openReward}
+            />
         })
     }
-    const handleReward = () => {}
-    const handleDownloadReport = () => {}
+
+    const handleDownloadReport = () => {
+    }
 
     return (
         <div className="flex min-h-full flex-col items-center bg-bg-default">
@@ -97,8 +135,9 @@ export const Report = () => {
                         <Gift size={20}/>
                         {t('report.reward')}
                     </Button>
-                    <button type="button" className="mx-auto mt-2 flex items-center gap-2 border-b border-black pb-1" onClick={handleDownloadReport}>
-                        <Download size={16} className="text-black" />
+                    <button type="button" className="mx-auto mt-2 flex items-center gap-2 border-b border-black pb-1"
+                            onClick={handleDownloadReport}>
+                        <Download size={16} className="text-black"/>
                         <span className="text-sm font-semibold text-black">{t('report.downloadReport')}</span>
                     </button>
                 </div>

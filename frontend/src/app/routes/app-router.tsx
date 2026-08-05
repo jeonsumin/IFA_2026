@@ -12,7 +12,7 @@ import {Promotion} from "pages/promotion";
 import {Report} from "pages/report";
 import {QrScanner} from "pages/qr-scanner";
 import {ModalProvider} from "app/provider/modal";
-import {ExperienceSuccess} from "pages/experience-success";
+import {SuccessView} from "widgets/success-view";
 
 export const AppRouter = () => {
 
@@ -51,7 +51,7 @@ export const AppRouter = () => {
                                 <Route path={'/welcome'} element={<Welcome/>}/>
                                 <Route path={'/persona'} element={<Persona/>}/>
                                 <Route path={'/experience'} element={<Experience/>}/>
-                                <Route path={'/experience-success'} element={<ExperienceSuccess/>}/>
+                                <Route path={'/experience-success'} element={<SuccessView/>}/>
                                 <Route path={'/dashboard'} element={<Dashboard/>}/>
                                 <Route path={'/report'} element={<Report/>}/>
                             </Route>

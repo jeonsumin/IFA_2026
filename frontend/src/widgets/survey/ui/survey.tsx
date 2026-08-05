@@ -70,9 +70,6 @@ export const Survey = ({onSubmit}: SurveyProps) => {
                                 </p>
                                 <p className="whitespace-pre-line text-base tracking-tight text-black">
                                     {t(item.titleKey)}
-                                    {item.required && (
-                                        <span className="text-lg-active-red"> *</span>
-                                    )}
                                 </p>
                             </div>
 
