@@ -1,3 +1,4 @@
+import {useTranslate} from "app/provider/lang";
 import {cn} from "shared/lib/cn";
 
 interface CircleItemProps {
@@ -8,8 +9,10 @@ interface CircleItemProps {
 
 const scale = ["1", "2", "3", "4", "5"];
 
-export const CircleItem = ({error, value, onChange}: CircleItemProps) => (
-    <div className="flex w-full flex-col gap-2">
+export const CircleItem = ({error, value, onChange}: CircleItemProps) => {
+    const {t} = useTranslate();
+    return (
+        <div className="flex w-full flex-col gap-2">
         <div className="flex justify-center gap-2.5">
             {scale.map((n) => (
                 <button
@@ -29,8 +32,9 @@ export const CircleItem = ({error, value, onChange}: CircleItemProps) => (
             ))}
         </div>
         <div className="flex justify-between text-xs text-state-disable-1">
-            <span>Strongly disagree</span>
-            <span>Strongly agree</span>
+            <span>{t('survey.scaleMin')}</span>
+            <span>{t('survey.scaleMax')}</span>
         </div>
-    </div>
-);
+        </div>
+    );
+};

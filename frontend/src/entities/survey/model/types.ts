@@ -8,9 +8,9 @@ export type SurveyQuestionType = "circle" | "list" | "text";
 
 export interface SurveyQuestion {
     surveyId: string;
-    title: string;
+    titleKey: string; // 카피덱 키 (survey.<qid>.title) → 렌더에서 t()로 해석
     type: SurveyQuestionType;
-    questions?: {content: string}[];
+    questions?: {contentKey: string}[]; // 카피덱 키 (survey.<qid>.options.<i>)
     required?: boolean;
     mult?: boolean;
 }

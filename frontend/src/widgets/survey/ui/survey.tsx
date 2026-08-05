@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {useTranslate} from "app/provider/lang";
 import {Button} from "shared/ui";
 import type {SurveyAnswers} from "entities/survey";
 import {surveyData} from "../model/survey";
@@ -17,6 +18,7 @@ const isAnswered = (value: string | string[] | undefined): boolean => {
 };
 
 export const Survey = ({onSubmit}: SurveyProps) => {
+    const {t} = useTranslate();
     const [answers, setAnswers] = useState<SurveyAnswers>({});
     const [showErrors, setShowErrors] = useState(false);
 
@@ -41,21 +43,16 @@ export const Survey = ({onSubmit}: SurveyProps) => {
                 <div className="flex flex-col items-center gap-2 text-center">
                     <img
                         src="/images/welcome/cloi.png"
-                        alt="LG 클로이 로봇"
+                        alt={t('common.robotAlt')}
                         className="w-40 max-w-full"
                     />
 
-                    <p className="text-sm leading-relaxed text-state-text-body">
-                        This survey is designed to <br/>
-                        collect feedback on your experience<br/>
-                        at the LG booth during IFA 2026.<br/>
-                        We kindly ask you to share<br/>
-                        your honest opinions, which will be<br/>
-                        used for internal purposes only.
+                    <p className="whitespace-pre-line text-sm leading-relaxed text-state-text-body">
+                        {t('survey.intro')}
                     </p>
 
                     <p className="text-sm font-semibold text-state-text-body">
-                        ※ This survey consists of 5 questions.
+                        {t('survey.questionCount')}
                     </p>
                 </div>
 
@@ -71,8 +68,8 @@ export const Survey = ({onSubmit}: SurveyProps) => {
                                 <p className="text-xl font-bold text-lg-active-red">
                                     Q{index + 1}.
                                 </p>
-                                <p className="text-base tracking-tight text-black">
-                                    {item.title}
+                                <p className="whitespace-pre-line text-base tracking-tight text-black">
+                                    {t(item.titleKey)}
                                     {item.required && (
                                         <span className="text-lg-active-red"> *</span>
                                     )}
@@ -88,7 +85,9 @@ export const Survey = ({onSubmit}: SurveyProps) => {
                             )}
                             {item.type === "list" && (
                                 <CheckItem
-                                    questions={item.questions ?? []}
+                                    questions={(item.questions ?? []).map((q) => ({
+                                        content: t(q.contentKey),
+                                    }))}
                                     mult={item.mult}
                                     error={error}
                                     value={answers[item.surveyId]}
@@ -107,7 +106,7 @@ export const Survey = ({onSubmit}: SurveyProps) => {
                 })}
 
                 <Button size="lg" className="mt-2" onClick={handleSubmit}>
-                    009_survey_submit
+                    {t('survey.submit')}
                 </Button>
             </div>
         </div>
