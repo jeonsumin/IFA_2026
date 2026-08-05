@@ -68,6 +68,12 @@
     --color-placeholder: #c2c2c2;
     --color-lg-active-red: #fd312e;
 
+    /* 설문(서베이) state 토큰 */
+    --color-state-text-body: #4a4946;
+    --color-state-disable-1: #959595;
+    --color-state-disable-2: #dddddd;
+    --color-state-line: #e6e1d6;
+
     /* 전역 기본 폰트 */
     --font-sans: "LG EI Headline", ui-sans-serif, system-ui, sans-serif;
 

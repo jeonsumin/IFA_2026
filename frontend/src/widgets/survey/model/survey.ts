@@ -3,112 +3,57 @@ import type {SurveyQuestion} from "entities/survey";
 export const surveyData: SurveyQuestion[] = [
     {
         surveyId: "Q1",
-        title: "009_survey01_001",
+        title: "How satisfied are you with your visit \n to the LG Booth?",
         type: "circle",
         required: true
     },
     {
         surveyId: "Q2",
-        title: "009_survey02_001",
+        title: "Which zone of the booth do you like \n the most ",
         type: "list",
         questions: [
-            {content: "009_survey02_002"},
-            {content: "009_survey02_003"},
-            {content: "009_survey02_004"},
-            {content: "009_survey02_005"},
+            {content: "Attractor"},
+            {content: "Entertainment in Tune"},
+            {content: "Living in Tune"},
+            {content: "Harmony in Tune"},
+            {content: "Elegance in Tune"},
         ],
         required: true,
     },
     {
         surveyId: "Q3",
-        title: "009_survey03_001",
-        type: "circle",
-        required: true,
+        title: "Which aspects of the booth are you most satisfied with? (Multi-select)",
+        type: "list",
+        questions: [
+            {content: 'Overall booth design & atmosphere'},
+            {content: 'New LG AI Appliances for European living'},
+            {content: 'LG AI Appliances Orchestra Showcase (Hero Stage)'},
+            {content: 'Find Your Routine in Tune (Mobile experience)'},
+        ]
+
     },
     {
         surveyId: "Q4",
-        title: "009_survey04_001",
-        type: "circle",
-        required: true,
+        title: "Which products impressed you most? (Multi-select)",
+        type: "list",
+        questions: [
+            {content: 'LG Best TV, Gallery TV'},
+            {content: 'UltraGear'},
+            {content: 'StanbyME 2 Max'},
+            {content: 'Sound Suite, xboom'},
+            {content: 'WebOS'},
+            {content: 'LG Fit&Max Refrigerator'},
+            {content: 'LG Fit&Max Laundry'},
+            {content: 'LG Fit&Max Dishwasher'},
+            {content: 'LG SIGNATURE Refrigerator'},
+            {content: 'LG SIGNATURE OLED T'},
+            {content: 'LG SIGNATURE Laundry '},
+
+        ]
     },
     {
         surveyId: "Q5",
-        title: "009_survey05_001",
-        type: "circle",
-        required: true,
-    },
-    {
-        surveyId: "Q6",
-        title: "009_survey06_001",
-        type: "circle",
-        required: true,
-    },
-    {
-        surveyId: "Q7",
-        title: "009_survey07_001",
-        type: "list",
-        questions: [
-            {content: "009_survey06_002"},
-            {content: "009_survey06_003"},
-            {content: "009_survey06_004"},
-        ],
-        required: true,
-    },
-    {
-        surveyId: "Q8",
-        title: "009_survey08_001",
-        type: "list",
-        questions: [
-            {content: "009_survey08_002"},
-            {content: "009_survey08_003"},
-            {content: "009_survey08_004"},
-            {content: "009_survey08_005"},
-        ],
-        required: true,
-    },
-    {
-        surveyId: "Q9",
-        title: "009_survey09_001",
-        type: "list",
-        questions: [
-            {content: "009_survey09_002"},
-            {content: "009_survey09_003"},
-            {content: "009_survey09_004"},
-            {content: "009_survey09_005"},
-            {content: "009_survey09_006"},
-        ],
-        required: true,
-    },
-    {
-        surveyId: "Q10",
-        title: "009_survey10_001",
-        type: "list",
-        questions: [
-            {content: "009_survey10_002"},
-            {content: "009_survey10_003"},
-            {content: "009_survey10_004"},
-            {content: "009_survey10_005"},
-            {content: "009_survey10_006"},
-        ],
-        required: true,
-    },
-    {
-        surveyId: "Q11",
-        title: "009_survey11_001",
-        type: "list",
-        questions: [
-            {content: "009_survey11_002"},
-            {content: "009_survey11_003"},
-            {content: "009_survey11_004"},
-            {content: "009_survey11_005"},
-            {content: "009_survey11_006"},
-        ],
-        required: true,
-    },
-    {
-        surveyId: "Q12",
-        title: "009_survey12_001",
+        title: "What experience are you most looking forward to at the LG IFA 2027 exhibition?",
         type: "text",
-        required: false,
     }
 ];
