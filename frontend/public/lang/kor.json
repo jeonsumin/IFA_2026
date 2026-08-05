@@ -77,14 +77,66 @@
     "selectSpace": "공간을 선택해 주세요."
   },
   "zone": {
-    "entertainment": "AI가 완성하는\n몰입형 엔터테인먼트\n경험을 만나보세요.",
-    "living": "공간은 FIT하게,\n생활은 MAX하게. 더 스마트한\nAI 가전을 경험해 보세요.",
-    "harmony": "집안의 모든 공간을 연결하는 LG AI\nHome을 경험해 보세요.",
-    "elegance": "AI와 프리미엄 디자인이 완성하는\n럭셔리 라이프를 경험해 보세요."
+    "entertainment": {
+      "title": "Entertainment in Tune",
+      "desc": "AI가 완성하는\n몰입형 엔터테인먼트\n경험을 만나보세요."
+    },
+    "living": {
+      "title": "Living in Tune",
+      "desc":"공간은 FIT하게,\n생활은 MAX하게. 더 스마트한\nAI 가전을 경험해 보세요."
+    },
+    "harmony": {
+      "title": "Harmony in Tune",
+      "desc": "집안의 모든 공간을 연결하는 LG AI\nHome을 경험해 보세요."
+    },
+    "elegance": {
+      "title": "Elegance in Tune",
+      "desc": "AI와 프리미엄 디자인이 완성하는\n럭셔리 라이프를 경험해 보세요."
+    }
   },
   "persona": {
     "prompt": "가장 마음에 드는\n라이프스타일을 선택하고,\nLG AI가 제안하는 맞춤형 루틴을\n경험해 보세요.",
-    "reasonQuestion": "이 라이프 스타일을 선택한\n가장 큰 이유는 무엇인가요?"
+    "reasonQuestion": "이 라이프스타일을 선택한\n가장 큰 이유는 무엇인가요?",
+    "optimizer": {
+      "title": "THE INDEPENDENT\nURBAN OPTIMIZER",
+      "desc": "혼자 살며 집을 효율적으로\n관리하고 싶은 도시생활자",
+      "reasons": {
+        "0": "내가 꿈꾸는 라이프스타일이라서",
+        "1": "지금의 내 일상과 가장 비슷해서",
+        "2": "평소 관심 있던 라이프스타일 이라서",
+        "3": "가장 흥미롭게 느껴져서"
+      }
+    },
+    "coordinator": {
+      "title": "THE CONNECTED\nFAMILY COORDINATOR",
+      "desc": "가족의 식사와 집안일을\n조율하는 생활관리자",
+      "reasons": {
+        "0": "내가 꿈꾸는 라이프스타일이라서",
+        "1": "지금의 내 일상과 가장 비슷해서",
+        "2": "평소 관심 있던 라이프스타일 이라서",
+        "3": "가장 흥미롭게 느껴져서"
+      }
+    },
+    "homemaker": {
+      "title": "THE SUSTAINABLE\nHOMEMAKER",
+      "desc": "에너지 효율을 중요시하는\n지속가능 생활 실천가",
+      "reasons": {
+        "0": "내가 꿈꾸는 라이프스타일이라서",
+        "1": "지금의 내 일상과 가장 비슷해서",
+        "2": "평소 관심 있던 라이프스타일 이라서",
+        "3": "가장 흥미롭게 느껴져서"
+      }
+    },
+    "worker": {
+      "title": "THE FLEXIBLE\nHYBRID WORKER",
+      "desc": "시간은 FIT하게 공간은 MAX로\n활용하는 하이브리드 워커",
+      "reasons": {
+        "0": "내가 꿈꾸는 라이프스타일이라서",
+        "1": "지금의 내 일상과 가장 비슷해서",
+        "2": "평소 관심 있던 라이프스타일 이라서",
+        "3": "가장 흥미롭게 느껴져서"
+      }
+    }
   },
   "report": {
     "poweredBy": "<1>CLOiD</1>가 함께 한",

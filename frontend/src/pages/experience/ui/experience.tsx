@@ -91,7 +91,7 @@ export const Experience = () => {
                             <div
                                 className="absolute inset-x-0 top-0 flex flex-col gap-1 bg-gradient-to-b from-white/60 to-transparent p-3">
                                 <p className="w-fit bg-lg-ai-gradient bg-clip-text text-sm font-bold text-transparent">
-                                    {z.title}
+                                    {t(z.title)}
                                 </p>
                                 <p className="whitespace-pre-line text-[10px] leading-[1.4] tracking-[-0.2px] text-black">
                                     {t(z.descKey)}

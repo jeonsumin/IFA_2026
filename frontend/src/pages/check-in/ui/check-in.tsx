@@ -42,6 +42,8 @@ export const CheckIn = () => {
 
     // 다음: 체크인 제출(features/submit-check-in) 성공 시 persona 화면으로 이동
     const handleNext = async () => {
+        if(import.meta.env.DEV) return navigate("/persona");
+
         const ok = await submit(values);
         if (ok) navigate("/persona");
         else openAlert({message: t('checkIn.submitFailed')});
@@ -128,7 +130,7 @@ export const CheckIn = () => {
 
             <div className="mt-auto px-5 pt-12 pb-15">
                 {/* 비활성 시 디자인대로 그라데이션 대신 solid 회색(#999) */}
-                <Button disabled={!valid} onClick={handleNext}>
+                <Button disabled={!valid && !import.meta.env.DEV} onClick={handleNext}>
                     {t('common.next')}
                 </Button>
             </div>

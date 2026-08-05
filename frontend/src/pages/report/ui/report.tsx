@@ -1,17 +1,29 @@
 import {Download, Gift, PenLine} from "lucide-react";
 import {Button} from "shared/ui";
 import {useTranslate, Trans} from "app/provider/lang";
+import {useModal} from "app/provider/modal";
+import {Survey} from "widgets/survey";
 
 // 리포트 존 목록 (badge/title은 브랜드 고정, desc는 카피덱 키)
 const ZONES = [
-    {badge: "Entertainment in Tune", title: "LG Sound Suite", descKey: "report.zone.sound"},
-    {badge: "Living in Tune", title: "Fit & Max Refrigerator", descKey: "report.zone.fridge"},
-    {badge: "Harmony in Tune", title: "Entrance", descKey: "report.zone.entrance"},
-    {badge: "Elegance in Tune", title: "30”Walloven", descKey: "report.zone.oven"},
+    {badge: "zone.entertainment.title", title: "LG Sound Suite", descKey: "report.zone.sound"},
+    {badge: "zone.living.title", title: "Fit & Max Refrigerator", descKey: "report.zone.fridge"},
+    {badge: "zone.harmony.title", title: "Entrance", descKey: "report.zone.entrance"},
+    {badge: "zone.elegance.title", title: "30”Walloven", descKey: "report.zone.oven"},
 ];
 
 export const Report = () => {
     const {t} = useTranslate();
+    const { openFullPage } = useModal();
+
+    const handleSurvey = () => {
+        openFullPage({
+            title: "서베이 참여하기",
+            content:<Survey onSubmit={() => {}} />
+        })
+    }
+    const handleReward = () => {}
+    const handleDownloadReport = () => {}
 
     return (
         <div className="flex min-h-full flex-col items-center bg-bg-default">
@@ -65,7 +77,7 @@ export const Report = () => {
                                 key={z.title}
                                 className={`flex flex-col gap-2 p-5 ${i > 0 ? "border-t border-lg-gray-5" : ""}`}
                             >
-                                <p className="bg-lg-ai-gradient bg-clip-text text-[10px] font-bold text-transparent">{z.badge}</p>
+                                <p className="bg-lg-ai-gradient bg-clip-text text-[10px] font-bold text-transparent">{t(z.badge)}</p>
                                 <p className="text-xl font-bold leading-[1.2] text-black">{z.title}</p>
                                 <p className="whitespace-pre-line text-[10px] leading-[1.4] tracking-[-0.2px] text-lg-gray-2">
                                     {t(z.descKey)}
@@ -77,16 +89,16 @@ export const Report = () => {
 
                 {/*액션 버튼*/}
                 <div className="flex flex-col gap-4 bg-white/40 px-5 pb-[60px] pt-12 backdrop-blur-[8px]">
-                    <Button className="flex items-center justify-center gap-2 font-bold">
+                    <Button className="flex items-center justify-center gap-2 font-bold" onClick={handleSurvey}>
                         <PenLine size={20}/>
                         {t('report.takeSurvey')}
                     </Button>
-                    <Button className="flex items-center justify-center gap-2 font-bold">
+                    <Button className="flex items-center justify-center gap-2 font-bold" onClick={handleReward}>
                         <Gift size={20}/>
                         {t('report.reward')}
                     </Button>
-                    <button type="button" className="mx-auto mt-2 flex items-center gap-2 border-b border-black pb-1">
-                        <Download size={16} className="text-black"/>
+                    <button type="button" className="mx-auto mt-2 flex items-center gap-2 border-b border-black pb-1" onClick={handleDownloadReport}>
+                        <Download size={16} className="text-black" />
                         <span className="text-sm font-semibold text-black">{t('report.downloadReport')}</span>
                     </button>
                 </div>

@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {BottomSheet, Button} from "shared/ui";
 import {cn} from "shared/lib/cn";
-import {PERSONAS} from '../model/persona'
+import {PERSONAS, PERSONA_REASON_COUNT} from '../model/persona'
 import {ButtonItem} from "widgets/survey/ui/button-item.tsx";
 import {useNavigate} from "react-router-dom";
 import {useTranslate} from "app/provider/lang";
@@ -28,13 +28,18 @@ export const Persona = () => {
         setSelected(target)
     }
 
-    // 선택된 페르소나 (없으면 null) — 바텀시트에 이 페르소나의 item을 넘김
+    // 선택된 페르소나 (없으면 null)
     const persona = selected !== null ? PERSONAS[selected] : null;
+
+    // 선택된 페르소나의 이유 옵션 — persona.<slug>.reasons.<i>
+    const reasons = persona
+        ? Array.from({length: PERSONA_REASON_COUNT}, (_, i) => ({content: t(`${persona.key}.reasons.${i}`)}))
+        : [];
 
     const submitPersona = () => {
         if (persona == null) return
         const param = {
-            persona: persona.title.join(''),
+            persona: t(`${persona.key}.title`),
             reason: answers[persona.id]
         }
         console.log(param);
@@ -102,18 +107,18 @@ export const Persona = () => {
                                         className={cn("absolute right-0 top-0 h-full w-[55%] object-cover", photoFade)}
                                     />
                                     <div className="relative flex flex-col gap-2 p-4 ">
-                                        <div className={cn(
-                                            "text-xs leading-[1.4] tracking-[-0.24px]",
+                                        <p className={cn(
+                                            "whitespace-pre-line text-xs leading-[1.4] tracking-[-0.24px]",
                                             on ? "text-[#a43d3a]" : "text-lg-gray-2"
                                         )}>
-                                            {p.desc.map((l) => <p key={l}>{l}</p>)}
-                                        </div>
-                                        <div className={cn(
-                                            "text-xl font-bold leading-[1.2]",
+                                            {t(`${p.key}.desc`)}
+                                        </p>
+                                        <p className={cn(
+                                            "whitespace-pre-line text-xl font-bold leading-[1.2]",
                                             on ? "text-lg-active-red" : "text-black"
                                         )}>
-                                            {p.title.map((line) => <p key={line}>{line}</p>)}
-                                        </div>
+                                            {t(`${p.key}.title`)}
+                                        </p>
                                     </div>
                                 </button>
                             );
@@ -147,7 +152,7 @@ export const Persona = () => {
                         {persona && (
                             <ButtonItem
                                 title=""
-                                questions={persona.item}
+                                questions={reasons}
                                 value={answers[persona.id]}
                                 endIcon
                                 onChange={(v) => setAnswer(persona.id, v)}
