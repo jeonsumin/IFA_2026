@@ -1,9 +1,11 @@
 import {Button} from "shared/ui";
 import {useNavigate} from "react-router-dom";
+import {useTranslate} from "app/provider/lang";
 
 
 export const Home = () => {
     const navigate = useNavigate();
+    const {t} = useTranslate();
 
     return (
         <div className="relative mx-auto h-[100dvh] w-full max-w-[var(--maxWidth)] overflow-hidden bg-lg-gray-1">
@@ -37,27 +39,20 @@ export const Home = () => {
             {/* 콘텐츠 */}
             <div className="absolute inset-0 flex flex-col text-white">
                 <div className="flex justify-center pt-[54px]">
-                    <img src="/images/welcome/logo.svg" alt="LG IFA" className="h-10"/>
+                    <img src="/images/welcome/logo.svg" alt={t('common.logoAlt')} className="h-10"/>
                 </div>
 
                 <div className="mt-[9%] flex flex-col items-center gap-4 px-5 text-center">
-                    <p className="text-2xl font-bold">Innovation in tune with you</p>
-                    <img src="/images/welcome/lifes-good.svg" alt="Life's Good." className="w-[83%] max-w-[300px]"/>
+                    <p className="text-2xl font-bold">{t('common.slogan')}</p>
+                    <img src="/images/welcome/lifes-good.svg" alt={t('common.lifesGood')} className="w-[83%] max-w-[300px]"/>
                 </div>
 
                 <div className="mt-auto flex flex-col bg-gradient-to-b from-transparent to-black/70 pt-10">
                     <div
                         className="flex flex-col items-center gap-4 px-5 text-center text-base leading-[1.4] tracking-[-0.32px]">
-                        <p>가전, 공간, 라이프스타일</p>
-                        <p>
-                            흩어진 일상을<br/>
-                            LG AI가 하나의 완벽한 리듬으로<br/>
-                            조율합니다.
-                        </p>
-                        <p>
-                            지금, 당신을 위한<br/>
-                            오케스트라가 시작됩니다.
-                        </p>
+                        <p>{t('home.category')}</p>
+                        <p className="whitespace-pre-line">{t('home.rhythm')}</p>
+                        <p className="whitespace-pre-line">{t('home.orchestra')}</p>
                     </div>
 
                     <div className="px-5 py-[60px]">
@@ -66,7 +61,7 @@ export const Home = () => {
                             onClick={() => navigate("/check-in")}
                             className="bg-white text-xl font-bold text-black"
                         >
-                            시작하기
+                            {t('common.start')}
                         </Button>
                     </div>
                 </div>

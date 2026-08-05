@@ -1,8 +1,10 @@
 import {Button} from "shared/ui";
 import {useNavigate} from "react-router-dom";
+import {useTranslate} from "app/provider/lang";
 
 export const ExperienceSuccess = () => {
     const navigate = useNavigate();
+    const {t} = useTranslate();
 
     return (
         <div className="relative flex min-h-full flex-col bg-bg-default">
@@ -14,7 +16,7 @@ export const ExperienceSuccess = () => {
             <div className="relative flex flex-1 items-center justify-center mt-10">
                 <img
                     src="/images/welcome/cloi.png"
-                    alt="LG 클로이 로봇"
+                    alt={t('common.robotAlt')}
                     className="w-[360px] max-w-full"
                 />
             </div>
@@ -37,14 +39,13 @@ export const ExperienceSuccess = () => {
                 <div className="-mt-px flex flex-col bg-white/40 px-5 pb-15 ">
                     <div className="flex flex-col items-center gap-4 text-center">
                         <p className="text-5xl font-bold leading-none text-black">CLEAR!</p>
-                        {/* ponytail: 체크인 이름 연동 전까지 플레이스홀더 */}
-                        <div className="text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">
-                            <p>체험을 완료하였습니다.</p>
-                        </div>
+                        <p className="whitespace-pre-line text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">
+                            {t('experienceSuccess.done')}
+                        </p>
                     </div>
 
                     <Button onClick={() => navigate("/dashboard")} className="mt-12 font-bold">
-                        추가 에피소드 만나기
+                        {t('common.moreEpisodes')}
                     </Button>
                 </div>
             </div>

@@ -4,6 +4,7 @@ import {cn} from "shared/lib/cn";
 import {PERSONAS} from '../model/persona'
 import {ButtonItem} from "widgets/survey/ui/button-item.tsx";
 import {useNavigate} from "react-router-dom";
+import {useTranslate} from "app/provider/lang";
 
 // 인물 사진 좌측 경계를 카드 배경으로 부드럽게 페이드(디자인 alpha 마스크 근사)
 const photoFade =
@@ -13,6 +14,7 @@ const outlineActive =
     "border-2 border-transparent [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(90deg,var(--lg-red),var(--lg-ai-pink),var(--lg-ai-purple))_border-box]";
 export const Persona = () => {
     const navigate = useNavigate();
+    const {t} = useTranslate();
 
     const [selected, setSelected] = useState<number | null>(null);
     const [sheetOpen, setSheetOpen] = useState(false);
@@ -48,7 +50,7 @@ export const Persona = () => {
             <div className="relative flex flex-1 items-center justify-center mt-10">
                 <img
                     src="/images/welcome/cloi.png"
-                    alt="LG 클로이 로봇"
+                    alt={t('common.robotAlt')}
                     className="w-[360px] max-w-full"
                 />
             </div>
@@ -72,12 +74,9 @@ export const Persona = () => {
 
                     {/* 배경 핑크→베이지 그라데이션 */}
                     <div className='flex flex-col w-full px-4 text-center gap-4'>
-                        <p className='text-2xl text-black font-bold leading-6'>Innovation in tune with you</p>
-                        <p className="text-base font-normal leading-6">
-                            가장 마음에 드는 <br/>
-                            라이프스타일을 선택하고,<br/>
-                            LG AI가 제안하는 맞춤형 루틴을<br/>
-                            경험해 보세요.
+                        <p className='text-2xl text-black font-bold leading-6'>{t('common.slogan')}</p>
+                        <p className="whitespace-pre-line text-base font-normal leading-6">
+                            {t('persona.prompt')}
                         </p>
                     </div>
 
@@ -113,14 +112,14 @@ export const Persona = () => {
                                             "text-xl font-bold leading-[1.2]",
                                             on ? "text-lg-active-red" : "text-black"
                                         )}>
-                                            {p.title.map((t) => <p key={t}>{t}</p>)}
+                                            {p.title.map((line) => <p key={line}>{line}</p>)}
                                         </div>
                                     </div>
                                 </button>
                             );
                         })}
                         <div className='pt-12 pb-[60px]'>
-                            <Button disabled={!persona} onClick={() => setSheetOpen(true)}>다음</Button>
+                            <Button disabled={!persona} onClick={() => setSheetOpen(true)}>{t('common.next')}</Button>
                         </div>
                     </div>
                 </div>
@@ -141,8 +140,7 @@ export const Persona = () => {
                         </div>
                     </div>
                     <div className="items-center">
-                        <p>이 라이프 스타일을 선택한 </p>
-                        <p>가장 큰 이유는 무엇인가요? </p>
+                        <p className="whitespace-pre-line">{t('persona.reasonQuestion')}</p>
                     </div>
 
                     <div className="w-full px-5 space-y-4 pb-10">
@@ -161,7 +159,7 @@ export const Persona = () => {
                             onClick={submitPersona}
                             className="bg-lg-ai-gradient font-bold text-white"
                         >
-                            확인
+                            {t('common.confirm')}
                         </Button>
                     </div>
                 </div>

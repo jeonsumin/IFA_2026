@@ -1,5 +1,6 @@
 import {createRoot} from 'react-dom/client'
 import {AppRouter} from "./routes";
+import {LangProvider} from "./provider/lang";
 import {ensureDeviceId} from "entities/session";
 
 import "shared/styles/global.css"
@@ -8,5 +9,7 @@ import "shared/styles/global.css"
 ensureDeviceId();
 
 createRoot(document.getElementById('root')!).render(
-    <AppRouter/>
+    <LangProvider>
+        <AppRouter/>
+    </LangProvider>
 )

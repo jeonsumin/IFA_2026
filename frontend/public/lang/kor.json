@@ -1,0 +1,118 @@
+{
+  "common": {
+    "start": "시작하기",
+    "next": "다음",
+    "confirm": "확인",
+    "selectPlaceholder": "선택해주세요",
+    "robotAlt": "LG 클로이 로봇",
+    "moreEpisodes": "추가 에피소드 만나기",
+    "slogan": "Innovation in tune with you",
+    "logoAlt": "LG IFA",
+    "lifesGood": "Life's Good."
+  },
+  "home": {
+    "category": "가전, 공간, 라이프스타일",
+    "rhythm": "흩어진 일상을\nLG AI가 하나의 완벽한 리듬으로\n조율합니다.",
+    "orchestra": "지금, 당신을 위한\n오케스트라가 시작됩니다."
+  },
+  "promotion": {
+    "notice1": "본 사이트는 IFA 2026 LG Booth\n경험을 위한 사이트 입니다.",
+    "notice2": "오프라인 방문을 부탁드립니다.",
+    "scheduleLabel": "행사 일정",
+    "scheduleValue": "2026년 9월 4일(금) ~ 9월 9일(수)",
+    "placeLabel": "행사 장소",
+    "placeHall": "IFA 2026 (Messe Berlin 18Hall)",
+    "placeBooth": "LG전자 부스"
+  },
+  "checkIn": {
+    "title": "당신에 대해 알려주세요.",
+    "privacyTitle": "개인정보 수집 및 이용 동의",
+    "nameLabel": "이름 (최대 8자 이내)",
+    "namePlaceholder": "이름을 입력합니다",
+    "nameAria": "이름",
+    "emailLabel": "이메일",
+    "emailPlaceholder": "이메일을 입력합니다",
+    "emailAria": "이메일",
+    "genderLabel": "성별",
+    "ageLabel": "연령",
+    "agreeRequired": "(필수) 개인정보 수집 및 이용 동의",
+    "agreeAria": "개인정보 수집 및 이용 동의",
+    "agreeNote": "본 정보는 1달 뒤 폐기되며 LG 전자 내부 자료로만 활용 됩니다.",
+    "submitFailed": "저장에 실패했습니다. 잠시 후 다시 시도해주세요."
+  },
+  "gender": {
+    "male": "남성",
+    "female": "여성"
+  },
+  "age": {
+    "10": "10대",
+    "20": "20대",
+    "30": "30대",
+    "40": "40대",
+    "50": "50대 이상"
+  },
+  "validation": {
+    "nameRequired": "이름을 입력해주세요",
+    "nameMax": "최대 8자까지 입력 가능합니다",
+    "emailRequired": "이메일을 입력해주세요",
+    "emailInvalid": "올바른 이메일 형식이 아닙니다",
+    "genderRequired": "성별을 선택해주세요",
+    "ageRequired": "연령을 선택해주세요"
+  },
+  "errors": {
+    "checkInFailed": "저장에 실패했습니다.",
+    "surveyFailed": "제출에 실패했습니다.",
+    "cameraStart": "카메라를 시작할 수 없습니다."
+  },
+  "welcome": {
+    "init": "Welcome !",
+    "greeting": "{{name}} 님",
+    "desc": "당신의 라이프스타일을 발견하고,\nLG AI가 제안하는 맞춤 경험을 만나보세요."
+  },
+  "experienceSuccess": {
+    "done": "체험을 완료하였습니다."
+  },
+  "experience": {
+    "personaDesc": "가족의 루틴을 이해하는 것이\n편안한 일상의 시작.\n우리 가족만의\nLG AI Routine을 경험해 보세요.",
+    "selectSpace": "공간을 선택해 주세요."
+  },
+  "zone": {
+    "entertainment": "AI가 완성하는\n몰입형 엔터테인먼트\n경험을 만나보세요.",
+    "living": "공간은 FIT하게,\n생활은 MAX하게. 더 스마트한\nAI 가전을 경험해 보세요.",
+    "harmony": "집안의 모든 공간을 연결하는 LG AI\nHome을 경험해 보세요.",
+    "elegance": "AI와 프리미엄 디자인이 완성하는\n럭셔리 라이프를 경험해 보세요."
+  },
+  "persona": {
+    "prompt": "가장 마음에 드는\n라이프스타일을 선택하고,\nLG AI가 제안하는 맞춤형 루틴을\n경험해 보세요.",
+    "reasonQuestion": "이 라이프 스타일을 선택한\n가장 큰 이유는 무엇인가요?"
+  },
+  "report": {
+    "poweredBy": "<1>CLOiD</1>가 함께 한",
+    "dailyRoutine": "당신의 Daily Routine",
+    "routineDesc": "생활 패턴에 맞춰 집안일은 더 간편하게,\n휴식은 더 몰입감 있게.\nLG AI가 당신의 하루를 자연스럽게 연결합니다.",
+    "takeSurvey": "서베이 참여하기",
+    "reward": "리워드",
+    "downloadReport": "루틴 리포트 다운로드",
+    "download": "다운로드",
+    "snsSubscribe": "LG전자 공식 SNS 구독하기",
+    "zone": {
+      "sound": "나만의 공간을 프리미엄하게 Tune해주는 LG Sound Suite\n나에게 맞춘 홈 오디오 루틴을 만나보세요.",
+      "fridge": "식생활도 스마트하게 Tune해주는 Refrigerator\n식재료 별 맞춤 온도로 보관하는 냉장고 관리 루틴을 만나보세요",
+      "entrance": "집 밖에서도 집을 Tune하는 ThinQ Claw\n혼자 사는 일상을 위한 AI Home Solution with Claw를 경험해보세요.",
+      "oven": "재료에 맞는 요리방법을 Tune해주는 오븐\nOven AI 추천으로 완성되는 쿠킹 루틴을 만나보세요"
+    }
+  },
+  "qrScanner": {
+    "alreadyDone": "이미 체험을 완료하였습니다.",
+    "cameraLoading": "카메라 로딩 중…"
+  },
+  "situation": {
+    "subtitle": "LG AI가 당신의 라이프스타일에\n어떻게 조율되는지 경험해 보세요.",
+    "question": "어떤 상황을\n경험해 보고 싶으신가요?",
+    "soundSuiteDesc": "공간을 사운드로 더욱 MAX하게\nTune해주는 LG Sound Suite\n최적화 사운드로 홈 오디오 루틴을 만나보세요",
+    "next1": "일과 휴식이 공존하는 공간에서는\n휴식의 몰입감도 중요합니다",
+    "next2": "LG Sound Suite가 재생되는 콘텐츠를 분석해\n공간에 맞는 입체 사운드와\n최적의 음향을 자동으로 조율하고,\n집에서도 새로운 공간에 있는 듯한 몰입감을 선사합니다.",
+    "next3": "새로운 공간을 만들어주는\n사운드를 경험 해 보세요",
+    "qrScan": "QR 스캔하기"
+  }
+}

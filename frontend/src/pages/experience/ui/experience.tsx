@@ -1,6 +1,7 @@
 import {cn} from "shared/lib/cn";
 import {ZONES} from "../model/zone";
 import {useModal} from "app/provider/modal";
+import {useTranslate} from "app/provider/lang";
 import {Situation} from "widgets/situation";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
@@ -22,6 +23,7 @@ const ClearOverlay = () => (
 export const Experience = () => {
 
     const {openFullPage} = useModal();
+    const {t} = useTranslate();
     const navigate = useNavigate();
 
     const openPopup = () => {
@@ -61,17 +63,14 @@ export const Experience = () => {
                     <p className="text-xl font-bold leading-[1.2] text-black">
                         THE CONNECTED<br/>FAMILY COORDINATOR
                     </p>
-                    <p className="text-sm leading-[1.4] tracking-[-0.28px] text-lg-gray-2">
-                        가족의 루틴을 이해하는 것이<br/>
-                        편안한 일상의 시작.<br/>
-                        우리 가족만의<br/>
-                        LG AI Routine을 경험해 보세요.
+                    <p className="whitespace-pre-line text-sm leading-[1.4] tracking-[-0.28px] text-lg-gray-2">
+                        {t('experience.personaDesc')}
                     </p>
                 </div>
 
                 {/* 공간 선택 */}
                 <p className="mt-12 text-[22px] font-bold leading-[1.25] text-black">
-                    공간을 선택해 주세요.
+                    {t('experience.selectSpace')}
                 </p>
 
                 {/* 존 그리드 2×2 */}
@@ -94,9 +93,9 @@ export const Experience = () => {
                                 <p className="w-fit bg-lg-ai-gradient bg-clip-text text-sm font-bold text-transparent">
                                     {z.title}
                                 </p>
-                                <div className="text-[10px] leading-[1.4] tracking-[-0.2px] text-black">
-                                    {z.desc.map((l) => <p key={l}>{l}</p>)}
-                                </div>
+                                <p className="whitespace-pre-line text-[10px] leading-[1.4] tracking-[-0.2px] text-black">
+                                    {t(z.descKey)}
+                                </p>
                             </div>
 
                             {z.clear && <ClearOverlay/>}

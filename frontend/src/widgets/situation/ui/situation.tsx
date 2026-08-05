@@ -1,9 +1,11 @@
 import {Button} from "shared/ui";
 import {useNavigate} from "react-router-dom";
 import {useModal} from "app/provider/modal";
+import {useTranslate} from "app/provider/lang";
 
 const NextView = () => {
     const {close} = useModal();
+    const {t} = useTranslate();
     const navigate = useNavigate();
 
     const handlerQrScan = () => {
@@ -28,32 +30,20 @@ const NextView = () => {
             <div className="relative flex flex-1 items-center justify-center ">
                 <img
                     src="/images/welcome/cloi.png"
-                    alt="LG 클로이 로봇"
+                    alt={t('common.robotAlt')}
                     className="w-[360px] max-w-full"
                 />
             </div>
 
             <div className='relative px-5 text-center space-y-6 mt-6'>
                 <div className="flex flex-col gap-6 ">
-                    <p>
-                        일과 휴식이 공존하는 공간에서는<br/>
-                        휴식의 몰입감도 중요합니다
-                    </p>
-                    <p>
-                        LG Sound Suite가 재생되는 콘텐츠를 분석해<br/>
-                        공간에 맞는 입체 사운드와<br/>
-                        최적의 음향을 자동으로 조율하고,<br/>
-                        집에서도 새로운 공간에 있는 듯한 몰입감을
-                        선사합니다.
-                    </p>
-                    <p>
-                        새로운 공간을 만들어주는<br/>
-                        사운드를 경험 해 보세요
-                    </p>
+                    <p className="whitespace-pre-line">{t('situation.next1')}</p>
+                    <p className="whitespace-pre-line">{t('situation.next2')}</p>
+                    <p className="whitespace-pre-line">{t('situation.next3')}</p>
                 </div>
                 <div className='pt-12 pb-[60px]'>
                     <Button onClick={handlerQrScan}>
-                        QR 스캔하기
+                        {t('situation.qrScan')}
                     </Button>
                 </div>
             </div>
@@ -62,6 +52,7 @@ const NextView = () => {
 }
 export const Situation = () => {
     const {pushFullPage} = useModal();
+    const {t} = useTranslate();
     return (
         <div className="bg-bg-default relative">
             <div
@@ -72,10 +63,7 @@ export const Situation = () => {
                     <p className='bg-lg-ai-gradient w-fit px-3 text-white rounded-full self-center'>
                         Entertainment in Tune
                     </p>
-                    <p>
-                        LG AI가 당신의 라이프스타일에 <br/>
-                        어떻게 조율되는지 경험해 보세요.
-                    </p>
+                    <p className="whitespace-pre-line">{t('situation.subtitle')}</p>
                 </div>
                 <img src="/images/zone1.png" alt="zone1" className='w-full'/>
             </div>
@@ -83,23 +71,19 @@ export const Situation = () => {
             <div className="relative flex flex-1 items-center justify-center ">
                 <img
                     src="/images/welcome/cloi.png"
-                    alt="LG 클로이 로봇"
+                    alt={t('common.robotAlt')}
                     className="w-[200px] max-w-full"
                 />
             </div>
 
             <div className='relative px-5 text-center space-y-6 mt-6'>
-                <p className="text-xl font-bold text-black">
-                    어떤 상황을 <br/>
-                    경험해 보고 싶으신가요?
+                <p className="whitespace-pre-line text-xl font-bold text-black">
+                    {t('situation.question')}
                 </p>
                 <Button variant='outline' className="rounded-2xl bg-white/70" endIcon>
                     <div className='flex flex-col gap-2'>
                         <p className="font-bold text-base text-black"> LG Sound Suite</p>
-                        <p className="text-xs"> 공간을 사운드로 더욱 MAX하게<br/>
-                            Tune해주는 LG Sound Suite <br/>
-                            최적화 사운드로 홈 오디오 루틴을 만나보세요
-                        </p>
+                        <p className="whitespace-pre-line text-xs">{t('situation.soundSuiteDesc')}</p>
                     </div>
                 </Button>
 
@@ -107,7 +91,7 @@ export const Situation = () => {
                     <Button
                         onClick={() => pushFullPage({content: <NextView/>})}
                     >
-                        다음
+                        {t('common.next')}
                     </Button>
                 </div>
             </div>

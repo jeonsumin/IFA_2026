@@ -1,8 +1,10 @@
 import {Button} from "shared/ui";
 import {useNavigate} from "react-router-dom";
+import {useTranslate} from "app/provider/lang";
 
 export const Welcome = () => {
     const navigate = useNavigate();
+    const {t} = useTranslate();
 
     return (
         <div className="relative flex min-h-full flex-col bg-bg-default">
@@ -13,7 +15,7 @@ export const Welcome = () => {
             <div className="relative flex flex-1 items-center justify-center mt-10">
                 <img
                     src="/images/welcome/cloi.png"
-                    alt="LG 클로이 로봇"
+                    alt={t('common.robotAlt')}
                     className="w-[360px] max-w-full"
                 />
             </div>
@@ -35,17 +37,16 @@ export const Welcome = () => {
                 />
                 <div className="-mt-px flex flex-col bg-white/40 px-5 pb-15 ">
                     <div className="flex flex-col items-center gap-4 text-center">
-                        <p className="text-4xl font-bold leading-none text-black">Welcome !</p>
+                        <p className="text-4xl font-bold leading-none text-black">{t('welcome.init')}</p>
                         {/* ponytail: 체크인 이름 연동 전까지 플레이스홀더 */}
-                        <p className="text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">ABCDEFGH 님</p>
-                        <div className="text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">
-                            <p>당신의 라이프스타일을 발견하고,</p>
-                            <p>LG AI가 제안하는 맞춤 경험을 만나보세요.</p>
-                        </div>
+                        <p className="text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">{t('welcome.greeting', {name: 'ABCDEFGH'})}</p>
+                        <p className="whitespace-pre-line text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">
+                            {t('welcome.desc')}
+                        </p>
                     </div>
 
                     <Button onClick={() => navigate("/persona")} className="mt-12 font-bold">
-                        시작하기
+                        {t('common.start')}
                     </Button>
                 </div>
             </div>
