@@ -1,5 +1,5 @@
 import {cn} from "shared/lib/cn";
-import {ZONES} from "../model/zone";
+import {ZONES, type Zone} from "../model/zone";
 import {useModal} from "app/provider/modal";
 import {useTranslate} from "app/provider/lang";
 import {Situation} from "widgets/situation";
@@ -26,11 +26,16 @@ export const Experience = () => {
     const {t} = useTranslate();
     const navigate = useNavigate();
 
-    const openPopup = (zone) => {
-        console.log(zone)
-
+    const openPopup = (zone: Zone) => {
         openFullPage(
-            {title: '', content: <Situation />},
+            {
+                title: '',
+                content: <Situation
+                    titleKey={zone.title}
+                    optionsKey={zone.optionsKey}
+                    resultKey={zone.resultKey}
+                />,
+            },
             {progress: true, steps: 2}
         )
     }

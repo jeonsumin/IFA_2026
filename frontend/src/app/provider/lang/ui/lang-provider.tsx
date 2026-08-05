@@ -9,7 +9,7 @@ import {
     type ReactElement,
     type ReactNode,
 } from "react";
-import type {LangContextValue, Locale, TFn, Vars} from "../types/types";
+import type {LangContextValue, Locale, TFn, TRawFn, Vars} from "../types/types";
 
 const DEFAULT_LOCALE: Locale = 'kor';
 
@@ -42,11 +42,14 @@ export const LangProvider = ({children}: {children: ReactNode}) => {
         return interpolate(raw, vars);
     }, [dict]);
 
+    // 배열/객체 값을 그대로 반환(문자열 t로는 못 꺼내는 리스트용). 미존재 시 undefined
+    const tRaw = useCallback<TRawFn>((key) => resolve(dict, key) as never, [dict]);
+
     // 전 화면이 카피덱에 의존 → 로드 전엔 렌더 보류
     if (!dict) return null;
 
     return (
-        <LangContext.Provider value={{t, locale, setLocale}}>
+        <LangContext.Provider value={{t, tRaw, locale, setLocale}}>
             {children}
         </LangContext.Provider>
     );

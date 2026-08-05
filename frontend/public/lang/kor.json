@@ -82,48 +82,53 @@
       "desc": "AI가 완성하는\n몰입형 엔터테인먼트\n경험을 만나보세요.",
       "options": [
         {
-          "0": {
-            "title": "LG Sound Suite",
-            "desc": "공간을 사운드로 더욱 MAX하게\nTune해주는 LG Sound Suite\n 최적화 사운드로 홈 오디오 루틴을 만나보세요"
-          },
-          "1": {
-            "title": "SBM2 Max",
-            "desc": "집안 곳곳에서 일과 휴식을 \nTune해주는 SBM2 Max\n 공간의 제약 없는 라이프 루틴을 만나보세요"
-          },
-          "2": {
-            "title": "UltraGear",
-            "desc": "일이 끝난 후 스트레스를 Tune 하는 UltraGear\n게임의 몰입도를 높여주는 \n최적의 모니터 루틴을 만나보세요"
-          },
-          "3": {
-            "title": "GALLERY",
-            "desc": "집을 다양한 무드로 Tune해주는 Art TV\n스마트한 AI 라이프 공간을 만들어주는 \nTV를 만나보세요"
-          }
+          "title": "LG Sound Suite",
+          "desc": "공간을 사운드로 더욱 MAX하게\nTune해주는 LG Sound Suite\n 최적화 사운드로 홈 오디오 루틴을 만나보세요"
+        },
+        {
+          "title": "SBM2 Max",
+          "desc": "집안 곳곳에서 일과 휴식을 \nTune해주는 SBM2 Max\n 공간의 제약 없는 라이프 루틴을 만나보세요"
+        },
+        {
+          "title": "UltraGear",
+          "desc": "일이 끝난 후 스트레스를 Tune 하는 UltraGear\n게임의 몰입도를 높여주는 \n최적의 모니터 루틴을 만나보세요"
+        },
+        {
+          "title": "GALLERY",
+          "desc": "집을 다양한 무드로 Tune해주는 Art TV\n스마트한 AI 라이프 공간을 만들어주는 \nTV를 만나보세요"
         }
       ],
-      "result": ["일과 휴식이 공존하는 공간에서는\n휴식의 몰입감도 중요합니다", "" ,""],
+      "result": [
+        "일과 휴식이 공존하는 공간에서는\n휴식의 몰입감도 중요합니다",
+        "LG Sound Suite가 재생되는 콘텐츠를 분석해\n공간에 맞는 입체 사운드와\n 최적의 음향을 자동으로 조율하고, \n집에서도 새로운 공간에 있는 듯한 몰입감을\n선사합니다.",
+        "새로운 공간을 만들어주는\n사운드를 경험 해 보세요"
+      ]
     },
     "living": {
       "title": "Living in Tune",
       "desc": "공간은 FIT하게,\n생활은 MAX하게. 더 스마트한\nAI 가전을 경험해 보세요.",
       "options": [
         {
-          "0": {
-            "title": "LG Sound Suite",
-            "desc": "공간을 사운드로 더욱 MAX하게\nTune해주는 LG Sound Suite\n 최적화 사운드로 홈 오디오 루틴을 만나보세요"
-          },
-          "1": {
-            "title": "SBM2 Max",
-            "desc": "집안 곳곳에서 일과 휴식을 \nTune해주는 SBM2 Max\n 공간의 제약 없는 라이프 루틴을 만나보세요"
-          },
-          "2": {
-            "title": "UltraGear",
-            "desc": "일이 끝난 후 스트레스를 Tune 하는 UltraGear\n게임의 몰입도를 높여주는 \n최적의 모니터 루틴을 만나보세요"
-          },
-          "3": {
-            "title": "GALLERY",
-            "desc": "집을 다양한 무드로 Tune해주는 Art TV\n스마트한 AI 라이프 공간을 만들어주는 \nTV를 만나보세요"
-          }
+          "title": "LG Sound Suite",
+          "desc": "공간을 사운드로 더욱 MAX하게\nTune해주는 LG Sound Suite\n 최적화 사운드로 홈 오디오 루틴을 만나보세요"
+        },
+        {
+          "title": "SBM2 Max",
+          "desc": "집안 곳곳에서 일과 휴식을 \nTune해주는 SBM2 Max\n 공간의 제약 없는 라이프 루틴을 만나보세요"
+        },
+        {
+          "title": "UltraGear",
+          "desc": "일이 끝난 후 스트레스를 Tune 하는 UltraGear\n게임의 몰입도를 높여주는 \n최적의 모니터 루틴을 만나보세요"
+        },
+        {
+          "title": "GALLERY",
+          "desc": "집을 다양한 무드로 Tune해주는 Art TV\n스마트한 AI 라이프 공간을 만들어주는 \nTV를 만나보세요"
         }
+      ],
+      "result": [
+        "일과 휴식이 공존하는 공간에서는\n휴식의 몰입감도 중요합니다",
+        "LG Sound Suite가 재생되는 콘텐츠를 분석해\n공간에 맞는 입체 사운드와\n 최적의 음향을 자동으로 조율하고, \n집에서도 새로운 공간에 있는 듯한 몰입감을\n선사합니다.",
+        "새로운 공간을 만들어주는\n사운드를 경험 해 보세요"
       ]
     },
     "harmony": {
@@ -131,23 +136,26 @@
       "desc": "집안의 모든 공간을 연결하는 LG AI\nHome을 경험해 보세요.",
       "options": [
         {
-          "0": {
-            "title": "LG Sound Suite",
-            "desc": "공간을 사운드로 더욱 MAX하게\nTune해주는 LG Sound Suite\n 최적화 사운드로 홈 오디오 루틴을 만나보세요"
-          },
-          "1": {
-            "title": "SBM2 Max",
-            "desc": "집안 곳곳에서 일과 휴식을 \nTune해주는 SBM2 Max\n 공간의 제약 없는 라이프 루틴을 만나보세요"
-          },
-          "2": {
-            "title": "UltraGear",
-            "desc": "일이 끝난 후 스트레스를 Tune 하는 UltraGear\n게임의 몰입도를 높여주는 \n최적의 모니터 루틴을 만나보세요"
-          },
-          "3": {
-            "title": "GALLERY",
-            "desc": "집을 다양한 무드로 Tune해주는 Art TV\n스마트한 AI 라이프 공간을 만들어주는 \nTV를 만나보세요"
-          }
+          "title": "LG Sound Suite",
+          "desc": "공간을 사운드로 더욱 MAX하게\nTune해주는 LG Sound Suite\n 최적화 사운드로 홈 오디오 루틴을 만나보세요"
+        },
+        {
+          "title": "SBM2 Max",
+          "desc": "집안 곳곳에서 일과 휴식을 \nTune해주는 SBM2 Max\n 공간의 제약 없는 라이프 루틴을 만나보세요"
+        },
+        {
+          "title": "UltraGear",
+          "desc": "일이 끝난 후 스트레스를 Tune 하는 UltraGear\n게임의 몰입도를 높여주는 \n최적의 모니터 루틴을 만나보세요"
+        },
+        {
+          "title": "GALLERY",
+          "desc": "집을 다양한 무드로 Tune해주는 Art TV\n스마트한 AI 라이프 공간을 만들어주는 \nTV를 만나보세요"
         }
+      ],
+      "result": [
+        "일과 휴식이 공존하는 공간에서는\n휴식의 몰입감도 중요합니다",
+        "LG Sound Suite가 재생되는 콘텐츠를 분석해\n공간에 맞는 입체 사운드와\n 최적의 음향을 자동으로 조율하고, \n집에서도 새로운 공간에 있는 듯한 몰입감을\n선사합니다.",
+        "새로운 공간을 만들어주는\n사운드를 경험 해 보세요"
       ]
     },
     "elegance": {
@@ -155,23 +163,26 @@
       "desc": "AI와 프리미엄 디자인이 완성하는\n럭셔리 라이프를 경험해 보세요.",
       "options": [
         {
-          "0": {
-            "title": "LG Sound Suite",
-            "desc": "공간을 사운드로 더욱 MAX하게\nTune해주는 LG Sound Suite\n 최적화 사운드로 홈 오디오 루틴을 만나보세요"
-          },
-          "1": {
-            "title": "SBM2 Max",
-            "desc": "집안 곳곳에서 일과 휴식을 \nTune해주는 SBM2 Max\n 공간의 제약 없는 라이프 루틴을 만나보세요"
-          },
-          "2": {
-            "title": "UltraGear",
-            "desc": "일이 끝난 후 스트레스를 Tune 하는 UltraGear\n게임의 몰입도를 높여주는 \n최적의 모니터 루틴을 만나보세요"
-          },
-          "3": {
-            "title": "GALLERY",
-            "desc": "집을 다양한 무드로 Tune해주는 Art TV\n스마트한 AI 라이프 공간을 만들어주는 \nTV를 만나보세요"
-          }
+          "title": "LG Sound Suite",
+          "desc": "공간을 사운드로 더욱 MAX하게\nTune해주는 LG Sound Suite\n 최적화 사운드로 홈 오디오 루틴을 만나보세요"
+        },
+        {
+          "title": "SBM2 Max",
+          "desc": "집안 곳곳에서 일과 휴식을 \nTune해주는 SBM2 Max\n 공간의 제약 없는 라이프 루틴을 만나보세요"
+        },
+        {
+          "title": "UltraGear",
+          "desc": "일이 끝난 후 스트레스를 Tune 하는 UltraGear\n게임의 몰입도를 높여주는 \n최적의 모니터 루틴을 만나보세요"
+        },
+        {
+          "title": "GALLERY",
+          "desc": "집을 다양한 무드로 Tune해주는 Art TV\n스마트한 AI 라이프 공간을 만들어주는 \nTV를 만나보세요"
         }
+      ],
+      "result": [
+        "일과 휴식이 공존하는 공간에서는\n휴식의 몰입감도 중요합니다",
+        "LG Sound Suite가 재생되는 콘텐츠를 분석해\n공간에 맞는 입체 사운드와\n 최적의 음향을 자동으로 조율하고, \n집에서도 새로운 공간에 있는 듯한 몰입감을\n선사합니다.",
+        "새로운 공간을 만들어주는\n사운드를 경험 해 보세요"
       ]
     }
   },

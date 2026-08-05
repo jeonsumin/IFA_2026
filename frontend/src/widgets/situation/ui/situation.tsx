@@ -1,12 +1,31 @@
+import {useState} from "react";
 import {Button} from "shared/ui";
 import {useNavigate} from "react-router-dom";
 import {useModal} from "app/provider/modal";
 import {useTranslate} from "app/provider/lang";
 
-const NextView = () => {
+// 카피덱 zone.<slug>.options 항목 형태 (widget 로컬 — pages 타입 의존 회피)
+type Option = {title: string; desc: string};
+
+type SituationProps = {
+    titleKey: string;   // zone.<slug>.title
+    optionsKey: string; // zone.<slug>.options → Option[]
+    resultKey: string;  // zone.<slug>.result → string[]
+};
+
+type NextViewProps = {
+    titleKey: string;
+    resultKey: string;
+    optionTitle: string; // 선택한 옵션 제목(상단 pill)
+};
+
+const NextView = ({resultKey, optionTitle}: NextViewProps) => {
     const {close} = useModal();
-    const {t} = useTranslate();
+    const {t, tRaw} = useTranslate();
     const navigate = useNavigate();
+
+    // 선택 완료 시 result 배열로 본문 구성
+    const result = tRaw<string[]>(resultKey) ?? [];
 
     const handlerQrScan = () => {
         close()
@@ -21,10 +40,10 @@ const NextView = () => {
             <div className='relative flex flex-col justify-center  items-center '>
                 <div className="absolute z-10 top-4 text-white text-center flex flex-col justify-center gap-4 ">
                     <p className='bg-lg-ai-gradient w-fit px-3 text-white rounded-full self-center'>
-                        LG Sound Suite
+                        {optionTitle}
                     </p>
                 </div>
-                <img src="/images/zone1.png" alt="zone1" className='w-full'/>
+                <img src="/images/zone1.png" alt="" aria-hidden className='w-full'/>
             </div>
             {/* 로봇(핑크 글로우) */}
             <div className="relative flex flex-1 items-center justify-center ">
@@ -37,9 +56,9 @@ const NextView = () => {
 
             <div className='relative px-5 text-center space-y-6 mt-6'>
                 <div className="flex flex-col gap-6 ">
-                    <p className="whitespace-pre-line">{t('situation.next1')}</p>
-                    <p className="whitespace-pre-line">{t('situation.next2')}</p>
-                    <p className="whitespace-pre-line">{t('situation.next3')}</p>
+                    {result.map((line, i) => (
+                        <p key={i} className="whitespace-pre-line">{line}</p>
+                    ))}
                 </div>
                 <div className='pt-12 pb-[60px]'>
                     <Button onClick={handlerQrScan}>
@@ -50,9 +69,16 @@ const NextView = () => {
         </div>
     )
 }
-export const Situation = () => {
+
+export const Situation = ({titleKey, optionsKey, resultKey}: SituationProps) => {
     const {pushFullPage} = useModal();
-    const {t} = useTranslate();
+    const {t, tRaw} = useTranslate();
+
+    // 선택된 존의 options 리스트를 선택 항목으로
+    const options = tRaw<Option[]>(optionsKey) ?? [];
+    const [selected, setSelected] = useState<number | null>(null);
+    const chosen = selected !== null ? options[selected] : null;
+
     return (
         <div className="bg-bg-default relative">
             <div
@@ -61,11 +87,11 @@ export const Situation = () => {
             <div className='relative flex flex-col justify-center  items-center '>
                 <div className="absolute z-10 top-4 text-white text-center flex flex-col justify-center gap-4 ">
                     <p className='bg-lg-ai-gradient w-fit px-3 text-white rounded-full self-center'>
-                        Entertainment in Tune
+                        {t(titleKey)}
                     </p>
                     <p className="whitespace-pre-line">{t('situation.subtitle')}</p>
                 </div>
-                <img src="/images/zone1.png" alt="zone1" className='w-full'/>
+                <img src="/images/zone1.png" alt="" aria-hidden className='w-full'/>
             </div>
             {/* 로봇(핑크 글로우) */}
             <div className="relative flex flex-1 items-center justify-center ">
@@ -80,16 +106,31 @@ export const Situation = () => {
                 <p className="whitespace-pre-line text-xl font-bold text-black">
                     {t('situation.question')}
                 </p>
-                <Button variant='outline' className="rounded-2xl bg-white/70" endIcon>
-                    <div className='flex flex-col gap-2'>
-                        <p className="font-bold text-base text-black"> LG Sound Suite</p>
-                        <p className="whitespace-pre-line text-xs">{t('situation.soundSuiteDesc')}</p>
-                    </div>
-                </Button>
+
+                <div className="flex flex-col gap-2">
+                    {options.map((o, i) => (
+                        <Button
+                            key={o.title}
+                            variant='outline'
+                            active={selected === i}
+                            className="rounded-2xl bg-white/70"
+                            endIcon
+                            onClick={() => setSelected(i)}
+                        >
+                            <div className='flex flex-col gap-2'>
+                                <p className="font-bold text-base text-black">{o.title}</p>
+                                <p className="whitespace-pre-line text-xs">{o.desc}</p>
+                            </div>
+                        </Button>
+                    ))}
+                </div>
 
                 <div className='pt-12 pb-[60px]'>
                     <Button
-                        onClick={() => pushFullPage({content: <NextView/>})}
+                        disabled={!chosen}
+                        onClick={() => chosen && pushFullPage({
+                            content: <NextView titleKey={titleKey} resultKey={resultKey} optionTitle={chosen.title}/>,
+                        })}
                     >
                         {t('common.next')}
                     </Button>
