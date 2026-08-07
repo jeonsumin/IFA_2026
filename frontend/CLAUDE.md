@@ -43,6 +43,17 @@ shared/    범용 UI/유틸/설정 (ui, lib, api, styles)
 
 새 화면 구현 시: 제출/검증/API가 있으면 **먼저 features/entities/model 훅부터 만들고** 페이지는 그걸 쓰기만 하라. 인라인으로 시작해서 나중에 빼지 말 것.
 
+### 슬라이스 내부 구조 & 액션 배치 (FSD 정석)
+
+참조 표준: `jeonsumin/nukeapp` (전형적 FSD 레이아웃).
+
+- **슬라이스 내부 폴더**: `api/`(요청 함수), `model/`(타입·store·`use-*` 훅), `lib/`(순수 유틸), `ui/`(컴포넌트), `index.ts`(배럴). 파일명은 **kebab-case** (`get-experience-status.ts`, `use-save-situation.ts`).
+- **read는 entities, write 액션은 features** — 같은 도메인이라도 나눈다. 조회 함수는 `entities/<domain>/api`, 사용자 액션(생성/수정/삭제)은 `features/`로. 한 파일에 조회+액션 섞지 말 것.
+  - 예: `entities/experience`(`getExperienceStatus` 조회) ↔ `features/experience/save-situation`·`features/experience/complete-qr`(저장·완료 액션).
+- **여러 액션이 한 도메인에 속하면 도메인 그룹**: `features/<domain>/<action>/{api,model,ui}` (예: `features/experience/save-situation`). 도메인에 독립적인 단일 액션은 플랫 `features/<action>`도 허용 (예: `features/submit-check-in`).
+- **각 액션 = api 함수 + `use-*` 훅(loading/error)**. 컴포넌트는 훅만 쓰고 `request`/api 함수를 직접 부르지 않는다. (참조: `features/submit-check-in` = `api/submit-check-in.ts` + `model/use-submit-check-in.ts`)
+- **feature `ui/`는 트리거가 재사용될 때만 추출.** 여러 화면에서 공용으로 쓰는 버튼(예: nukeapp `AddToCartButton`) → `ui/`로 컴포넌트화. 호출처 1곳 + 위젯 로컬 상태·모달 플로우에 결합된 트리거 → **훅(model)만 노출**하고 UI는 호출처(위젯/페이지)에 둔다. 단일·결합 트리거를 UI로 빼면 상위 상태를 그대로 넘기는 얇은 래퍼만 생김(과추상 금지).
+
 ## 스타일
 
 - **인라인 CSS 금지.** Tailwind 유틸 + 디자인 토큰만 사용.
