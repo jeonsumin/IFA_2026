@@ -6,8 +6,7 @@ import {Persona} from 'pages/persona';
 import {Experience} from 'pages/experience';
 import {PageLayout} from "../layout";
 import {MobileOnlyView, BrowserView, TabletView} from 'react-device-detect'
-import {RequireCheckIn, RedirectIfCheckedIn} from "./guards";
-import {Dashboard} from "pages/dashboard";
+import {RequireCheckIn, RedirectIfCheckedIn, RequireDraft} from "./guards";
 import {Promotion} from "pages/promotion";
 import {Report} from "pages/report";
 import {QrScanner} from "pages/qr-scanner";
@@ -47,12 +46,13 @@ export const AppRouter = () => {
                             <Route element={<RedirectIfCheckedIn/>}>
                                 <Route path={'/check-in'} element={<CheckIn/>}/>
                             </Route>
-                            <Route element={<RequireCheckIn/>}>
+                            <Route element={<RequireDraft/>}>
                                 <Route path={'/welcome'} element={<Welcome/>}/>
                                 <Route path={'/persona'} element={<Persona/>}/>
-                                <Route path={'/experience'} element={<Experience/>}/>
+                            </Route>
+                            <Route element={<RequireCheckIn/>}>
                                 <Route path={'/experience-success'} element={<SuccessView/>}/>
-                                <Route path={'/dashboard'} element={<Dashboard/>}/>
+                                <Route path={'/dashboard'} element={<Experience/>}/>
                                 <Route path={'/report'} element={<Report/>}/>
                             </Route>
                             <Route path={'*'} element={<Navigate to="/" replace/>}/>

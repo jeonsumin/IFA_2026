@@ -1,7 +1,7 @@
 import {useNavigate} from "react-router-dom";
 import {Button, Checkbox, Input, Select} from "shared/ui";
 import {Field} from "shared/ui/field";
-import {useSubmitCheckIn} from "features/submit-check-in";
+import {useUserDraft} from "entities/user";
 import {AGE_OPTIONS, GENDER_OPTIONS} from '../model/options';
 import {useCheckInForm} from '../model/use-check-in-form';
 import {useModal} from "app/provider/modal";
@@ -21,8 +21,8 @@ export const CheckIn = () => {
         touched, touch,
         errors, valid, values,
     } = useCheckInForm();
-    const {openFullPage, openAlert} = useModal();
-    const {submit} = useSubmitCheckIn();
+    const {openFullPage} = useModal();
+    const setDraft = useUserDraft((s) => s.setDraft);
     const {t} = useTranslate();
     const navigate = useNavigate();
 
@@ -40,13 +40,10 @@ export const CheckIn = () => {
         )
     }
 
-    // 다음: 체크인 제출(features/submit-check-in) 성공 시 persona 화면으로 이동
-    const handleNext = async () => {
-        if(import.meta.env.DEV) return navigate("/persona");
-
-        const ok = await submit(values);
-        if (ok) navigate("/persona");
-        else openAlert({message: t('checkIn.submitFailed')});
+    // 다음: 폼을 draft에 저장하고 persona로 이동. 실제 제출은 persona에서 한 번에.
+    const handleNext = () => {
+        setDraft(values);
+        navigate("/welcome");
     };
 
     return (

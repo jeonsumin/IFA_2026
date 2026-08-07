@@ -34,7 +34,7 @@ export const SuccessView = (props: SuccessViewProps) => {
         if (onClick) {
             onClick();
         } else {
-            navigate("/experience");
+            navigate("/dashboard");
         }
     }
     return (

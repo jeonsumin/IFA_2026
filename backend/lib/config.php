@@ -21,6 +21,8 @@ define('_BB_FILE_UPLOAD_DIR', $_SERVER['DOCUMENT_ROOT'].'/'._BB_FILE_DIR);
 
 
 $BB_DATE = date('YmdHis');
+
+$today = date('Y-m-d');
 $BB_IPADDR = $_SERVER['REMOTE_ADDR'];
 
 if( isset($zx) ){ define("IS_DEBUG", true); }else{ define("IS_DEBUG", false); }

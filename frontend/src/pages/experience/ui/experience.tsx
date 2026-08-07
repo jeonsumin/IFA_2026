@@ -5,6 +5,7 @@ import {useTranslate} from "app/provider/lang";
 import {Situation} from "widgets/situation";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
+import {useExperienceStatus} from "../model/use-experience-status";
 
 
 // 카드 하단 사진: 중간 위로 페이드해 텍스트 영역과 자연스럽게 블렌드(디자인 마스크 근사)
@@ -25,12 +26,14 @@ export const Experience = () => {
     const {openFullPage} = useModal();
     const {t} = useTranslate();
     const navigate = useNavigate();
+    const {clearedZones, loading} = useExperienceStatus();
 
     const openPopup = (zone: Zone) => {
         openFullPage(
             {
                 title: '',
                 content: <Situation
+                    slug={zone.slug}
                     titleKey={zone.title}
                     optionsKey={zone.optionsKey}
                     resultKey={zone.resultKey}
@@ -40,11 +43,11 @@ export const Experience = () => {
         )
     }
 
+    // 현황 로드 후 4개 존 모두 QR 완료면 리포트로
     useEffect(() => {
-        const isAllClear = ZONES.every((e) => e.clear === true)
-
-        if (isAllClear) navigate('/report')
-    }, []);
+        if (loading) return;
+        if (ZONES.every((z) => clearedZones.has(z.slug))) navigate('/report');
+    }, [loading, clearedZones, navigate]);
 
     return (
         <div className="relative min-h-full bg-bg-default">
@@ -105,7 +108,7 @@ export const Experience = () => {
                                 </p>
                             </div>
 
-                            {z.clear && <ClearOverlay/>}
+                            {clearedZones.has(z.slug) && <ClearOverlay/>}
                         </div>
                     ))}
                 </div>

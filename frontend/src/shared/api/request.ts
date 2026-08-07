@@ -1,4 +1,5 @@
 import axios, {AxiosInstance} from 'axios';
+import {getCookie} from 'shared/lib/cookie';
 
 export const request: AxiosInstance = axios.create({
     baseURL: import.meta.env.DEV ? 'http://localhost:8080/api' : '/api',
@@ -7,3 +8,12 @@ export const request: AxiosInstance = axios.create({
         return status === 200;
     }
 })
+
+request.interceptors.request.use((config) => {
+    const deviceId = getCookie('device_id');
+    if (deviceId) {
+        config.headers.set('X-Device-Id', deviceId);
+    }
+    return config;
+})
+

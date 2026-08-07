@@ -1,15 +1,18 @@
 import {Button} from "shared/ui";
 import {useNavigate} from "react-router-dom";
 import {useTranslate} from "app/provider/lang";
+import {useUserDraft} from "entities/user";
 
 export const Welcome = () => {
     const navigate = useNavigate();
+    const draft = useUserDraft((s) => s.draft);
     const {t} = useTranslate();
 
     return (
         <div className="relative flex min-h-full flex-col bg-bg-default">
             {/* 상단 핑크 → 하단 베이지 그라데이션 */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-lg-active-red/25 to-bg-default/25"/>
+            <div
+                className="pointer-events-none absolute inset-0 bg-gradient-to-b from-lg-active-red/25 to-bg-default/25"/>
 
             {/* 로봇(핑크 글로우) */}
             <div className="relative flex flex-1 items-center justify-center mt-10">
@@ -39,7 +42,7 @@ export const Welcome = () => {
                     <div className="flex flex-col items-center gap-4 text-center">
                         <p className="text-4xl font-bold leading-none text-black">{t('welcome.init')}</p>
                         {/* ponytail: 체크인 이름 연동 전까지 플레이스홀더 */}
-                        <p className="text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">{t('welcome.greeting', {name: 'ABCDEFGH'})}</p>
+                        <p className="text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">{t('welcome.greeting', {name: draft?.name ?? "" })}</p>
                         <p className="whitespace-pre-line text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">
                             {t('welcome.desc')}
                         </p>

@@ -5,6 +5,9 @@ import {PERSONAS, PERSONA_REASON_COUNT} from '../model/persona'
 import {ButtonItem} from "widgets/survey/ui/button-item.tsx";
 import {useNavigate} from "react-router-dom";
 import {useTranslate} from "app/provider/lang";
+import {useModal} from "app/provider/modal";
+import {useUserDraft} from "entities/user";
+import {useSubmitCheckIn} from "features/submit-check-in";
 
 // 인물 사진 좌측 경계를 카드 배경으로 부드럽게 페이드(디자인 alpha 마스크 근사)
 const photoFade =
@@ -15,6 +18,9 @@ const outlineActive =
 export const Persona = () => {
     const navigate = useNavigate();
     const {t} = useTranslate();
+    const {openAlert} = useModal();
+    const draft = useUserDraft((s) => s.draft);
+    const {submit} = useSubmitCheckIn();
 
     const [selected, setSelected] = useState<number | null>(null);
     const [sheetOpen, setSheetOpen] = useState(false);
@@ -36,14 +42,17 @@ export const Persona = () => {
         ? Array.from({length: PERSONA_REASON_COUNT}, (_, i) => ({content: t(`${persona.key}.reasons.${i}`)}))
         : [];
 
-    const submitPersona = () => {
-        if (persona == null) return
-        const param = {
+    // 체크인 draft + persona 선택을 한 번에 제출 (통합 제출). 성공 시에만 체크인 확정.
+    const submitPersona = async () => {
+        if (persona == null || draft == null) return;
+        const reason = answers[persona.id];
+        const ok = await submit({
+            ...draft,
             persona: t(`${persona.key}.title`),
-            reason: answers[persona.id]
-        }
-        console.log(param);
-        navigate("/experience")
+            reason: Array.isArray(reason) ? reason.join(", ") : reason ?? "",
+        });
+        if (ok) navigate("/dashboard");
+        else openAlert({message: t('checkIn.submitFailed')});
     }
 
     return (

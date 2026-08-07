@@ -3,6 +3,7 @@
     "start": "시작하기",
     "next": "다음",
     "confirm": "확인",
+    "close": "닫기",
     "selectPlaceholder": "선택해주세요",
     "robotAlt": "LG 클로이 로봇",
     "moreEpisodes": "추가 에피소드 만나기",
@@ -248,7 +249,10 @@
   },
   "qrScanner": {
     "alreadyDone": "이미 체험을 완료하였습니다.",
-    "cameraLoading": "카메라 로딩 중…"
+    "cameraLoading": "카메라 로딩 중…",
+    "failed": "QR 인식에 실패했습니다. 잠시 후 다시 시도해주세요.",
+    "invalid": "유효하지 않은 QR입니다. 체험 공간의 QR을 스캔해주세요.",
+    "wrongZone": "이 공간의 QR이 아닙니다. 선택한 공간의 QR을 스캔해주세요."
   },
   "situation": {
     "subtitle": "LG AI가 당신의 라이프스타일에\n어떻게 조율되는지 경험해 보세요.",
@@ -257,7 +261,8 @@
     "next1": "일과 휴식이 공존하는 공간에서는\n휴식의 몰입감도 중요합니다",
     "next2": "LG Sound Suite가 재생되는 콘텐츠를 분석해\n공간에 맞는 입체 사운드와\n최적의 음향을 자동으로 조율하고,\n집에서도 새로운 공간에 있는 듯한 몰입감을 선사합니다.",
     "next3": "새로운 공간을 만들어주는\n사운드를 경험 해 보세요",
-    "qrScan": "QR 스캔하기"
+    "qrScan": "QR 스캔하기",
+    "saveFailed": "저장에 실패했습니다. 잠시 후 다시 시도해주세요."
   },
   "survey": {
     "popupTitle": "서베이 참여하기",

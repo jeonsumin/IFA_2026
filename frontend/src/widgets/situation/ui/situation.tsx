@@ -3,23 +3,26 @@ import {Button} from "shared/ui";
 import {useNavigate} from "react-router-dom";
 import {useModal} from "app/provider/modal";
 import {useTranslate} from "app/provider/lang";
+import {saveSituation, type ZoneSlug} from "entities/experience";
 
 // 카피덱 zone.<slug>.options 항목 형태 (widget 로컬 — pages 타입 의존 회피)
 type Option = {title: string; desc: string};
 
 type SituationProps = {
+    slug: ZoneSlug;     // 백엔드 ZONE 값 (상황 저장 키)
     titleKey: string;   // zone.<slug>.title
     optionsKey: string; // zone.<slug>.options → Option[]
     resultKey: string;  // zone.<slug>.result → string[]
 };
 
 type NextViewProps = {
+    slug: ZoneSlug;      // QR 완료 처리 대상 존
     titleKey: string;
     resultKey: string;
     optionTitle: string; // 선택한 옵션 제목(상단 pill)
 };
 
-const NextView = ({resultKey, optionTitle}: NextViewProps) => {
+const NextView = ({slug, resultKey, optionTitle}: NextViewProps) => {
     const {close} = useModal();
     const {t, tRaw} = useTranslate();
     const navigate = useNavigate();
@@ -29,7 +32,7 @@ const NextView = ({resultKey, optionTitle}: NextViewProps) => {
 
     const handlerQrScan = () => {
         close()
-        navigate('/qr');
+        navigate('/qr', {state: {zone: slug}});
     }
 
     return (
@@ -70,14 +73,31 @@ const NextView = ({resultKey, optionTitle}: NextViewProps) => {
     )
 }
 
-export const Situation = ({titleKey, optionsKey, resultKey}: SituationProps) => {
-    const {pushFullPage} = useModal();
+export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProps) => {
+    const {pushFullPage, openAlert} = useModal();
     const {t, tRaw} = useTranslate();
 
     // 선택된 존의 options 리스트를 선택 항목으로
     const options = tRaw<Option[]>(optionsKey) ?? [];
     const [selected, setSelected] = useState<number | null>(null);
+    const [saving, setSaving] = useState(false);
     const chosen = selected !== null ? options[selected] : null;
+
+    // 상황 확정 → 저장(upsert) 완료 후 결과화면으로. QR은 상황 행 선행이 전제라 저장을 await.
+    const handleNext = async () => {
+        if (selected === null || saving) return;
+        setSaving(true);
+        try {
+            await saveSituation(slug, options[selected].title);
+            pushFullPage({
+                content: <NextView slug={slug} titleKey={titleKey} resultKey={resultKey} optionTitle={options[selected].title}/>,
+            });
+        } catch {
+            openAlert({message: t('situation.saveFailed')});
+        } finally {
+            setSaving(false);
+        }
+    };
 
     return (
         <div className="bg-bg-default relative">
@@ -127,10 +147,8 @@ export const Situation = ({titleKey, optionsKey, resultKey}: SituationProps) => 
 
                 <div className='pt-12 pb-[60px]'>
                     <Button
-                        disabled={!chosen}
-                        onClick={() => chosen && pushFullPage({
-                            content: <NextView titleKey={titleKey} resultKey={resultKey} optionTitle={chosen.title}/>,
-                        })}
+                        disabled={!chosen || saving}
+                        onClick={handleNext}
                     >
                         {t('common.next')}
                     </Button>
