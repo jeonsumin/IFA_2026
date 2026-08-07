@@ -1,2 +1,2 @@
 export * from "./model/types";
-export * from "./api/experience";
+export * from "./api/get-experience-status";

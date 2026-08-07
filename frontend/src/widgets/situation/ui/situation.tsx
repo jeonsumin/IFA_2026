@@ -3,7 +3,8 @@ import {Button} from "shared/ui";
 import {useNavigate} from "react-router-dom";
 import {useModal} from "app/provider/modal";
 import {useTranslate} from "app/provider/lang";
-import {saveSituation, type ZoneSlug} from "entities/experience";
+import type {ZoneSlug} from "entities/experience";
+import {useSaveSituation} from "features/experience/save-situation";
 
 // 카피덱 zone.<slug>.options 항목 형태 (widget 로컬 — pages 타입 의존 회피)
 type Option = {title: string; desc: string};
@@ -80,22 +81,19 @@ export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProp
     // 선택된 존의 options 리스트를 선택 항목으로
     const options = tRaw<Option[]>(optionsKey) ?? [];
     const [selected, setSelected] = useState<number | null>(null);
-    const [saving, setSaving] = useState(false);
+    const {save, loading: saving} = useSaveSituation();
     const chosen = selected !== null ? options[selected] : null;
 
     // 상황 확정 → 저장(upsert) 완료 후 결과화면으로. QR은 상황 행 선행이 전제라 저장을 await.
     const handleNext = async () => {
         if (selected === null || saving) return;
-        setSaving(true);
-        try {
-            await saveSituation(slug, options[selected].title);
+        const ok = await save(slug, options[selected].title);
+        if (ok) {
             pushFullPage({
                 content: <NextView slug={slug} titleKey={titleKey} resultKey={resultKey} optionTitle={options[selected].title}/>,
             });
-        } catch {
+        } else {
             openAlert({message: t('situation.saveFailed')});
-        } finally {
-            setSaving(false);
         }
     };
 

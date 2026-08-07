@@ -4,7 +4,8 @@ import {useLocation, useNavigate} from "react-router-dom";
 import {Button} from "shared/ui";
 import {useTranslate} from "app/provider/lang";
 import {useModal} from "app/provider/modal";
-import {completeZoneQr, getExperienceStatus, type ZoneSlug} from "entities/experience";
+import {getExperienceStatus, type ZoneSlug} from "entities/experience";
+import {useCompleteQr} from "features/experience/complete-qr";
 
 const QrScannerView = lazy(() =>
     import("widgets/qr-scanner").then((m) => ({default: m.QrScanner}))
@@ -47,6 +48,7 @@ export const QrScanner = () => {
     const {t} = useTranslate();
     const navigate = useNavigate();
     const {openAlert} = useModal();
+    const {complete} = useCompleteQr();
     const {state} = useLocation();
     // 어느 존의 QR인지 — Situation 결과화면에서 navigate state로 전달
     const zone = (state as {zone?: ZoneSlug} | null)?.zone;
@@ -80,12 +82,9 @@ export const QrScanner = () => {
             openAlert({message: t('qrScanner.wrongZone'), onConfirm: rescan});
             return;
         }
-        try {
-            await completeZoneQr(zone);
-            navigate('/dashboard');
-        } catch {
-            openAlert({message: t('qrScanner.failed'), onConfirm: () => navigate('/dashboard')});
-        }
+        const ok = await complete(zone);
+        if (ok) navigate('/dashboard');
+        else openAlert({message: t('qrScanner.failed'), onConfirm: () => navigate('/dashboard')});
     };
 
     return (
