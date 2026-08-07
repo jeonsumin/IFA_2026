@@ -1,4 +1,4 @@
-import {Download, Gift, PenLine} from "lucide-react";
+import {Download, Gift, PenLine,Heart} from "lucide-react";
 import {Button} from "shared/ui";
 import {useTranslate, Trans} from "app/provider/lang";
 import {useModal} from "app/provider/modal";
@@ -6,6 +6,7 @@ import {Survey} from "widgets/survey";
 import {SuccessView} from "widgets/success-view";
 import {OtpView} from "widgets/otp-view";
 import {useSubmitSurvey} from "features/submit-survey";
+import {useReportStatus} from "pages/report/model/use-report-status.ts";
 
 // 리포트 존 목록 (badge/title은 브랜드 고정, desc는 카피덱 키)
 const ZONES = [
@@ -20,6 +21,7 @@ export const Report = () => {
     const {openFullPage, pushFullPage, openAlert} = useModal();
 
     const {submit} = useSubmitSurvey();
+    const {reportStatus} = useReportStatus();
     // 서베이 플로우: Survey → (제출) → SuccessView → (확인) → RewardView.
     // 각 단계를 명명 핸들러로 분리해 중첩 콜백을 평탄화한다.
     const openReward = () => pushFullPage({
@@ -42,7 +44,7 @@ export const Report = () => {
     const handleSurvey = () => openFullPage({
         title: t("survey.popupTitle"),
         content: (
-            <Survey onSubmit={ async (answers) => {
+            <Survey onSubmit={async (answers) => {
                 const ok = await submit(answers);
                 if (ok) openSurveyDone();
                 else openAlert({message: t('errors.surveyFailed')});
@@ -132,11 +134,20 @@ export const Report = () => {
 
                 {/*액션 버튼*/}
                 <div className="flex flex-col gap-4 bg-white/40 px-5 pb-[60px] pt-12 backdrop-blur-[8px]">
-                    <Button className="flex items-center justify-center gap-2 font-bold" onClick={handleSurvey}>
-                        <PenLine size={20}/>
-                        {t('report.takeSurvey')}
+                    {/* 서베이 상태 tri-state: null=미참여('서베이 참여하기'), 1=참여('추가 리워드'), 2=리워드완료(비활성) */}
+                    <Button
+                        className="flex items-center justify-center gap-2 font-bold"
+                        onClick={reportStatus.surveyReward == null ? handleSurvey : handleReward}
+                        disabled={reportStatus.surveyReward === 2}
+                    >
+                        {reportStatus.surveyReward == null ? <PenLine size={20}/> : <Heart size={20}/>}
+                        {reportStatus.surveyReward == null ? t('report.takeSurvey') : t('report.extraReward')}
                     </Button>
-                    <Button className="flex items-center justify-center gap-2 font-bold" onClick={handleReward}>
+                    <Button
+                        className="flex items-center justify-center gap-2 font-bold"
+                        onClick={handleReward}
+                        disabled={reportStatus?.userReward ?? false}
+                    >
                         <Gift size={20}/>
                         {t('report.reward')}
                     </Button>
