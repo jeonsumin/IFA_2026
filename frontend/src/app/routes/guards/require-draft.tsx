@@ -6,6 +6,7 @@ import {isCheckedIn} from "entities/session";
 // 이미 체크인 완료면 재제출 방지차 dashboard로, draft 없으면(새로고침 등) check-in부터 다시.
 export const RequireDraft = () => {
     const draft = useUserDraft((s) => s.draft);
+    if (import.meta.env.DEV) return <Outlet/>;
     if (isCheckedIn()) return <Navigate to="/dashboard" replace/>;
     return draft ? <Outlet/> : <Navigate to="/" replace/>;
 };

@@ -5,6 +5,7 @@ import {useModal} from "app/provider/modal";
 import {Survey} from "widgets/survey";
 import {SuccessView} from "widgets/success-view";
 import {OtpView} from "widgets/otp-view";
+import {useSubmitSurvey} from "features/submit-survey";
 
 // 리포트 존 목록 (badge/title은 브랜드 고정, desc는 카피덱 키)
 const ZONES = [
@@ -16,8 +17,9 @@ const ZONES = [
 
 export const Report = () => {
     const {t} = useTranslate();
-    const {openFullPage, pushFullPage} = useModal();
+    const {openFullPage, pushFullPage, openAlert} = useModal();
 
+    const {submit} = useSubmitSurvey();
     // 서베이 플로우: Survey → (제출) → SuccessView → (확인) → RewardView.
     // 각 단계를 명명 핸들러로 분리해 중첩 콜백을 평탄화한다.
     const openReward = () => pushFullPage({
@@ -40,9 +42,10 @@ export const Report = () => {
     const handleSurvey = () => openFullPage({
         title: t("survey.popupTitle"),
         content: (
-            <Survey onSubmit={(answers) => {
-                console.log("answers : ", JSON.stringify(answers));
-                openSurveyDone();
+            <Survey onSubmit={ async (answers) => {
+                const ok = await submit(answers);
+                if (ok) openSurveyDone();
+                else openAlert({message: t('errors.surveyFailed')});
             }}/>
         ),
     });
