@@ -26,7 +26,7 @@ export const Experience = () => {
     const {openFullPage} = useModal();
     const {t} = useTranslate();
     const navigate = useNavigate();
-    const {clearedZones, loading} = useExperienceStatus();
+    const {clearedZones, persona, loading} = useExperienceStatus();
 
     const openPopup = (zone: Zone) => {
         openFullPage(
@@ -70,8 +70,8 @@ export const Experience = () => {
 
                 {/* 페르소나 타이틀 + 설명 */}
                 <div className="mt-4 flex flex-col gap-2 px-5 text-center">
-                    <p className="text-xl font-bold leading-[1.2] text-black">
-                        THE CONNECTED<br/>FAMILY COORDINATOR
+                    <p className="whitespace-pre-line text-xl font-bold leading-[1.2] text-black">
+                        {t('experience.title', {persona: persona || "THE CONNECTED\nFAMILY COORDINATOR"})}
                     </p>
                     <p className="whitespace-pre-line text-sm leading-[1.4] tracking-[-0.28px] text-lg-gray-2">
                         {t('experience.personaDesc')}

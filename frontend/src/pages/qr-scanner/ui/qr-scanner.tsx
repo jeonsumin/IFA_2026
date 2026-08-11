@@ -1,4 +1,4 @@
-import {lazy, Suspense, useEffect, useState} from "react";
+import {lazy, Suspense, useCallback, useEffect, useState} from "react";
 import {XIcon} from 'lucide-react'
 import {useLocation, useNavigate} from "react-router-dom";
 import {Button} from "shared/ui";
@@ -59,8 +59,8 @@ export const QrScanner = () => {
         if (!zone) return;
         let alive = true;
         getExperienceStatus()
-            .then((zones) => {
-                if (alive) setAlreadyDone(zones.some((z) => z.zone === zone && z.qrScanned));
+            .then((status) => {
+                if (alive) setAlreadyDone(status.zones.some((z) => z.zone === zone && z.qrScanned));
             })
             .catch(() => { /* 조회 실패 → 스캐너 노출(기본) */ });
         return () => { alive = false; };
@@ -68,10 +68,10 @@ export const QrScanner = () => {
 
     // 인식 즉시 카메라가 멈추므로, 거부(무효/타존) 시 key를 바꿔 스캐너 remount → 재스캔 가능하게.
     const [scanKey, setScanKey] = useState(0);
-    const rescan = () => setScanKey((k) => k + 1);
+    const rescan = useCallback(() => setScanKey((k) => k + 1), []);
 
     // 스캔값의 zone이 현재 존과 일치할 때만 완료 처리.
-    const handleScan = async (value: string) => {
+    const handleScan = useCallback(async (value: string) => {
         if (!zone) return;
         const scanned = parseZone(value);
         if (!scanned) {
@@ -85,7 +85,17 @@ export const QrScanner = () => {
         const ok = await complete(zone);
         if (ok) navigate('/dashboard');
         else openAlert({message: t('qrScanner.failed'), onConfirm: () => navigate('/dashboard')});
-    };
+    }, [complete, navigate, openAlert, rescan, t, zone]);
+
+    useEffect(() => {
+        if (!import.meta.env.DEV) return;
+        const injectScan = (event: Event) => {
+            const value = (event as CustomEvent<string>).detail;
+            if (typeof value === "string") void handleScan(value);
+        };
+        window.addEventListener("e2e:qr-scan", injectScan);
+        return () => window.removeEventListener("e2e:qr-scan", injectScan);
+    }, [handleScan]);
 
     return (
         <div className="relative bg-lg-gray-2 flex flex-col h-screen items-center justify-center">

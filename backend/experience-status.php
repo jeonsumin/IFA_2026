@@ -16,14 +16,14 @@ if ($deviceId == '') {
     exit;
 }
 
-$user = rf_mysql_row("SELECT ID FROM USER WHERE DEVICE_ID = '" . ESC($deviceId, $DB) . "' AND CHECKIN_DATE = '" . ESC($today, $DB) . "'", $DB);
+$user = rf_mysql_row("SELECT U.ID, PERSONA FROM USER U INNER JOIN PERSONA P ON P.USER_ID = U.ID WHERE U.DEVICE_ID = '" . ESC($deviceId, $DB) . "' AND U.CHECKIN_DATE = '" . ESC($today, $DB) . "'", $DB);
 if (!$user) {
     http_response_code(404);
     echo json_encode(array('success' => false, 'errorCode' => 'USER_NOT_FOUND'));
     exit;
 }
 $userId = $user['ID'];
-
+$userPersona =$user['PERSONA'];
 $rows = rf_mysql_arr("SELECT ZONE, SITUATION, QR_SCANNED FROM EX_DATA WHERE USER_ID = '" . ESC($userId, $DB) . "'", $DB);
 
 $zones = array();
@@ -35,4 +35,4 @@ foreach ($rows as $r) {
     );
 }
 
-echo json_encode(array('success' => true, 'data' => $zones));
+echo json_encode(array('success' => true, 'data' => array('persona' => $userPersona, 'zones'=>$zones) ));

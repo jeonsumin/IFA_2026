@@ -7,3 +7,9 @@ export interface ZoneStatus {
     situation: string;   // 선택 상황 옵션 title
     qrScanned: boolean;  // QR 완료 = clear
 }
+
+// 체험 현황 응답 — 선택 페르소나 title + 존별 현황
+export interface ExperienceStatus {
+    persona: string;     // 페르소나 title (예: "THE CONNECTED\nFAMILY COORDINATOR")
+    zones: ZoneStatus[];
+}

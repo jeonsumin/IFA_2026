@@ -7,17 +7,18 @@ import {SuccessView} from "widgets/success-view";
 import {OtpView} from "widgets/otp-view";
 import {useSubmitSurvey} from "features/submit-survey";
 import {useReportStatus} from "pages/report/model/use-report-status.ts";
+import {ZONES} from "pages/experience/model/zone.ts";
 
 // 리포트 존 목록 (badge/title은 브랜드 고정, desc는 카피덱 키)
-const ZONES = [
-    {badge: "zone.entertainment.title", title: "LG Sound Suite", descKey: "report.zone.sound"},
-    {badge: "zone.living.title", title: "Fit & Max Refrigerator", descKey: "report.zone.fridge"},
-    {badge: "zone.harmony.title", title: "Entrance", descKey: "report.zone.entrance"},
-    {badge: "zone.elegance.title", title: "30”Walloven", descKey: "report.zone.oven"},
-];
+// const ZONES = [
+//     {slug: "entertainment", badge: "zone.entertainment.title", title: "LG Sound Suite", descKey: "report.zone.sound"},
+//     {slug: "living", badge: "zone.living.title", title: "Fit & Max Refrigerator", descKey: "report.zone.fridge"},
+//     {slug: "harmony", badge: "zone.harmony.title", title: "Entrance", descKey: "report.zone.entrance"},
+//     {slug: "elegance", badge: "zone.elegance.title", title: "30”Walloven", descKey: "report.zone.oven"},
+// ];
 
 export const Report = () => {
-    const {t} = useTranslate();
+    const {t, tRaw} = useTranslate();
     const {openFullPage, pushFullPage, openAlert} = useModal();
 
     const {submit} = useSubmitSurvey();
@@ -117,18 +118,25 @@ export const Report = () => {
 
                     <div
                         className="flex w-full flex-col rounded-2xl border border-white bg-white/70 shadow-[3px_3px_16px_0px_rgba(0,0,0,0.1)]">
-                        {ZONES.map((z, i) => (
-                            <div
-                                key={z.title}
-                                className={`flex flex-col gap-2 p-5 ${i > 0 ? "border-t border-lg-gray-5" : ""}`}
-                            >
-                                <p className="bg-lg-ai-gradient bg-clip-text text-[10px] font-bold text-transparent">{t(z.badge)}</p>
-                                <p className="text-xl font-bold leading-[1.2] text-black">{z.title}</p>
-                                <p className="whitespace-pre-line text-[10px] leading-[1.4] tracking-[-0.2px] text-lg-gray-2">
-                                    {t(z.descKey)}
-                                </p>
-                            </div>
-                        ))}
+                        {/* 완료 존(situation) 기준 → ZONES 매칭 → optionsKey에서 SITUATION과 같은 옵션의 title/desc 바인딩 */}
+                        {reportStatus.situation.map((s, i) => {
+                            const z = ZONES.find((zone) => zone.slug === s.ZONE);
+                            if (!z) return null;
+                            const option = (tRaw<{title: string; desc: string}[]>(z.optionsKey) ?? [])
+                                .find((o) => o.title === s.SITUATION);
+                            return (
+                                <div
+                                    key={s.ZONE}
+                                    className={`flex flex-col gap-2 p-5 ${i > 0 ? "border-t border-lg-gray-5" : ""}`}
+                                >
+                                    <p className="bg-lg-ai-gradient bg-clip-text text-[10px] font-bold text-transparent">{t(z.title)}</p>
+                                    <p className="text-xl font-bold leading-[1.2] text-black">{option?.title }</p>
+                                    <p className="whitespace-pre-line text-[10px] leading-[1.4] tracking-[-0.2px] text-lg-gray-2">
+                                        {option?.desc}
+                                    </p>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
 

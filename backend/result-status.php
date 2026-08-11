@@ -2,7 +2,7 @@
 include_once './_common.php';
 
 if (isset($zx) && $zx == 'y') {
-    $deviceId = "bf6e98b1-16f0-4ece-941c-eab2160af9f6";
+    $deviceId = "test-device";
 } else {
     $JsonData = file_get_contents('php://input');
     $data = json_decode($JsonData, true);
@@ -25,7 +25,6 @@ if (!$user) {
 }
 $userId = $user['ID'];
 
-
 // LEFT JOIN: 서베이 미참여자도 USER 행은 반환(SURVEY 필드만 null).
 // surveyReward tri-state: null=미참여, 1=참여, 2=리워드까지.
 $sql = "
@@ -40,16 +39,21 @@ FROM USER U
 LEFT JOIN SURVEY S ON S.USER_ID = U.ID
 WHERE U.ID = '" . ESC($userId, $DB) . "'
 ";
-
 debug($sql);
-
 $row = rf_mysql_row($sql, $DB);
+
+$situationSql = "SELECT * FROM EX_DATA ed WHERE ed.USER_ID = '".ESC($userId, $DB). "'";
+debug($situationSql);
+
+$situationData = [];
+$situationRow = rf_mysql_arr($situationSql, $DB);
 
 // mysqli는 값을 문자열로 반환 → 프론트 계약(boolean / number|null)에 맞게 캐스팅.
 // (안 하면 userReward \"0\"이 truthy, surveyReward \"2\"가 === 2 실패)
 $data = array(
     "userReward"   => (bool)($row["userReward"] ?? false),
     "surveyReward" => (isset($row["surveyReward"]) && $row["surveyReward"] !== null) ? (int)$row["surveyReward"] : null,
+    "situation"  => $situationRow
 );
 
 echo json_encode(array("success" => true, "data" => $data));

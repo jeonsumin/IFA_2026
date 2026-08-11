@@ -74,6 +74,7 @@
     "done": "체험을 완료하였습니다."
   },
   "experience": {
+    "title": "{{persona}}",
     "personaDesc": "가족의 루틴을 이해하는 것이\n편안한 일상의 시작.\n우리 가족만의\nLG AI Routine을 경험해 보세요.",
     "selectSpace": "공간을 선택해 주세요."
   },
@@ -87,7 +88,7 @@
           "desc": "공간을 사운드로 더욱 MAX하게\nTune해주는 LG Sound Suite\n 최적화 사운드로 홈 오디오 루틴을 만나보세요"
         },
         {
-          "title": "SBM2 Max",
+          "title": "LG StanbyME 2 Max",
           "desc": "집안 곳곳에서 일과 휴식을 \nTune해주는 SBM2 Max\n 공간의 제약 없는 라이프 루틴을 만나보세요"
         },
         {
