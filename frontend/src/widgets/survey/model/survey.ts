@@ -20,6 +20,7 @@ export const surveyData: SurveyQuestion[] = [
             {contentKey: "survey.q2.options.4"},
         ],
         required: true,
+        img:"/images/survey/survey_q2.png"
     },
     {
         surveyId: "Q3",
@@ -41,17 +42,17 @@ export const surveyData: SurveyQuestion[] = [
         mult: true,
         required: true,
         questions: [
-            {contentKey: "survey.q4.options.0"},
-            {contentKey: "survey.q4.options.1"},
-            {contentKey: "survey.q4.options.2"},
-            {contentKey: "survey.q4.options.3"},
-            {contentKey: "survey.q4.options.4"},
-            {contentKey: "survey.q4.options.5"},
-            {contentKey: "survey.q4.options.6"},
-            {contentKey: "survey.q4.options.7"},
-            {contentKey: "survey.q4.options.8"},
-            {contentKey: "survey.q4.options.9"},
-            {contentKey: "survey.q4.options.10"},
+            {img: "/images/survey/survey_q4_0.png", contentKey: "survey.q4.options.0"},
+            {img: "/images/survey/survey_q4_0.png", contentKey: "survey.q4.options.1"},
+            {img: "/images/survey/survey_q4_0.png", contentKey: "survey.q4.options.2"},
+            {img: "/images/survey/survey_q4_0.png", contentKey: "survey.q4.options.3"},
+            {img: "/images/survey/survey_q4_0.png", contentKey: "survey.q4.options.4"},
+            {img: "/images/survey/survey_q4_0.png", contentKey: "survey.q4.options.5"},
+            {img: "/images/survey/survey_q4_0.png", contentKey: "survey.q4.options.6"},
+            {img: "/images/survey/survey_q4_0.png", contentKey: "survey.q4.options.7"},
+            {img: "/images/survey/survey_q4_0.png", contentKey: "survey.q4.options.8"},
+            {img: "/images/survey/survey_q4_0.png", contentKey: "survey.q4.options.9"},
+            {img: "/images/survey/survey_q4_0.png", contentKey: "survey.q4.options.10"},
         ]
     },
     {

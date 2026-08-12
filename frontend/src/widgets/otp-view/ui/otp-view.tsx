@@ -1,26 +1,50 @@
 import {Button, OtpInput} from "shared/ui";
 import {useState} from "react";
+import {useModal} from "app/provider/modal";
+import {useTranslate} from "app/provider/lang";
+import {useSubmitReward} from "features/reward/model/use-submit-reward.ts";
+import type {RewardType} from "features/reward/api/submit-reward.ts";
 
 const OTP_CODE = '1234';
 
-export const OtpView = () => {
+type OtpViewProps = {
+    type: RewardType;
+    onConfirmed: () => void; // 코드 일치 시 리워드 완료 처리(상위 report 상태 업데이트)
+};
+
+export const OtpView = ({type, onConfirmed}: OtpViewProps) => {
+    const {t} = useTranslate();
     const [code, setCode] = useState('');
     const [error, setError] = useState(false);
+    const {close, openAlert} = useModal();
     const filled = code.length === OTP_CODE.length;
 
-    const handleConfirm = () => setError(code !== OTP_CODE);
+    const {submit} = useSubmitReward();
+
+    const handleConfirm = async () => {
+        if (code !== OTP_CODE) {
+            setError(true);
+            return;
+        }
+        // 서버 반영 성공을 확인한 뒤에만 로컬 상태 확정 + 닫기 (낙관적 업데이트 금지)
+        const ok = await submit(type);
+        if (!ok) {
+            openAlert({message: t('errors.rewardFailed')});
+            return;
+        }
+        onConfirmed();
+        close();
+    }
 
     return (
         <div className="flex min-h-full flex-col bg-bg-default px-5 pt-10 pb-15 text-center">
             <div className="flex flex-col items-center gap-6">
                 <div className="flex flex-col gap-4">
                     <div className="text-xl text-black">
-                        <p className="font-bold leading-[1.2]">Innovation in tune with you</p>
-                        <p className="font-semibold leading-[1.2]">생성 완료</p>
+                        <p className="font-bold leading-[1.2] whitespace-pre-line ">{t(`reward.otp.${type}.title`)}</p>
                     </div>
-                    <p className="text-base leading-[1.4] tracking-[-0.32px] text-state-text-body">
-                        스텝 전용 기능입니다.<br/>
-                        스텝에게 화면을 보여주세요.
+                    <p className="text-base leading-[1.4] tracking-[-0.32px] text-state-text-body whitespace-pre-line ">
+                        {t('reward.otp.desc')}
                     </p>
                 </div>
 

@@ -1,30 +1,88 @@
 import {Button} from "shared/ui";
 import {useNavigate} from "react-router-dom";
-import {useTranslate} from "app/provider/lang";
+import {Trans, useTranslate} from "app/provider/lang";
 import {cn} from "shared/lib";
 
 type SuccessViewProps = {
     image?: string;
-    title?: string;
-    desc?: string;
-    section?: boolean;
-    caption?: boolean;
-    btnLabel?: string;
+    section?: string;   // null=CLEAR, "survey"=서베이 완료, "reward"=리워드 안내
     onClick?: () => void;
-
 }
 
 const outlineActive =
     "border-2 border-transparent [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(90deg,var(--lg-red),var(--lg-ai-pink),var(--lg-ai-purple))_border-box]";
 
 
+const RewardView = () => {
+    const {t} = useTranslate();
+    return (
+        <>
+            <div className="flex flex-col items-center gap-4 text-center">
+                <p className="text-2xl font-bold leading-none text-black">{t("reward.popup.title")}</p>
+                <div>
+                    <p className="whitespace-pre-line text-base font-semibold leading-[1.4] text-lg-gray-2">{t("reward.popup.label1")}</p>
+                    <p className="whitespace-pre-line leading-[1.4] text-lg-gray-2">{t("reward.popup.label2")}</p>
+                </div>
+                <div className="text-center flex flex-col gap-1">
+                    <div className='flex items-center justify-center'>
+                        <img src="/images/report/cloid_logo.svg" alt=""/>
+                        <p className="whitespace-pre-line leading-[1.4] text-lg-gray-2">{t("reward.popup.label3")}</p>
+                    </div>
+                    <p className="whitespace-pre-line text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">{t("reward.popup.label4")}</p>
+                </div>
+            </div>
+            <div className="flex flex-col gap-4 justify-center text-center pt-10">
+
+                <div
+                    className={cn(outlineActive, 'rounded-2xl flex justify-center items-center text-start gap-4 py-4')}>
+                    <img src="/images/gift.svg" alt="gift" sizes={"36"}/>
+                    <div className='text-sm whitespace-pre-line'>
+                        <Trans tKey="common.rewardDesk.title" components={[<span className="font-bold"/>]}/>
+                    </div>
+
+                </div>
+
+                <p className="text-xs whitespace-pre-line">
+                    {t("common.rewardDesk.section")}
+                </p>
+            </div>
+        </>
+    )
+}
+
+const SurveyView = ({title, desc}: { title: string; desc: string; }) => {
+    const {t} = useTranslate();
+    return (
+        <>
+            <div className="flex flex-col items-center gap-4 text-center">
+                <p className="text-5xl font-bold leading-none text-black">{title}</p>
+                <p className="whitespace-pre-line text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">
+                    {desc}
+                </p>
+            </div>
+            <div className="flex flex-col gap-4 justify-center text-center pt-10">
+
+                <div
+                    className={cn(outlineActive, 'rounded-2xl flex justify-center items-center text-start gap-4 py-4')}>
+                    <img src="/images/gift.svg" alt="gift" sizes={"36"}/>
+                    <div className='text-sm whitespace-pre-line'>
+                        <Trans tKey="common.rewardDesk.title" components={[<span className="font-bold"/>]}/>
+                    </div>
+
+                </div>
+
+                <p className="text-xs whitespace-pre-line">
+                    {t("common.rewardDesk.section")}
+                </p>
+            </div>
+        </>
+    )
+}
+
 export const SuccessView = (props: SuccessViewProps) => {
     const {
         image = "/images/welcome/cloi.png",
-        title = "CLEAR!",
-        desc = "experienceSuccess.done",
-        section = false,
-        btnLabel = "common.moreEpisodes",
+        section = null,
         onClick
     } = props;
     const navigate = useNavigate();
@@ -68,35 +126,18 @@ export const SuccessView = (props: SuccessViewProps) => {
                     }}
                 />
                 <div className="-mt-px flex flex-col bg-white/40 px-5 pb-15 ">
-                    <div className="flex flex-col items-center gap-4 text-center">
-                        <p className="text-5xl font-bold leading-none text-black">{title}</p>
+                    {section == "survey" &&
+                        <SurveyView title={t("survey.popup.title")} desc={t("common.surveySuccessDesc")}/>}
+                    {section == "reward" && <RewardView/>}
+                    {section == null && <div className="flex flex-col items-center gap-4 text-center">
+                        <p className="text-5xl font-bold leading-none text-black">{"CLEAR!"}</p>
                         <p className="whitespace-pre-line text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">
-                            {t(desc)}
+                            {t("experienceSuccess.done")}
                         </p>
-                    </div>
-
-                    {
-                        section && (
-                            <div className="flex flex-col gap-4 justify-center text-center pt-10">
-
-                                <div
-                                    className={cn(outlineActive, 'rounded-2xl flex justify-center items-center text-start gap-4 py-4')}>
-                                    <img src="/images/gift.svg" alt="gift" sizes={"36"}/>
-                                    <div className='text-sm'>
-                                        <span className="font-bold">Reward Desk</span>에서 <br/>
-                                        리워드를 수령해 주세요.
-                                    </div>
-
-                                </div>
-                                <p className="text-xs ">아래 확인 버튼을 누르지말고 <br/>
-                                    리워드 데스크 스탭에게 이 화면을 보여주세요
-                                </p>
-                            </div>
-                        )
-                    }
+                    </div>}
 
                     <Button onClick={handleOnClick} className="mt-12 font-bold">
-                        {t(btnLabel)}
+                        {section == null ? t("common.moreEpisodes") : t("common.confirm")}
                     </Button>
                 </div>
             </div>

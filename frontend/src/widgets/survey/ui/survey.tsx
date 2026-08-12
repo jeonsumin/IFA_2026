@@ -71,6 +71,7 @@ export const Survey = ({onSubmit}: SurveyProps) => {
                                 <p className="whitespace-pre-line text-base tracking-tight text-black">
                                     {t(item.titleKey)}
                                 </p>
+                                { item.img && <img src={item.img} alt=""/>}
                             </div>
 
                             {item.type === "circle" && (
@@ -83,6 +84,7 @@ export const Survey = ({onSubmit}: SurveyProps) => {
                             {item.type === "list" && (
                                 <CheckItem
                                     questions={(item.questions ?? []).map((q) => ({
+                                        img: q.img,
                                         content: t(q.contentKey),
                                     }))}
                                     mult={item.mult}

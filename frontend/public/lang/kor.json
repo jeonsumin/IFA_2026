@@ -11,8 +11,12 @@
     "logoAlt": "LG IFA",
     "lifesGood": "Life's Good.",
     "experienceSelectSpace": "공간을 선택해 주세요.",
-    "surveySuccessDesc": "서베이 참여를 완료하였습니다. \n\n 당신의 의견은 더 나은 LG를 만드는 데 활용됩니다.",
-    "rewardSuccessDesc": "리워드 참여를 완료하였습니다. \n\n 당신의 의견은 더 나은 LG를 만드는 데 활용됩니다."
+    "surveySuccessDesc": "서베이 참여를 완료하였습니다. \n\n 당신의 의견은 더 나은 LG를 \n만드는 데 활용됩니다.",
+    "rewardSuccessDesc": "리워드 참여를 완료하였습니다. \n\n 당신의 의견은 더 나은 LG를 \n만드는 데 활용됩니다.",
+    "rewardDesk": {
+      "title": "<1>Reward Desk</1>에서\n리워드를 수령해 주세요.",
+      "section": "아래 확인 버튼을 누르지말고 \n리워드 데스크 스탭에게 이 화면을 보여주세요"
+    }
   },
   "home": {
     "category": "가전, 공간, 라이프스타일",
@@ -66,6 +70,7 @@
   "errors": {
     "checkInFailed": "저장에 실패했습니다.",
     "surveyFailed": "제출에 실패했습니다.",
+    "rewardFailed": "리워드 처리에 실패했습니다.",
     "cameraStart": "카메라를 시작할 수 없습니다."
   },
   "welcome": {
@@ -773,7 +778,7 @@
     }
   },
   "report": {
-    "poweredBy": "<1>CLOiD</1>가 함께 한",
+    "poweredBy": "가 함께 한",
     "dailyRoutine": "당신의 Daily Routine",
     "routineDesc": "생활 패턴에 맞춰 집안일은 더 간편하게,\n휴식은 더 몰입감 있게.\nLG AI가 당신의 하루를 자연스럽게 연결합니다.",
     "takeSurvey": "서베이 참여하기",
@@ -853,6 +858,27 @@
     },
     "q5": {
       "title": "What experience are you most looking forward to at the LG IFA 2027 exhibition?"
+    },
+    "popup": {
+      "title": "THANK YOU!"
+    }
+  },
+  "reward": {
+    "otp": {
+      "survey": {
+        "title": "서베이 완료"
+      },
+      "reward": {
+        "title": "Innovation in tune with you\n생성 완료"
+      },
+      "desc": "스텝 전용 기능입니다.\n스텝에게 화면을 보여주세요."
+    },
+    "popup": {
+      "title": "리워드 수령 안내",
+      "label1": "Innovation in tune with you",
+      "label2": "경험해 주셔서 감사합니다.",
+      "label3": "와 함께한",
+      "label4": "특별한 라이프스타일 여정이 \n 즐거운 경험으로 기억되기를 바랍니다."
     }
   }
 }

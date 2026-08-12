@@ -22,5 +22,17 @@ export const useReportStatus = () => {
     }, []);
 
 
-    return { reportStatus, loading }
+    // 서베이 제출 성공 시: 미참여(null) → 참여(1). 이미 리워드(2)면 유지.
+    const markSurveyDone = () =>
+        setReportStatus((s) => (s.surveyReward == null ? {...s, surveyReward: 1} : s));
+
+    // 서베이 리워드 수령 완료 → surveyReward 2(서베이 버튼 비활성). userReward와 무관.
+    const markSurveyRewarded = () =>
+        setReportStatus((s) => ({...s, surveyReward: 2}));
+
+    // (기본) 리워드 수령 완료 → userReward true. surveyReward와 무관.
+    const makeRewardDown = () =>
+        setReportStatus((s) => (s.userReward ? s : {...s, userReward: true}));
+
+    return { reportStatus, loading, markSurveyDone, markSurveyRewarded, makeRewardDown}
 }

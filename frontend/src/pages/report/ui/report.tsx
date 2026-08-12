@@ -1,6 +1,6 @@
 import {Download, Gift, PenLine, Heart} from "lucide-react";
 import {Button} from "shared/ui";
-import {useTranslate, Trans} from "app/provider/lang";
+import {useTranslate} from "app/provider/lang";
 import {useModal} from "app/provider/modal";
 import {Survey} from "widgets/survey";
 import {SuccessView} from "widgets/success-view";
@@ -9,6 +9,7 @@ import {useSubmitSurvey} from "features/submit-survey";
 import {useReportStatus} from "../model/use-report-status.ts";
 import {ZONES} from "pages/experience/model/zone.ts";
 import {useSubmitLog} from "features/submit-log";
+import type {RewardType} from "features/reward/api/submit-reward.ts";
 
 export const Report = () => {
     const {t, tRaw} = useTranslate();
@@ -16,22 +17,20 @@ export const Report = () => {
 
     const {submit} = useSubmitSurvey();
     const {logSubmit} = useSubmitLog();
-    const {reportStatus} = useReportStatus();
+    const {reportStatus, markSurveyDone, markSurveyRewarded, makeRewardDown} = useReportStatus();
     // 서베이 플로우: Survey → (제출) → SuccessView → (확인) → RewardView.
     // 각 단계를 명명 핸들러로 분리해 중첩 콜백을 평탄화한다.
-    const openReward = () => pushFullPage({
-        title: "리워드",
-        content: <OtpView/>
+    // OTP 확인 시 실행할 완료 처리(onConfirmed)를 진입 경로별로 주입 — 서베이/리워드 분리.
+    const openReward = (type: RewardType, onConfirmed: () => void) => pushFullPage({
+        title: t("report.reward"),
+        content: <OtpView onConfirmed={onConfirmed} type={type}/>
     });
 
-    const openSurveyDone = () => pushFullPage({
+    const openSurveyDone = (type: RewardType) => pushFullPage({
         content: (
             <SuccessView
-                title="THANK YOU!"
-                desc={"서베이 참여를 완료하였습니다. \n\n 당신의 의견은 더 나은 LG를 만드는 데 활용됩니다."}
-                btnLabel="확인"
-                section
-                onClick={openReward}
+                section={"survey"}
+                onClick={() => openReward(type, markSurveyRewarded)}
             />
         ),
     });
@@ -42,22 +41,19 @@ export const Report = () => {
             <Survey onSubmit={async (answers) => {
                 const ok = await submit(answers);
                 if (ok) {
-                    openSurveyDone();
-                }
-                else openAlert({message: t('errors.surveyFailed')});
+                    markSurveyDone(); // 버튼: 서베이 참여하기 → 추가 리워드
+                    openSurveyDone("survey");
+                } else openAlert({message: t('errors.surveyFailed')});
             }}/>
         ),
     });
-    const handleReward = () => {
 
+    const handleReward = (type: RewardType, onConfirmed: () => void) => {
         openFullPage({
             title: "리워드",
             content: <SuccessView
-                title="리워드 수령 안내"
-                desc={"서베이 참여를 완료하였습니다. \n\n 당신의 의견은 더 나은 LG를 만드는 데 활용됩니다."}
-                btnLabel="확인"
-                section
-                onClick={openReward}
+                section={type}
+                onClick={() => openReward(type, onConfirmed)}
             />
         })
     }
@@ -69,10 +65,11 @@ export const Report = () => {
         switch (type) {
             case "google" :
                 await logSubmit('google')
-                window.open('https://example.com', '_blank');
+                window.open('https://play.google.com/store/search?q=lg+thinq&c=apps', '_blank');
                 break;
             case "apple" :
                 await logSubmit('apple')
+                window.open('https://apps.apple.com/kr/app/lg-thinq/id993504342', '_blank');
                 break;
             default:
                 break;
@@ -83,12 +80,15 @@ export const Report = () => {
         switch (type) {
             case "facebook" :
                 await logSubmit('facebook')
+                window.open('https://www.facebook.com/LGGlobal', '_blank');
                 break
             case "instagram" :
                 await logSubmit('instagram')
+                window.open('https://www.instagram.com/lg_global', '_blank');
                 break
             case "youtube" :
                 await logSubmit('youtube')
+                window.open('https://www.youtube.com/@LGGlobal', '_blank');
                 break
             default:
                 break;
@@ -131,13 +131,14 @@ export const Report = () => {
                                 YOUR AI LIFESTYLE ROUTINE
                             </span>
                         </div>
-                        <div className="flex flex-col items-center gap-2">
-                            <p className="text-base font-semibold tracking-[-0.32px] text-black">
-                                <Trans tKey="report.poweredBy" components={[<span className="font-bold"/>]}/>
+                        <div className="flex flex-col items-center">
+                            <p className="text-base font-semibold tracking-[-0.32px] text-black flex ">
+                                <img src="/images/report/cloid_logo.svg" alt=""/>
+                                {t("report.poweredBy")}
                             </p>
                             <p className="text-2xl font-bold text-black">{t('report.dailyRoutine')}</p>
                         </div>
-                        <p className="whitespace-pre-line text-sm leading-[1.4] tracking-[-0.28px] text-lg-gray-2">
+                        <p className="whitespace-pre-line text-sm font-semibold leading-[1.4] tracking-[-0.28px] text-lg-gray-2">
                             {t('report.routineDesc')}
                         </p>
                     </div>
@@ -173,7 +174,7 @@ export const Report = () => {
                     {/* 서베이 상태 tri-state: null=미참여('서베이 참여하기'), 1=참여('추가 리워드'), 2=리워드완료(비활성) */}
                     <Button
                         className="flex items-center justify-center gap-2 font-bold"
-                        onClick={reportStatus.surveyReward == null ? handleSurvey : handleReward}
+                        onClick={reportStatus.surveyReward == null ? handleSurvey : () => handleReward('survey', markSurveyRewarded)}
                         disabled={reportStatus.surveyReward === 2}
                     >
                         {reportStatus.surveyReward == null ? <PenLine size={20}/> : <Heart size={20}/>}
@@ -181,7 +182,7 @@ export const Report = () => {
                     </Button>
                     <Button
                         className="flex items-center justify-center gap-2 font-bold"
-                        onClick={handleReward}
+                        onClick={() => handleReward('reward', makeRewardDown)}
                         disabled={reportStatus?.userReward ?? false}
                     >
                         <Gift size={20}/>
