@@ -15,7 +15,8 @@ export const useReportStatus = () => {
         getResultStatus()
             .then((data) => {
                 if (data == null) return;
-                setReportStatus(data);
+                // situation 누락 응답에도 report가 .map/.find에서 크래시하지 않도록 배열 보장
+                setReportStatus({...data, situation: data.situation ?? []});
             })
             .catch(() => { /* 미체크인/네트워크 실패 → 빈 상태 유지 */ })
             .finally(() => { if (alive) setLoading(false); });

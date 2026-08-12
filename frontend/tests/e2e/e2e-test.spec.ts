@@ -32,7 +32,11 @@ const routeExperienceApis = async (page: Page, cleared: ZoneSlug[] = []) => {
         return route.fulfill(routeJson({success: true}));
     });
     await page.route("**/api/result-status", (route) =>
-        route.fulfill(routeJson({success: true, data: {userReward: false, surveyReward: null}})),
+        route.fulfill(routeJson({
+            success: true,
+            // 실제 API 계약: situation/persona 항상 포함 (누락 시 report가 situation.map에서 크래시)
+            data: {userReward: false, surveyReward: null, persona: "coordinator", situation: []},
+        })),
     );
     await page.route("**/api/experience-status", (route) =>
         route.fulfill(
@@ -102,7 +106,7 @@ test.describe("공간체험 E2E", () => {
         });
 
         await test.step("dashboard에서 공간 선택 그리드를 확인하고 존 카드를 연다", async () => {
-            await expect(page.getByText(ko.experience.selectSpace)).toBeVisible();
+            await expect(page.getByText(ko.common.experienceSelectSpace)).toBeVisible();
             await expect(page.getByText(ko.zone.entertainment.title, {exact: true})).toBeVisible();
             await expect(page.getByText(ko.zone.living.title, {exact: true})).toBeVisible();
             await expect(page.getByText(ko.zone.harmony.title, {exact: true})).toBeVisible();
@@ -150,6 +154,74 @@ test.describe("공간체험 E2E", () => {
             await expect(page.getByText(ko.zone.entertainment.title, {exact: true})).toBeVisible();
             await expect(page.getByText("CLEAR")).toBeVisible();
         });
+    });
+
+    test("선택한 존과 다른 존의 QR을 스캔하면 거부하고 QR 화면에 머문다", async ({page}) => {
+        await routeExperienceApis(page);
+
+        await test.step("entertainment 존의 상황 결과 → QR 화면까지 진입", async () => {
+            await startFromCheckIn(page);
+            await page.getByRole("button", {name: namePattern(ko.persona.coordinator.title)}).click();
+            await page.getByRole("button", {name: ko.common.next}).click();
+            await page.getByRole("button", {name: ko.persona.reasons["0"]}).click();
+            await page.getByRole("button", {name: ko.common.confirm}).click();
+            await expect(page).toHaveURL(/\/dashboard$/);
+
+            await page.getByText(ko.zone.entertainment.title, {exact: true}).click();
+            await page.getByRole("button", {name: namePattern(personaZone.entertainment.options[0].title)}).click();
+            await page.getByRole("button", {name: ko.common.next}).click();
+            await page.getByRole("button", {name: ko.situation.qrScan}).click();
+            await expect(page).toHaveURL(/\/qr$/);
+        });
+
+        await test.step("living QR을 주입하면 wrongZone 알럿 + /qr 유지", async () => {
+            await injectQrScan(page, "living"); // entertainment 존인데 living QR
+            await expect(page.getByText(ko.qrScanner.wrongZone)).toBeVisible();
+            await expect(page).toHaveURL(/\/qr$/);
+        });
+    });
+
+    test("report 페이지에 persona에서 선택한 존별 옵션(SITUATION/DESC)이 바인딩된다", async ({page}) => {
+        // 실제 저장 계약: SITUATION = 선택 옵션 title, SITUATION_DESC = 옵션 desc (persona×존 카피덱).
+        // coordinator가 각 존의 첫 옵션을 고른 상황을 재현.
+        const chosen = zoneSlugs.map((zone) => personaZone[zone].options[0]);
+        const situation = zoneSlugs.map((zone, i) => ({
+            ZONE: zone,
+            SITUATION: chosen[i].title,
+            SITUATION_DESC: chosen[i].desc,
+        }));
+        await page.route("**/api/result-status", (route) =>
+            route.fulfill(routeJson({
+                success: true,
+                data: {userReward: false, surveyReward: null, persona: "coordinator", situation},
+            })),
+        );
+
+        await page.goto(`${appUrl}/report`);
+        await expect(page).toHaveURL(/\/report$/);
+
+        // 화면 밖 ReportCard가 같은 텍스트를 중복 렌더(DOM 뒤) → .first()로 리포트 리스트를 단언.
+        // title은 desc에 부분포함될 수 있어 exact, desc는 멀티라인이라 substring 매칭.
+        for (const opt of chosen) {
+            await expect(page.getByText(opt.title, {exact: true}).first()).toBeVisible();
+            await expect(page.getByText(opt.desc).first()).toBeVisible();
+        }
+        await expect(page.getByText(ko.zone.entertainment.title, {exact: true}).first()).toBeVisible();
+    });
+
+    test("리워드 완료 상태(userReward·surveyReward=2)면 두 버튼이 비활성으로 렌더된다", async ({page}) => {
+        await page.route("**/api/result-status", (route) =>
+            route.fulfill(routeJson({
+                success: true,
+                data: {userReward: true, surveyReward: 2, persona: "coordinator", situation: []},
+            })),
+        );
+
+        await page.goto(`${appUrl}/report`);
+        await expect(page).toHaveURL(/\/report$/);
+        await expect(page.getByRole("button", {name: ko.report.extraReward})).toBeDisabled();
+        // "리워드"는 "추가 리워드"에도 부분일치 → exact로 Gift 버튼만 지정
+        await expect(page.getByRole("button", {name: ko.report.reward, exact: true})).toBeDisabled();
     });
 
 });
