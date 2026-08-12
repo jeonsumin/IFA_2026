@@ -54,8 +54,8 @@ test.describe("experienceOptionsKey", () => {
             .toBe(fallback);
     });
 
-    test("personaKey가 undefined면 카피 유무와 무관하게 fallback", () => {
-        expect(experienceOptionsKey(undefined, "living", () => true, "zone.living.options"))
+    test("personaKey가 빈 문자열(미로드)이면 카피 유무와 무관하게 fallback", () => {
+        expect(experienceOptionsKey("", "living", () => true, "zone.living.options"))
             .toBe("zone.living.options");
     });
 });

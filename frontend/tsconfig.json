@@ -39,5 +39,5 @@
       "shared/*": ["./shared/*"]
     }
   },
-  "include": ["src", "eslint.config.ts", "types", "vite.config.ts"]
+  "include": ["src", "eslint.config.ts", "types", "vite.config.ts", "playwright.config.ts", "tests"]
 }
