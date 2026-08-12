@@ -10,4 +10,5 @@ export const AGE_OPTIONS = [
     {labelKey: "age.30", value: "30"},
     {labelKey: "age.40", value: "40"},
     {labelKey: "age.50", value: "50"},
+    {labelKey: "age.60", value: "60"},
 ];
