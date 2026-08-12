@@ -7,11 +7,11 @@ export const useSaveSituation = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const save = async (zone: ZoneSlug, situation: string): Promise<boolean> => {
+    const save = async (zone: ZoneSlug, situation: string,desc: string): Promise<boolean> => {
         setLoading(true);
         setError(null);
         try {
-            await saveSituation(zone, situation);
+            await saveSituation(zone, situation, desc);
             return true;
         } catch (e) {
             setError(e instanceof Error ? e.message : "저장에 실패했습니다.");

@@ -11,6 +11,7 @@ export interface CheckInResponse {
 export interface CheckInRequest extends CheckInPayload {
     persona: string;
     reason: string;
+    personaCode: string;
 }
 
 // POST /check-in — 체크인+persona 저장. 기기 id는 X-Device-Id 헤더(request 인터셉터)로 전송. axios가 JSON 직렬화.

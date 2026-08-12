@@ -16,6 +16,9 @@ const routeJson = (body: unknown) => ({
 
 type ZoneSlug = (typeof zoneSlugs)[number];
 
+// 옵션/결과는 페르소나×존 카피덱(persona.<key>.zone.<slug>.options)에 있음. 테스트는 coordinator 선택.
+const personaZone = ko.persona.coordinator.zone as Record<ZoneSlug, {options: {title: string; desc: string; result: string[]}[]}>;
+
 const routeExperienceApis = async (page: Page, cleared: ZoneSlug[] = []) => {
     const clearedZones = new Set<ZoneSlug>(cleared);
 
@@ -35,11 +38,14 @@ const routeExperienceApis = async (page: Page, cleared: ZoneSlug[] = []) => {
         route.fulfill(
             routeJson({
                 success: true,
-                zones: zoneSlugs.map((zone) => ({
-                    zone,
-                    situation: clearedZones.has(zone) ? ko.zone[zone].options[0].title : "",
-                    qrScanned: clearedZones.has(zone),
-                })),
+                data: {
+                    persona: "coordinator", // PERSONA_CODE (title 아님 — experience.tsx가 코드값을 그대로 사용)
+                    zones: zoneSlugs.map((zone) => ({
+                        zone,
+                        situation: clearedZones.has(zone) ? personaZone[zone].options[0].title : "",
+                        qrScanned: clearedZones.has(zone),
+                    })),
+                },
             }),
         ),
     );
@@ -90,7 +96,7 @@ test.describe("공간체험 E2E", () => {
             await page.getByRole("button", {name: ko.common.next}).click();
             await expect(page.getByText(ko.persona.reasonQuestion)).toBeVisible();
 
-            await page.getByRole("button", {name: ko.persona.coordinator.reasons["0"]}).click();
+            await page.getByRole("button", {name: ko.persona.reasons["0"]}).click();
             await page.getByRole("button", {name: ko.common.confirm}).click();
             await expect(page).toHaveURL(/\/dashboard$/);
         });
@@ -107,13 +113,13 @@ test.describe("공간체험 E2E", () => {
         });
 
         await test.step("Situation 팝업에서 옵션 선택 후 결과 화면을 확인한다", async () => {
-            const option = ko.zone.entertainment.options[0];
+            const option = personaZone.entertainment.options[0];
 
             await page.getByRole("button", {name: namePattern(option.title)}).click();
             await page.getByRole("button", {name: ko.common.next}).click();
 
             await expect(page.getByText(option.title, {exact: true})).toBeVisible();
-            await expect(page.getByText(ko.zone.entertainment.result[0])).toBeVisible();
+            await expect(page.getByText(option.result[0])).toBeVisible();
         });
 
         await test.step("QR 스캔 값을 주입해 완료 후 dashboard로 돌아온다", async () => {

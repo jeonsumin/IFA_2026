@@ -8,6 +8,7 @@ if (isset($zx) && $zx == 'y') {
     $age = "40";
     $persona = "THE CONNECTED\nFAMILY COORDINATOR";
     $reason = "지금의 내 일상과 가장 비슷해서";
+    $persona_code = "지금의 내 일상과 가장 비슷해서";
     $deviceId = "test-device";
 } else {
     $JsonData = file_get_contents('php://input');
@@ -17,6 +18,7 @@ if (isset($zx) && $zx == 'y') {
     $gender = $data['gender'];
     $age = $data['age'];
     $persona = $data['persona'];
+    $persona_code = $data['personaCode'];
     $reason = $data['reason'];
     $deviceId = $_SERVER['HTTP_X_DEVICE_ID'];
 }
@@ -30,7 +32,7 @@ if ($name == '' || $email == '' || $gender == '' || $age == '' || $deviceId == '
 $today = date('Y-m-d'); // Asia/Seoul (config.php)
 $uid = useruid($DB, 'USER', 'ID');
 
-$check_user_sql = "SELECT * FROM USER WHERE DEVICE_ID = '".ESC($deviceId, $DB). "' AND CHECKIN_DATE = '". ESC($today,$DB). "'";
+$check_user_sql = "SELECT * FROM USER WHERE DEVICE_ID = '" . ESC($deviceId, $DB) . "' AND CHECKIN_DATE = '" . ESC($today, $DB) . "'";
 $check_user = rf_mysql_row($check_user_sql, $DB);
 
 if ($check_user) {
@@ -62,6 +64,7 @@ $userOk = sql_query($sql, $DB, false);
 $persona_sql = "INSERT INTO PERSONA SET
           USER_ID = '" . ESC($uid, $DB) . "'
         , PERSONA ='" . ESC($persona, $DB) . "'
+        , PERSONA_CODE ='" . ESC($persona_code, $DB) . "'
         , REASON ='" . ESC($reason, $DB) . "'
 ";
 debug($persona_sql);

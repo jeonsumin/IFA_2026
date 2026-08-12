@@ -9,7 +9,10 @@
     "moreEpisodes": "추가 에피소드 만나기",
     "slogan": "Innovation in tune with you",
     "logoAlt": "LG IFA",
-    "lifesGood": "Life's Good."
+    "lifesGood": "Life's Good.",
+    "experienceSelectSpace": "공간을 선택해 주세요.",
+    "surveySuccessDesc": "서베이 참여를 완료하였습니다. \n\n 당신의 의견은 더 나은 LG를 만드는 데 활용됩니다.",
+    "rewardSuccessDesc": "리워드 참여를 완료하였습니다. \n\n 당신의 의견은 더 나은 LG를 만드는 데 활용됩니다."
   },
   "home": {
     "category": "가전, 공간, 라이프스타일",
@@ -72,11 +75,6 @@
   },
   "experienceSuccess": {
     "done": "체험을 완료하였습니다."
-  },
-  "experience": {
-    "title": "{{persona}}",
-    "personaDesc": "가족의 루틴을 이해하는 것이\n편안한 일상의 시작.\n우리 가족만의\nLG AI Routine을 경험해 보세요.",
-    "selectSpace": "공간을 선택해 주세요."
   },
   "zone": {
     "entertainment": {

@@ -42,7 +42,7 @@ WHERE U.ID = '" . ESC($userId, $DB) . "'
 debug($sql);
 $row = rf_mysql_row($sql, $DB);
 
-$situationSql = "SELECT ZONE, SITUATION FROM EX_DATA WHERE USER_ID = '".ESC($userId, $DB)."' AND QR_SCANNED = 1";
+$situationSql = "SELECT ZONE, SITUATION, SITUATION_DESC FROM EX_DATA WHERE USER_ID = '".ESC($userId, $DB)."' AND QR_SCANNED = 1";
 debug($situationSql);
 
 $situationRow = rf_mysql_arr($situationSql, $DB);

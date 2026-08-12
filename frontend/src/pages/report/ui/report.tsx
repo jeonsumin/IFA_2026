@@ -1,4 +1,4 @@
-import {Download, Gift, PenLine,Heart} from "lucide-react";
+import {Download, Gift, PenLine, Heart} from "lucide-react";
 import {Button} from "shared/ui";
 import {useTranslate, Trans} from "app/provider/lang";
 import {useModal} from "app/provider/modal";
@@ -6,22 +6,16 @@ import {Survey} from "widgets/survey";
 import {SuccessView} from "widgets/success-view";
 import {OtpView} from "widgets/otp-view";
 import {useSubmitSurvey} from "features/submit-survey";
-import {useReportStatus} from "pages/report/model/use-report-status.ts";
+import {useReportStatus} from "../model/use-report-status.ts";
 import {ZONES} from "pages/experience/model/zone.ts";
-
-// 리포트 존 목록 (badge/title은 브랜드 고정, desc는 카피덱 키)
-// const ZONES = [
-//     {slug: "entertainment", badge: "zone.entertainment.title", title: "LG Sound Suite", descKey: "report.zone.sound"},
-//     {slug: "living", badge: "zone.living.title", title: "Fit & Max Refrigerator", descKey: "report.zone.fridge"},
-//     {slug: "harmony", badge: "zone.harmony.title", title: "Entrance", descKey: "report.zone.entrance"},
-//     {slug: "elegance", badge: "zone.elegance.title", title: "30”Walloven", descKey: "report.zone.oven"},
-// ];
+import {useSubmitLog} from "features/submit-log";
 
 export const Report = () => {
     const {t, tRaw} = useTranslate();
     const {openFullPage, pushFullPage, openAlert} = useModal();
 
     const {submit} = useSubmitSurvey();
+    const {logSubmit} = useSubmitLog();
     const {reportStatus} = useReportStatus();
     // 서베이 플로우: Survey → (제출) → SuccessView → (확인) → RewardView.
     // 각 단계를 명명 핸들러로 분리해 중첩 콜백을 평탄화한다.
@@ -47,7 +41,9 @@ export const Report = () => {
         content: (
             <Survey onSubmit={async (answers) => {
                 const ok = await submit(answers);
-                if (ok) openSurveyDone();
+                if (ok) {
+                    openSurveyDone();
+                }
                 else openAlert({message: t('errors.surveyFailed')});
             }}/>
         ),
@@ -67,6 +63,36 @@ export const Report = () => {
     }
 
     const handleDownloadReport = () => {
+    }
+
+    const handleStore = async (type: string) => {
+        switch (type) {
+            case "google" :
+                await logSubmit('google')
+                window.open('https://example.com', '_blank');
+                break;
+            case "apple" :
+                await logSubmit('apple')
+                break;
+            default:
+                break;
+        }
+    }
+
+    const handleSns = async (type: string) => {
+        switch (type) {
+            case "facebook" :
+                await logSubmit('facebook')
+                break
+            case "instagram" :
+                await logSubmit('instagram')
+                break
+            case "youtube" :
+                await logSubmit('youtube')
+                break
+            default:
+                break;
+        }
     }
 
     return (
@@ -120,10 +146,12 @@ export const Report = () => {
                         className="flex w-full flex-col rounded-2xl border border-white bg-white/70 shadow-[3px_3px_16px_0px_rgba(0,0,0,0.1)]">
                         {/* 완료 존(situation) 기준 → ZONES 매칭 → optionsKey에서 SITUATION과 같은 옵션의 title/desc 바인딩 */}
                         {reportStatus.situation.map((s, i) => {
+
                             const z = ZONES.find((zone) => zone.slug === s.ZONE);
                             if (!z) return null;
-                            const option = (tRaw<{title: string; desc: string}[]>(z.optionsKey) ?? [])
+                            const option = (tRaw<{ title: string; desc: string }[]>(z.optionsKey) ?? [])
                                 .find((o) => o.title === s.SITUATION);
+
                             return (
                                 <div
                                     key={s.ZONE}
@@ -132,7 +160,7 @@ export const Report = () => {
                                     <p className="bg-lg-ai-gradient bg-clip-text text-[10px] font-bold text-transparent">{t(z.title)}</p>
                                     <p className="text-xl font-bold leading-[1.2] text-black">{option?.title ?? s.SITUATION}</p>
                                     <p className="whitespace-pre-line text-[10px] leading-[1.4] tracking-[-0.2px] text-lg-gray-2">
-                                        {option?.desc}
+                                        {option?.desc ?? s.SITUATION_DESC}
                                     </p>
                                 </div>
                             );
@@ -173,12 +201,31 @@ export const Report = () => {
                             <img src="/images/report/thinq.svg" alt="LG ThinQ" className="h-5 w-[100px]"/>
                             <p className="text-base font-semibold tracking-[-0.32px] text-black">{t('report.download')}</p>
                         </div>
-                        <img src="/images/report/stores.png" alt="Google Play, App Store"
-                             className="w-[294px] max-w-full"/>
+                        <div className="flex px-3.5 gap-2">
+                            <img src="/images/report/stores_google.svg"
+                                 alt="Google Play"
+                                 className="w-[294px] max-w-full"
+                                 onClick={() => handleStore("google")}
+                            />
+
+                            <img src="/images/report/stores_apple.svg"
+                                 alt="App Store"
+                                 className="w-[294px] max-w-full"
+                                 onClick={() => handleStore("apple")}
+                            />
+
+                        </div>
                     </div>
                     <div className="flex flex-col items-center gap-4">
                         <p className="text-base font-semibold tracking-[-0.32px] text-black">{t('report.snsSubscribe')}</p>
-                        <img src="/images/report/sns.png" alt="Facebook, Instagram, YouTube" className="h-12"/>
+                        <div className={"flex gap-2"}>
+                            <img src="/images/report/icn_facebook.svg" alt="Facebook" className="h-12"
+                                 onClick={() => handleSns("facebook")}/>
+                            <img src="/images/report/icn_instagram.svg" alt="Instagram" className="h-12"
+                                 onClick={() => handleSns("instagram")}/>
+                            <img src="/images/report/icn_youtube.svg" alt="YouTube" className="h-12"
+                                 onClick={() => handleSns("youtube")}/>
+                        </div>
                     </div>
                 </div>
             </div>

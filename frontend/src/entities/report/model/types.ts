@@ -2,6 +2,7 @@
 export type ReportSituation = {
     ZONE: string;      // 존 slug (entertainment/living/harmony/elegance)
     SITUATION: string; // 선택한 옵션 title
+    SITUATION_DESC: string;
 };
 
 export type ReportStatus = {

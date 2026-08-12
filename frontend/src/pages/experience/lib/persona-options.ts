@@ -11,7 +11,7 @@ export const resolvePersonaKey = (
 
 // 상황 옵션 키 결정 — 페르소나×존 옵션(persona.<key>.<zone>.options)이 있으면 그걸, 없으면 zone fallback.
 export const experienceOptionsKey = (
-    personaKey: PersonaKey | undefined,
+    personaKey: string,
     zoneSlug: string,
     hasCopy: (key: string) => boolean,
     fallbackKey: string,

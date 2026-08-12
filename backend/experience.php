@@ -6,12 +6,14 @@ include_once "./_common.php";
 if (isset($zx) && $zx == 'y') {
     $zone = "entertainment";
     $situation = "LG StanbyME 2 Max";
+    $desc = "우리 가족의 생활 패턴과 에너지 절약이 ‘in tune’ 되는 순간.\n고효율 가전이 만드는 에너지 절약의 차이를 경험해 보세요.";
     $deviceId = "test-device";
 } else {
     $JsonData = file_get_contents('php://input');
     $data = json_decode($JsonData, true);
     $zone = $data['zone'];
     $situation = $data['situation'];
+    $desc = $data['desc'];
     $deviceId = $_SERVER['HTTP_X_DEVICE_ID'];
 }
 
@@ -40,10 +42,11 @@ $sql = "INSERT INTO EX_DATA SET
       USER_ID = '" . ESC($userId, $DB) . "'
     , ZONE = '" . ESC($zone, $DB) . "'
     , SITUATION = '" . ESC($situation, $DB) . "'
+    , SITUATION_DESC = '" . ESC($desc, $DB) . "'
     , QR_SCANNED = 0
     , CREATE_DT = NOW()
     , UPDATE_DT = NOW()
-    ON DUPLICATE KEY UPDATE SITUATION = VALUES(SITUATION), UPDATE_DT = NOW()";
+    ON DUPLICATE KEY UPDATE SITUATION = VALUES(SITUATION), SITUATION_DESC = VALUES(SITUATION_DESC), UPDATE_DT = NOW()";
 debug($sql);
 if (!sql_query($sql, $DB, false)) {
     http_response_code(500);

@@ -47,14 +47,15 @@ export const Persona = () => {
         if (persona == null || draft == null) return;
         const reason = answers[persona.id];
 
-        if (import.meta.env.DEV) {
-            navigate("/dashboard");
-            return;
-        }
+        // if (import.meta.env.DEV) {
+        //     navigate("/dashboard");
+        //     return;
+        // }
 
         const ok = await submit({
             ...draft,
             persona: t(`${persona.key}.title`),
+            personaCode: persona.id,
             reason: Array.isArray(reason) ? reason.join(", ") : reason ?? "",
         });
         if (ok) navigate("/dashboard");

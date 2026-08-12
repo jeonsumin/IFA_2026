@@ -84,7 +84,7 @@ export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProp
     const handleNext = async () => {
         if (selected === null || saving) return;
         const opt = options[selected];
-        const ok = await save(slug, opt.title);
+        const ok = await save(slug, opt.title, opt.desc);
         if (ok) {
             pushFullPage({
                 content: <NextView

@@ -5,10 +5,10 @@ export interface Persona {
 }
 
 export const PERSONAS: Persona[] = [
-    {id: "0", img: "/images/persona/persona-1.png", key: "persona.optimizer"},
-    {id: "1", img: "/images/persona/persona-2.png", key: "persona.coordinator"},
-    {id: "2", img: "/images/persona/persona-3.png", key: "persona.homemaker"},
-    {id: "3", img: "/images/persona/persona-4.png", key: "persona.worker"},
+    {id: "optimizer", img: "/images/persona/persona-1.png", key: "persona.optimizer"},
+    {id: "coordinator", img: "/images/persona/persona-2.png", key: "persona.coordinator"},
+    {id: "homemaker", img: "/images/persona/persona-3.png", key: "persona.homemaker"},
+    {id: "worker", img: "/images/persona/persona-4.png", key: "persona.worker"},
 ];
 
 // 선택 이유 옵션 개수 — 각 페르소나 persona.<slug>.reasons.<0..N-1>

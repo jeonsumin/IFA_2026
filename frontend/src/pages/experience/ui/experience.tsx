@@ -6,7 +6,7 @@ import {Situation} from "widgets/situation";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {useExperienceStatus} from "../model/use-experience-status";
-import {resolvePersonaKey, experienceOptionsKey} from "../lib/persona-options";
+import {experienceOptionsKey} from "../lib/persona-options";
 
 
 // 카드 하단 사진: 중간 위로 페이드해 텍스트 영역과 자연스럽게 블렌드(디자인 마스크 근사)
@@ -29,13 +29,10 @@ export const Experience = () => {
     const navigate = useNavigate();
     const {clearedZones, persona, loading} = useExperienceStatus();
 
-    // 현황의 persona title → 카피덱 key(optimizer/coordinator/homemaker/worker) 해석
-    const personaKey = resolvePersonaKey(persona, t);
-
     const openPopup = (zone: Zone) => {
         // 페르소나×존별 옵션(persona.<key>.<zone>.options) 우선, 없으면 zone.<slug>.options fallback
         const optionsKey = experienceOptionsKey(
-            personaKey,
+            persona,
             zone.slug,
             (key) => (tRaw<unknown[]>(key)?.length ?? 0) > 0,
             zone.optionsKey,
@@ -75,23 +72,23 @@ export const Experience = () => {
 
                 {/* 코디네이터 원형 사진 (히어로에 겹침) */}
                 <div className="size-40 overflow-hidden rounded-full">
-                    <img src="/images/experience/coordinator.png" alt=""
+                    <img src={`/images/experience/${persona}.png`} alt=""
                          className="size-full object-cover"/>
                 </div>
 
                 {/* 페르소나 타이틀 + 설명 */}
                 <div className="mt-4 flex flex-col gap-2 px-5 text-center">
                     <p className="whitespace-pre-line text-xl font-bold leading-[1.2] text-black">
-                        {t('experience.title', {persona: persona || "THE CONNECTED\nFAMILY COORDINATOR"})}
+                        {t(`persona.${persona}.title`)}
                     </p>
                     <p className="whitespace-pre-line text-sm leading-[1.4] tracking-[-0.28px] text-lg-gray-2">
-                        {t('experience.personaDesc')}
+                        {t(`persona.${persona}.section`)}
                     </p>
                 </div>
 
                 {/* 공간 선택 */}
                 <p className="mt-12 text-[22px] font-bold leading-[1.25] text-black">
-                    {t('experience.selectSpace')}
+                    {t('common.experienceSelectSpace')}
                 </p>
 
                 {/* 존 그리드 2×2 */}
