@@ -42,10 +42,9 @@ WHERE U.ID = '" . ESC($userId, $DB) . "'
 debug($sql);
 $row = rf_mysql_row($sql, $DB);
 
-$situationSql = "SELECT * FROM EX_DATA ed WHERE ed.USER_ID = '".ESC($userId, $DB). "'";
+$situationSql = "SELECT ZONE, SITUATION FROM EX_DATA WHERE USER_ID = '".ESC($userId, $DB)."' AND QR_SCANNED = 1";
 debug($situationSql);
 
-$situationData = [];
 $situationRow = rf_mysql_arr($situationSql, $DB);
 
 // mysqli는 값을 문자열로 반환 → 프론트 계약(boolean / number|null)에 맞게 캐스팅.

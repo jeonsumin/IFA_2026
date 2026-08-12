@@ -6,8 +6,8 @@ import {useTranslate} from "app/provider/lang";
 import type {ZoneSlug} from "entities/experience";
 import {useSaveSituation} from "features/experience/save-situation";
 
-// 카피덱 zone.<slug>.options 항목 형태 (widget 로컬 — pages 타입 의존 회피)
-type Option = {title: string; desc: string};
+// 카피덱 옵션 항목 (persona.<key>.<zone>.options[i]) — result는 상황별 결과 문구
+type Option = { title: string; desc: string; result?: string[] };
 
 type SituationProps = {
     slug: ZoneSlug;     // 백엔드 ZONE 값 (상황 저장 키)
@@ -18,18 +18,14 @@ type SituationProps = {
 
 type NextViewProps = {
     slug: ZoneSlug;      // QR 완료 처리 대상 존
-    titleKey: string;
-    resultKey: string;
+    result: string[];    // 선택 옵션의 result (persona×존×상황)
     optionTitle: string; // 선택한 옵션 제목(상단 pill)
 };
 
-const NextView = ({slug, resultKey, optionTitle}: NextViewProps) => {
+const NextView = ({slug, result, optionTitle}: NextViewProps) => {
     const {close} = useModal();
-    const {t, tRaw} = useTranslate();
+    const {t} = useTranslate();
     const navigate = useNavigate();
-
-    // 선택 완료 시 result 배열로 본문 구성
-    const result = tRaw<string[]>(resultKey) ?? [];
 
     const handlerQrScan = () => {
         close()
@@ -87,10 +83,15 @@ export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProp
     // 상황 확정 → 저장(upsert) 완료 후 결과화면으로. QR은 상황 행 선행이 전제라 저장을 await.
     const handleNext = async () => {
         if (selected === null || saving) return;
-        const ok = await save(slug, options[selected].title);
+        const opt = options[selected];
+        const ok = await save(slug, opt.title);
         if (ok) {
             pushFullPage({
-                content: <NextView slug={slug} titleKey={titleKey} resultKey={resultKey} optionTitle={options[selected].title}/>,
+                content: <NextView
+                    slug={slug}
+                    result={opt.result ?? tRaw<string[]>(resultKey) ?? []}
+                    optionTitle={opt.title}
+                />,
             });
         } else {
             openAlert({message: t('situation.saveFailed')});

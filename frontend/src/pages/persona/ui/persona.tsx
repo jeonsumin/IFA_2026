@@ -37,15 +37,21 @@ export const Persona = () => {
     // 선택된 페르소나 (없으면 null)
     const persona = selected !== null ? PERSONAS[selected] : null;
 
-    // 선택된 페르소나의 이유 옵션 — persona.<slug>.reasons.<i>
+    // 이유 옵션 — 카피덱 공통 persona.reasons.<i> (페르소나 무관)
     const reasons = persona
-        ? Array.from({length: PERSONA_REASON_COUNT}, (_, i) => ({content: t(`${persona.key}.reasons.${i}`)}))
+        ? Array.from({length: PERSONA_REASON_COUNT}, (_, i) => ({content: t(`persona.reasons.${i}`)}))
         : [];
 
     // 체크인 draft + persona 선택을 한 번에 제출 (통합 제출). 성공 시에만 체크인 확정.
     const submitPersona = async () => {
         if (persona == null || draft == null) return;
         const reason = answers[persona.id];
+
+        if (import.meta.env.DEV) {
+            navigate("/dashboard");
+            return;
+        }
+
         const ok = await submit({
             ...draft,
             persona: t(`${persona.key}.title`),

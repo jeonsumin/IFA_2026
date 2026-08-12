@@ -6,6 +6,7 @@ import {Situation} from "widgets/situation";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {useExperienceStatus} from "../model/use-experience-status";
+import {resolvePersonaKey, experienceOptionsKey} from "../lib/persona-options";
 
 
 // 카드 하단 사진: 중간 위로 페이드해 텍스트 영역과 자연스럽게 블렌드(디자인 마스크 근사)
@@ -24,18 +25,28 @@ const ClearOverlay = () => (
 export const Experience = () => {
 
     const {openFullPage} = useModal();
-    const {t} = useTranslate();
+    const {t, tRaw} = useTranslate();
     const navigate = useNavigate();
     const {clearedZones, persona, loading} = useExperienceStatus();
 
+    // 현황의 persona title → 카피덱 key(optimizer/coordinator/homemaker/worker) 해석
+    const personaKey = resolvePersonaKey(persona, t);
+
     const openPopup = (zone: Zone) => {
+        // 페르소나×존별 옵션(persona.<key>.<zone>.options) 우선, 없으면 zone.<slug>.options fallback
+        const optionsKey = experienceOptionsKey(
+            personaKey,
+            zone.slug,
+            (key) => (tRaw<unknown[]>(key)?.length ?? 0) > 0,
+            zone.optionsKey,
+        );
         openFullPage(
             {
                 title: '',
                 content: <Situation
                     slug={zone.slug}
                     titleKey={zone.title}
-                    optionsKey={zone.optionsKey}
+                    optionsKey={optionsKey}
                     resultKey={zone.resultKey}
                 />,
             },

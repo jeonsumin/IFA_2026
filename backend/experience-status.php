@@ -16,7 +16,7 @@ if ($deviceId == '') {
     exit;
 }
 
-$user = rf_mysql_row("SELECT U.ID, PERSONA FROM USER U INNER JOIN PERSONA P ON P.USER_ID = U.ID WHERE U.DEVICE_ID = '" . ESC($deviceId, $DB) . "' AND U.CHECKIN_DATE = '" . ESC($today, $DB) . "'", $DB);
+$user = rf_mysql_row("SELECT U.ID, P.PERSONA FROM USER U LEFT JOIN PERSONA P ON P.USER_ID = U.ID WHERE U.DEVICE_ID = '" . ESC($deviceId, $DB) . "' AND U.CHECKIN_DATE = '" . ESC($today, $DB) . "'", $DB);
 if (!$user) {
     http_response_code(404);
     echo json_encode(array('success' => false, 'errorCode' => 'USER_NOT_FOUND'));

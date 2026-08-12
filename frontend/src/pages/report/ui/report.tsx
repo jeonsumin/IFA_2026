@@ -130,7 +130,7 @@ export const Report = () => {
                                     className={`flex flex-col gap-2 p-5 ${i > 0 ? "border-t border-lg-gray-5" : ""}`}
                                 >
                                     <p className="bg-lg-ai-gradient bg-clip-text text-[10px] font-bold text-transparent">{t(z.title)}</p>
-                                    <p className="text-xl font-bold leading-[1.2] text-black">{option?.title }</p>
+                                    <p className="text-xl font-bold leading-[1.2] text-black">{option?.title ?? s.SITUATION}</p>
                                     <p className="whitespace-pre-line text-[10px] leading-[1.4] tracking-[-0.2px] text-lg-gray-2">
                                         {option?.desc}
                                     </p>
