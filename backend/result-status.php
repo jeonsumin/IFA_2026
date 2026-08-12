@@ -47,11 +47,15 @@ debug($situationSql);
 
 $situationRow = rf_mysql_arr($situationSql, $DB);
 
+// 리포트 다운로드 카드 히어로/타이틀 바인딩용 페르소나 코드
+$personaRow = rf_mysql_row("SELECT PERSONA_CODE FROM PERSONA WHERE USER_ID = '" . ESC($userId, $DB) . "'", $DB);
+
 // mysqli는 값을 문자열로 반환 → 프론트 계약(boolean / number|null)에 맞게 캐스팅.
 // (안 하면 userReward \"0\"이 truthy, surveyReward \"2\"가 === 2 실패)
 $data = array(
     "userReward"   => (bool)($row["userReward"] ?? false),
     "surveyReward" => (isset($row["surveyReward"]) && $row["surveyReward"] !== null) ? (int)$row["surveyReward"] : null,
+    "persona"    => $personaRow["PERSONA_CODE"] ?? "",
     "situation"  => $situationRow
 );
 

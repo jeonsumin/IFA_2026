@@ -12,6 +12,7 @@ import {Report} from "pages/report";
 import {QrScanner} from "pages/qr-scanner";
 import {ModalProvider} from "app/provider/modal";
 import {SuccessView} from "widgets/success-view";
+import {ReportCard} from "widgets/report-card";
 
 export const AppRouter = () => {
 
@@ -56,6 +57,8 @@ export const AppRouter = () => {
                                 <Route path={'/report'} element={<Report/>}/>
                             </Route>
                             <Route path={'*'} element={<Navigate to="/" replace/>}/>
+                            <Route path={'/report-card'} element={<ReportCard personaTitle={"THE CONNECTED\n" +
+                                "FAMILY COORDINATOR"} personaDesc={"에너지 효율을 중요시하는\n지속가능 생활 실천가"} heroSrc={"/images/report/hero_homemaker.png"} rows={[]}/>}/>
                         </Route>
                     </Routes>
                 </MobileOnlyView>

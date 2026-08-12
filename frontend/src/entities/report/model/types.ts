@@ -8,5 +8,6 @@ export type ReportSituation = {
 export type ReportStatus = {
     userReward: boolean;
     surveyReward: number | null;
+    persona: string;   // 페르소나 코드(optimizer/coordinator/homemaker/worker) — 다운로드 카드 바인딩
     situation: ReportSituation[];
 }

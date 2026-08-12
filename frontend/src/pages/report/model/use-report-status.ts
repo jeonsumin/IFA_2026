@@ -5,6 +5,7 @@ export const useReportStatus = () => {
     const [reportStatus, setReportStatus] = useState<ReportStatus>({
         userReward: false,
         surveyReward: null,
+        persona: "",
         situation: [],
     })
     const [loading, setLoading] = useState(true);

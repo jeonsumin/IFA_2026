@@ -1,14 +1,17 @@
 import {Download, Gift, PenLine, Heart} from "lucide-react";
+import {useRef} from "react";
 import {Button} from "shared/ui";
 import {useTranslate} from "app/provider/lang";
 import {useModal} from "app/provider/modal";
 import {Survey} from "widgets/survey";
 import {SuccessView} from "widgets/success-view";
 import {OtpView} from "widgets/otp-view";
+import {ReportCard} from "widgets/report-card";
 import {useSubmitSurvey} from "features/submit-survey";
 import {useReportStatus} from "../model/use-report-status.ts";
 import {ZONES} from "pages/experience/model/zone.ts";
 import {useSubmitLog} from "features/submit-log";
+import {useDownloadReport} from "features/download-report";
 import type {RewardType} from "features/reward/api/submit-reward.ts";
 
 export const Report = () => {
@@ -18,6 +21,16 @@ export const Report = () => {
     const {submit} = useSubmitSurvey();
     const {logSubmit} = useSubmitLog();
     const {reportStatus, markSurveyDone, markSurveyRewarded, makeRewardDown} = useReportStatus();
+
+    // 다운로드 카드(화면 밖) 캡처 대상 + 캡처 훅
+    const cardRef = useRef<HTMLDivElement>(null);
+    const {download, loading: downloading} = useDownloadReport();
+
+    // 존별 SITUATION/DESC → 카드 행 (ZONES 순서, 완료 존만)
+    const cardRows = ZONES.flatMap((z) => {
+        const s = reportStatus.situation.find((x) => x.ZONE === z.slug);
+        return s ? [{label: t(z.title), situation: s.SITUATION, desc: s.SITUATION_DESC}] : [];
+    });
     // 서베이 플로우: Survey → (제출) → SuccessView → (확인) → RewardView.
     // 각 단계를 명명 핸들러로 분리해 중첩 콜백을 평탄화한다.
     // OTP 확인 시 실행할 완료 처리(onConfirmed)를 진입 경로별로 주입 — 서베이/리워드 분리.
@@ -58,8 +71,7 @@ export const Report = () => {
         })
     }
 
-    const handleDownloadReport = () => {
-    }
+    const handleDownloadReport = () => download(cardRef.current);
 
     const handleStore = async (type: string) => {
         switch (type) {
@@ -188,7 +200,8 @@ export const Report = () => {
                         <Gift size={20}/>
                         {t('report.reward')}
                     </Button>
-                    <button type="button" className="mx-auto mt-2 flex items-center gap-2 border-b border-black pb-1"
+                    <button type="button" disabled={downloading}
+                            className="mx-auto mt-2 flex items-center gap-2 border-b border-black pb-1 disabled:opacity-50"
                             onClick={handleDownloadReport}>
                         <Download size={16} className="text-black"/>
                         <span className="text-sm font-semibold text-black">{t('report.downloadReport')}</span>
@@ -229,6 +242,17 @@ export const Report = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            {/* 캡처 전용 카드 — 화면 밖(display:none 아님, 레이아웃 필요). handleDownloadReport가 이 노드를 html2canvas로 캡처 */}
+            <div aria-hidden style={{position: "fixed", left: -99999, top: 0, pointerEvents: "none"}}>
+                <ReportCard
+                    ref={cardRef}
+                    personaTitle={t(`persona.${reportStatus.persona}.title`)}
+                    personaDesc={t(`persona.${reportStatus.persona}.desc`)}
+                    heroSrc={`/images/report/hero_${reportStatus.persona}.png`}
+                    rows={cardRows}
+                />
             </div>
         </div>
     );
