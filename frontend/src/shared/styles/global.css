@@ -177,6 +177,17 @@
         @apply border-border outline-ring/50;
     }
 
+    html, body, #root {
+        height: 100%;
+    }
+
+    /* 앱 셸 스크롤 잠금: 스크롤은 내부 main(overflow-y-auto)이 담당.
+       html/body는 스크롤 금지 → 웹뷰 바깥(문서) 스크롤·모바일 rubber-band 제거 */
+    html, body {
+        overflow: hidden;
+        overscroll-behavior: none;
+    }
+
     body {
         @apply bg-background text-foreground text-lg-gray-2;
     }

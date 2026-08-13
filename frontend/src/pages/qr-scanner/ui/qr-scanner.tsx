@@ -6,6 +6,7 @@ import {useTranslate} from "app/provider/lang";
 import {useModal} from "app/provider/modal";
 import {getExperienceStatus, type ZoneSlug} from "entities/experience";
 import {useCompleteQr} from "features/experience/complete-qr";
+import {useSubmitLog} from "features/submit-log";
 
 const QrScannerView = lazy(() =>
     import("widgets/qr-scanner").then((m) => ({default: m.QrScanner}))
@@ -18,7 +19,7 @@ const ZONE_SLUGS: readonly ZoneSlug[] = ['entertainment', 'living', 'harmony', '
 const parseZone = (value: string): ZoneSlug | null => {
     let raw = value.trim();
     try {
-        raw = new URL(value).searchParams.get('qr')?.trim() ?? '';
+        raw = new URL(value).searchParams.get('persona')?.trim() ?? '';
     } catch {
         // 비-URL이면 값 자체를 존 slug로 간주
     }
@@ -30,7 +31,8 @@ const parseZone = (value: string): ZoneSlug | null => {
 const AlreadyExperienceCard = () => {
     const {t} = useTranslate();
     return (
-        <div className="absolute inset-0 z-10 flex flex-col items-center bg-black/20 px-5 pt-[26%] pb-14 backdrop-blur-[12.5px]">
+        <div
+            className="absolute inset-0 z-10 flex flex-col items-center bg-black/20 px-5 pt-[26%] pb-14 backdrop-blur-[12.5px]">
             <div className="flex flex-1 flex-col items-center justify-center gap-10 text-center">
                 <img src="/images/cloid_clear.svg" alt="" aria-hidden className="w-[300px] max-w-[80%]"/>
                 <p className="text-2xl font-bold text-white">
@@ -49,9 +51,10 @@ export const QrScanner = () => {
     const navigate = useNavigate();
     const {openAlert} = useModal();
     const {complete} = useCompleteQr();
+    const {logSubmit} = useSubmitLog();
     const {state} = useLocation();
     // 어느 존의 QR인지 — Situation 결과화면에서 navigate state로 전달
-    const zone = (state as {zone?: ZoneSlug} | null)?.zone;
+    const zone = (state as { zone?: ZoneSlug } | null)?.zone;
 
     // 이 존을 이미 완료했는지 — 완료 시 스캐너 대신 '이미 체험' 오버레이 노출
     const [alreadyDone, setAlreadyDone] = useState(false);
@@ -62,8 +65,11 @@ export const QrScanner = () => {
             .then((status) => {
                 if (alive) setAlreadyDone(status.zones.some((z) => z.zone === zone && z.qrScanned));
             })
-            .catch(() => { /* 조회 실패 → 스캐너 노출(기본) */ });
-        return () => { alive = false; };
+            .catch(() => { /* 조회 실패 → 스캐너 노출(기본) */
+            });
+        return () => {
+            alive = false;
+        };
     }, [zone]);
 
     // 인식 즉시 카메라가 멈추므로, 거부(무효/타존) 시 key를 바꿔 스캐너 remount → 재스캔 가능하게.
@@ -83,7 +89,10 @@ export const QrScanner = () => {
             return;
         }
         const ok = await complete(zone);
-        if (ok) navigate('/dashboard');
+        if (ok) {
+            await logSubmit(zone);
+            navigate('/dashboard');
+        }
         else openAlert({message: t('qrScanner.failed'), onConfirm: () => navigate('/dashboard')});
     }, [complete, navigate, openAlert, rescan, t, zone]);
 
@@ -98,9 +107,10 @@ export const QrScanner = () => {
     }, [handleScan]);
 
     return (
-        <div className="relative bg-lg-gray-2 flex flex-col h-screen items-center justify-center">
+        <div className="relative bg-lg-gray-2 flex flex-col h-[100dvh] items-center justify-center">
 
-            <Suspense fallback={<div className="flex h-full items-center justify-center">{t('qrScanner.cameraLoading')}</div>}>
+            <Suspense fallback={<div
+                className="flex h-full items-center justify-center">{t('qrScanner.cameraLoading')}</div>}>
                 <QrScannerView
                     key={scanKey}
                     onScan={handleScan}

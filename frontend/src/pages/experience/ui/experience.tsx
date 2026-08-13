@@ -9,9 +9,9 @@ import {useExperienceStatus} from "../model/use-experience-status";
 import {experienceOptionsKey} from "../lib/persona-options";
 
 
-// 카드 하단 사진: 중간 위로 페이드해 텍스트 영역과 자연스럽게 블렌드(디자인 마스크 근사)
+// 카드 하단 사진: 상단 42%까지 완전 투명 → 텍스트 영역은 항상 깨끗한 배경, 사진은 하단에만 노출(존 무관 일관)
 const photoFade =
-    "[mask-image:linear-gradient(to_bottom,transparent,#000_35%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,#000_35%)]";
+    "[mask-image:linear-gradient(to_bottom,transparent_0%,transparent_42%,#000_88%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,transparent_42%,#000_88%)]";
 
 // 완료(clear)된 존 위에 덮는 오버레이: 회색 + 블러 + CLEAR
 const ClearOverlay = () => (
@@ -103,7 +103,7 @@ export const Experience = () => {
                                 src={z.img}
                                 alt=""
                                 aria-hidden
-                                className={cn("absolute inset-x-0 bottom-0 h-fit w-full object-cover", photoFade)}
+                                className={cn("absolute inset-0 h-full w-full object-cover", photoFade)}
                             />
 
                             <div
