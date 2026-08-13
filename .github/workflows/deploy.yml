@@ -3,42 +3,31 @@ on:
   push:
     branches: [main]
 permissions:
-  id-token: write
   contents: read
+  packages: write
 env:
-  AWS_REGION: ap-northeast-2
-  ECR_WEB: ifa-web
-  ECR_API: ifa-api
+  REGISTRY: ghcr.io
 jobs:
-  deploy:
+  build-push:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: aws-actions/configure-aws-credentials@v4
+      - uses: docker/login-action@v3
         with:
-          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
-          aws-region: ${{ env.AWS_REGION }}
-      - uses: aws-actions/amazon-ecr-login@v2
-        id: ecr
-      - name: Build & push images
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build & push images to GHCR
         env:
-          REGISTRY: ${{ steps.ecr.outputs.registry }}
+          OWNER: ${{ github.repository_owner }}
           TAG: ${{ github.sha }}
         run: |
-          docker build -t $REGISTRY/$ECR_WEB:$TAG -t $REGISTRY/$ECR_WEB:latest ./frontend
-          docker build -t $REGISTRY/$ECR_API:$TAG -t $REGISTRY/$ECR_API:latest ./backend
-          docker push $REGISTRY/$ECR_WEB:$TAG
-          docker push $REGISTRY/$ECR_WEB:latest
-          docker push $REGISTRY/$ECR_API:$TAG
-          docker push $REGISTRY/$ECR_API:latest
-      - name: Deploy via SSM
-        env:
-          REGISTRY: ${{ steps.ecr.outputs.registry }}
-          TAG: ${{ github.sha }}
-        run: |
-          aws ssm send-command \
-            --instance-ids ${{ secrets.EC2_INSTANCE_ID }} \
-            --document-name "AWS-RunShellScript" \
-            --comment "Deploy ${{ github.sha }}" \
-            --parameters commands="cd /opt/ifa && export ECR_REGISTRY=$REGISTRY IMAGE_TAG=$TAG && aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $REGISTRY && docker compose pull && docker compose up -d && docker image prune -f" \
-            --output text
+          OWNER_LC=$(echo "$OWNER" | tr '[:upper:]' '[:lower:]')
+          WEB=$REGISTRY/$OWNER_LC/ifa-web
+          API=$REGISTRY/$OWNER_LC/ifa-api
+          docker build -t $WEB:$TAG -t $WEB:latest ./frontend
+          docker build -t $API:$TAG -t $API:latest ./backend
+          docker push $WEB:$TAG
+          docker push $WEB:latest
+          docker push $API:$TAG
+          docker push $API:latest
