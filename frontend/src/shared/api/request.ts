@@ -2,7 +2,7 @@ import axios, {AxiosInstance} from 'axios';
 import {getCookie} from 'shared/lib/cookie';
 
 export const request: AxiosInstance = axios.create({
-    baseURL: import.meta.env.DEV ? 'http://localhost:8080/api' : '/api',
+    baseURL: import.meta.env.DEV ? 'https://lincoln-ultimate-opera-arc.trycloudflare.com/api' : '/api',
     timeout: 1000 * 60 * 3,
     validateStatus(status) {
         return status === 200;
