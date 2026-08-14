@@ -32,6 +32,8 @@ const NextView = ({slug, result, optionTitle}: NextViewProps) => {
         navigate('/qr', {state: {zone: slug}});
     }
 
+    console.log(optionTitle)
+
     return (
         <div className="bg-bg-default relative">
             <div
@@ -43,14 +45,14 @@ const NextView = ({slug, result, optionTitle}: NextViewProps) => {
                         {optionTitle}
                     </p>
                 </div>
-                <img src="/images/zone1.png" alt="" aria-hidden className='w-full'/>
+                <img src={`/images/experience/hero_${optionTitle}.png`} alt="" aria-hidden className='w-full'/>
             </div>
             {/* 로봇(핑크 글로우) */}
             <div className="relative flex flex-1 items-center justify-center ">
                 <img
-                    src="/images/welcome/cloi.png"
+                    src="/images/cloid_zone_exp.png"
                     alt={t('common.robotAlt')}
-                    className="w-[360px] max-w-full"
+                    className="w-full max-w-full px-16"
                 />
             </div>
 
@@ -110,14 +112,14 @@ export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProp
                     </p>
                     <p className="whitespace-pre-line">{t('situation.subtitle')}</p>
                 </div>
-                <img src="/images/zone1.png" alt="" aria-hidden className='w-full'/>
+                <img src={`/images/experience/hero_${slug}.png`} alt="" aria-hidden className='w-full'/>
             </div>
             {/* 로봇(핑크 글로우) */}
             <div className="relative flex flex-1 items-center justify-center ">
                 <img
                     src="/images/welcome/cloi.png"
                     alt={t('common.robotAlt')}
-                    className="w-[200px] max-w-full"
+                    className="w-full max-w-full"
                 />
             </div>
 

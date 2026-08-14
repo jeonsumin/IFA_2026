@@ -18,7 +18,7 @@ export type Zone = {
 export const ZONES: Zone[] = [
     {
         slug: "entertainment",
-        img: "/images/experience/zone-entertainment.jpg",
+        img: "/images/experience/zone-entertainment.png",
         title: "zone.entertainment.title",
         descKey: "zone.entertainment.desc",
         optionsKey: "zone.entertainment.options",
@@ -26,7 +26,7 @@ export const ZONES: Zone[] = [
     },
     {
         slug: "living",
-        img: "/images/experience/zone-living.jpg",
+        img: "/images/experience/zone-living.png",
         title: "zone.living.title",
         descKey: "zone.living.desc",
         optionsKey: "zone.living.options",

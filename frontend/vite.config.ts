@@ -23,6 +23,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    allowedHosts: true,
     proxy: {
       // 로컬 개발: /api → dev backend 컨테이너. prod nginx와 동일하게 /api 접두 제거
       '/api': {

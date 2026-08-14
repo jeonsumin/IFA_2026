@@ -71,7 +71,10 @@ export const Report = () => {
         })
     }
 
-    const handleDownloadReport = () => download(cardRef.current);
+    const handleDownloadReport = async () => {
+        await logSubmit("report")
+        await download(cardRef.current);
+    }
 
     const handleStore = async (type: string) => {
         switch (type) {
