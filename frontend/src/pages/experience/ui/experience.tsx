@@ -7,6 +7,7 @@ import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {useExperienceStatus} from "../model/use-experience-status";
 import {experienceOptionsKey} from "../lib/persona-options";
+import {Loading} from "shared/ui/loading";
 
 
 // 카드 하단 사진: 상단 42%까지 완전 투명 → 텍스트 영역은 항상 깨끗한 배경, 사진은 하단에만 노출(존 무관 일관)
@@ -57,6 +58,8 @@ export const Experience = () => {
         if (ZONES.every((z) => clearedZones.has(z.slug))) navigate('/report');
     }, [loading, clearedZones, navigate]);
 
+    if (loading) return <Loading/>;
+
     return (
         <div className="relative min-h-full bg-bg-default">
             {/* 배경 핑크→베이지 그라데이션 */}
@@ -71,7 +74,7 @@ export const Experience = () => {
                 </div>
 
                 {/* 코디네이터 원형 사진 (히어로에 겹침) */}
-                <div className="size-40 overflow-hidden rounded-full">
+                <div className="size-40 overflow-hidden rounded-full border-1 border-white">
                     <img src={`/images/experience/${persona}.png`} alt=""
                          className="size-full object-cover"/>
                 </div>
