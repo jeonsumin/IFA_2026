@@ -6,6 +6,10 @@ import {useTranslate} from "app/provider/lang";
 import type {ZoneSlug} from "entities/experience";
 import {useSaveSituation} from "features/experience/save-situation";
 
+// 옵션 제목 → 히어로 파일명 슬러그 (공백·특수문자 제거). 예: "LG Sound Suite" → "lg-sound-suite"
+const slugify = (s: string) =>
+    s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+
 // 카피덱 옵션 항목 (persona.<key>.<zone>.options[i]) — result는 상황별 결과 문구
 type Option = { title: string; desc: string; result?: string[] };
 
@@ -32,8 +36,6 @@ const NextView = ({slug, result, optionTitle}: NextViewProps) => {
         navigate('/qr', {state: {zone: slug}});
     }
 
-    console.log(optionTitle)
-
     return (
         <div className="bg-bg-default relative">
             <div
@@ -45,7 +47,7 @@ const NextView = ({slug, result, optionTitle}: NextViewProps) => {
                         {optionTitle}
                     </p>
                 </div>
-                <img src={`/images/experience/hero_${optionTitle}.png`} alt="" aria-hidden className='w-full'/>
+                <img src={`/images/experience/hero_${slugify(optionTitle)}.png`} alt="" aria-hidden className='w-full'/>
             </div>
             {/* 로봇(핑크 글로우) */}
             <div className="relative flex flex-1 items-center justify-center ">
