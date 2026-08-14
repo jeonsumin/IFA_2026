@@ -91,7 +91,7 @@ export const QrScanner = () => {
         const ok = await complete(zone);
         if (ok) {
             await logSubmit(zone);
-            navigate('/dashboard');
+            navigate('/experience-success');
         }
         else openAlert({message: t('qrScanner.failed'), onConfirm: () => navigate('/dashboard')});
     }, [complete, navigate, openAlert, rescan, t, zone]);

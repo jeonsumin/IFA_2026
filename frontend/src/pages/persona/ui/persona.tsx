@@ -148,17 +148,9 @@ export const Persona = () => {
 
             <BottomSheet open={sheetOpen} onClose={() => setSheetOpen(false)}>
                 {/* 로봇(그라데이션 링 + 원형 페이스) */}
-                <div className="flex flex-col items-center gap-10 text-center">
-                    <div className="flex items-center justify-center">
-                        <div className="relative size-[190px]">
-                            <img src="/images/persona/robot-ring.svg" alt="" aria-hidden
-                                 className="absolute inset-0 size-full"/>
-                            <div
-                                className="absolute left-1/2 top-1/2 size-[180px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full">
-                                <img src="/images/persona/robot-face.png" alt="" aria-hidden
-                                     className="size-full object-cover"/>
-                            </div>
-                        </div>
+                <div className="flex flex-col items-center gap-10 text-center mt-10">
+                    <div className="flex items-center justify-center px-20">
+                        <img src="/images/cloid_welcome3.png" alt="cloid_welcome3" className='w-[188px]'/>
                     </div>
                     <div className="items-center">
                         <p className="whitespace-pre-line">{t('persona.reasonQuestion')}</p>
