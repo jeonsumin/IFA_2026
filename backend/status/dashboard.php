@@ -1,12 +1,20 @@
 <?php
-// 관리자 대시보드 — 허용 IP만 접근 (프록시 없음 → REMOTE_ADDR 신뢰)
+// 관리자 대시보드 — 허용 IP만 접근
 $ALLOWED_IPS = [
     '127.0.0.1',
     '::1',
     "61.40.30.130",
     '192.168.65.1',
 ];
-if (!in_array($_SERVER['REMOTE_ADDR'] ?? '', $ALLOWED_IPS, true)) {
+// Traefik(인그레스) 뒤라 REMOTE_ADDR은 프록시 파드 IP(10.42.x.x).
+// 실제 클라 IP는 X-Forwarded-For의 마지막 값(Traefik이 append한 TCP 피어 = 스푸핑 방어).
+$clientIp = $_SERVER['REMOTE_ADDR'] ?? '';
+
+if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    $xff = array_map('trim', explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']));
+    $clientIp = end($xff);
+}
+if (!in_array($clientIp, $ALLOWED_IPS, true)) {
     http_response_code(403);
     exit('403 Forbidden');
 }
