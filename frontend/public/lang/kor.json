@@ -1,0 +1,847 @@
+{
+  "common": {
+    "start": "Get Started",
+    "next": "Next",
+    "confirm": "Confirm",
+    "close": "Close",
+    "selectPlaceholder": "Please select",
+    "robotAlt": "",
+    "moreEpisodes": "Explore additional episodes",
+    "slogan": "Innovation in tune with you",
+    "logoAlt": "",
+    "lifesGood": "",
+    "experienceSelectSpace": "Please select a space.",
+    "surveySuccessDesc": "You have successfully completed the survey.\nYour feedback will help us create a better LG.",
+    "rewardSuccessDesc": "Thank you for joining the experience.\nWe hope your special lifestyle journey with LG CLOiD was an enjoyable experience.",
+    "rewardDesk": {
+      "title": "Please claim your reward at the <l>Reward Desk.</l>",
+      "section": "Please do not press the Confirm button below and show this screen to a staff member."
+    }
+  },
+  "home": {
+    "category": "Appliances, spaces, and lifestyles—",
+    "rhythm": "LG AI orchestrates your scattered daily life into one perfect rhythm.",
+    "orchestra": "Your personal orchestra begins now."
+  },
+  "promotion": {
+    "notice1": "This website is designed for the IFA 2026 LG Booth experience.",
+    "notice2": "We invite you to visit us in person.",
+    "scheduleLabel": "Event Schedule",
+    "scheduleValue": "Friday, September 4, 2026 – Wednesday, September 9, 2026",
+    "placeLabel": "Venue",
+    "placeHall": "IFA 2026 (Messe Berlin, Hall 18)",
+    "placeBooth": "LG Electronics Booth"
+  },
+  "checkIn": {
+    "title": "Tell us about yourself.",
+    "privacyTitle": "Consent to collect and \nuse personal information",
+    "nameLabel": "First Name (up to 15 characters)",
+    "namePlaceholder": "Please enter your name",
+    "nameAria": "First Name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Please enter your email address",
+    "emailAria": "Email",
+    "genderLabel": "Gender",
+    "ageLabel": "Age",
+    "agreeRequired": "(Required) Consent to collect and use personal information",
+    "agreeAria": "Consent to collect and use personal information",
+    "agreeNote": "This data will be deleted after one month and used only for LG internal purposes.",
+    "submitFailed": "Failed to save. Please try again later."
+  },
+  "gender": {
+    "male": "Male",
+    "female": "Female"
+  },
+  "age": {
+    "20": "20s",
+    "30": "30s",
+    "40": "40s",
+    "50": "50s",
+    "60": "60+"
+  },
+  "validation": {
+    "nameRequired": "Please enter your name",
+    "nameMax": "Maximum 8 characters allowed",
+    "emailRequired": "Please enter your email address",
+    "emailInvalid": "Invalid email format",
+    "genderRequired": "Please select your gender",
+    "ageRequired": "Please select your age"
+  },
+  "errors": {
+    "checkInFailed": "Failed to save.",
+    "surveyFailed": "Failed to submit.",
+    "cameraStart": "Unable to start the camera."
+  },
+  "welcome": {
+    "init": "Welcome !",
+    "greeting": "Hello, {{name}}",
+    "desc": "Discover your lifestyle and experience tailored recommendations from LG AI Orchestra."
+  },
+  "experienceSuccess": {
+    "done": "You have successfully completed the experience."
+  },
+  "zone": {
+    "entertainment": {
+      "title": "Entertainment in Tune",
+      "desc": "Discover an immersive entertainment experience perfected by AI."
+    },
+    "living": {
+      "title": "Living in Tune",
+      "desc": "Fit your space, maximize your life. Experience smarter AI home appliances."
+    },
+    "harmony": {
+      "title": "Harmony in Tune",
+      "desc": "Experience LG AI Home, connecting every space in your house."
+    },
+    "elegance": {
+      "title": "Elegance in Tune",
+      "desc": "Experience a luxury lifestyle perfected by AI and premium design."
+    }
+  },
+  "persona": {
+    "prompt": "Select the lifestyle\nthat best suits you\nand experience getting \"in tune\"\nwith LG AI Orchestra.",
+    "reasonQuestion": "What is the main reason you selected this lifestyle?",
+    "reasons": {
+      "0": "It's my dream lifestyle",
+      "1": "It's closest to my current daily routine",
+      "2": "It's a lifestyle I've always been interested in",
+      "3": "It feels the most interesting to me"
+    },
+    "optimizer": {
+      "title": "THE INDEPENDENT URBAN OPTIMIZER",
+      "section": "After a busy day,\nthe time you spend at home should feel in tune\nwith your tastes and your rhythm.\n\nWith LG AI Orchestra,\ndiscover how your everyday moments\ncome in tune with LG.",
+      "desc": "An urban dweller living solo who wants to manage their home efficiently",
+      "zone": {
+        "entertainment": {
+          "options": [
+            {
+              "title": "LG Sound Suite",
+              "desc": "The moment your space and sound get \"in tune.\" Experience premium home audio perfected with LG Sound Suite.",
+              "result": [
+                "After a long day, your home transforms into your very own premium listening space.",
+                "LG Sound Suite tunes the sound to fit your space and speaker placement,delivering crisper dialogue, sound effects, and background music tailored to your content.Hear for yourself how the exact same content sounds completely different depending on the space.",
+                "Experience your very own premium sound."
+              ]
+            },
+            {
+              "title": "StanbyME 2 Max",
+              "desc": "The moment your daily life and screen get \"in tune.\" Discover a seamless content experience wherever you are.",
+              "result": [
+                "Urban living where a single space fluidly transitions between a workspace and a relaxation area.",
+                "StanbyME 2 Max freely adapts to any situation—whether mounted on a wall, placed on a table, or set on its dedicated stand—naturally extending your screen experience to wherever you are.",
+                "Experience a truly flexible screen unbound by spatial constraints."
+              ]
+            },
+            {
+              "title": "LG UltraGear",
+              "desc": "The moment your gameplay and LG UltraGear screen get \"in tune.\" Experience the difference in rapid response and sharp motion.",
+              "result": [
+                "The shorter your gaming sessions at the end of a busy day, the more crucial fast response times and deep immersion become.",
+                "UltraGear achieves a native 1000Hz refresh rate without compromising FHD resolution,displaying frames and targets faster and clearer, even in highly dynamic scenes.",
+                "See the difference in speed as UltraGear’s screen perfectly syncs with your gameplay."
+              ]
+            },
+            {
+              "title": "LG Gallery +",
+              "desc": "An Art TV that tunes your space's ambiance to match your tastes and daily life. Discover the TV that transforms your home into your own personal gallery.",
+              "result": [
+                "The atmosphere of a space can shift depending on your mood and taste of the day.",
+                "LG Art TV and LG Gallery+ seamlessly blend diverse, curated artworks into your surroundings, while the generative AI content here expands a single word or idea into an interconnected artwork across multiple screens.",
+                "Experience the moment the atmosphere of your space falls perfectly 'in tune' with your lifestyle and tastes."
+              ]
+            }
+          ]
+        },
+        "living": {
+          "options": [
+            {
+              "title": "Fit & Max Refrigerator",
+              "desc": "A refrigerator that smartly tunes your dining lifestyle. Discover smart food care that maintains freshness longer at optimal temperatures for your ingredients.",
+              "result": [
+                "When living alone, keeping ingredients fresh can be quite a challenge.",
+                "The Convertible Drawer applies the optimal storage temperature for each ingredient,helping to maintain freshness longer and reduce food waste.",
+                "Experience smart food storage perfectly tuned to your personal eating habits."
+              ]
+            },
+            {
+              "title": "Fit & Max Dishwasher",
+              "desc": "A dishwasher that tunes washing and care to your solo lifestyle. Experience the harmony of powerful cleaning and delicate care.",
+              "result": [
+                "Even if you eat alone, washing dishes is a daily recurring chore.",
+                "AI Sense Clean analyzes the soil level to apply the perfect wash cycle,while QuadWash and TrueSteam combine to deliver powerful cleaning and delicate dish care.",
+                "Experience Superior Performance, Yet Gentle Care."
+              ]
+            },
+            {
+              "title": "Energy Leadership",
+              "desc": "High-efficiency LG appliances that tune energy use to your lifestyle patterns. Discover energy-saving routines enabled by sustainable LG technology.",
+              "result": [
+                "In a single-person household, efficiently managing the home becomes an essential lifestyle habit.",
+                "LG’s high-efficiency appliances deliver outstanding performance with less energy consumption,helping you practice efficient home management and sustainable living even in a busy daily routine.",
+                "Experience the smart daily life created by LG’s high-efficiency technology."
+              ]
+            },
+            {
+              "title": "Fit&Max Laundry",
+              "desc": "A laundry solution that tunes your laundry care and space utilization. Experience optimal cycles for your fabrics alongside efficient space utilization.",
+              "result": [
+                "When living alone, the efficient management of both laundry and space is key.",
+                "LG Fit&Max Laundry recommends the optimal wash cycle based on the fabric and soil level,and maximizes space utilization with versatile installation options.",
+                "Discover the LG Total Laundry Solution perfectly tuned to fit your daily life."
+              ]
+            }
+          ]
+        },
+        "harmony": {
+          "options": [
+            {
+              "title": "Entrance",
+              "desc": "The moment heading out and home management get \"in tune.\" Experience the AI Home Solution with Claw, which manages your home based on the situation even while you're away.",
+              "result": [
+                "Even when you're away—whether on a trip, a business journey, or simply coming home late—your house can be managed to suit your situation.",
+                "ThinQ Claw recognizes when you are out and switches appliances to energy-saving mode, while simulating occupancy at night using lights and the TV to keep your home safe.",
+                "Experience the AI Home Solution with Claw, tuned perfectly to your away-from-home routine."
+              ]
+            },
+            {
+              "title": "Kitchen",
+              "desc": "The moment your dining lifestyle and kitchen get \"in tune.\" Experience smart meal preparation, from ingredient-based menu recommendations to cooking.",
+              "result": [
+                "On days you want to reward yourself with delicious food amidst a busy routine,",
+                "ThinQ Claw understands the ingredients in your refrigerator and seamlessly guides you—from menu recommendations to cooking and storage.",
+                "Experience the personalized cooking recipes recommended for you by ThinQ Claw."
+              ]
+            },
+            {
+              "title": "Bed",
+              "desc": "The moment your sleep and bedroom environment get \"in tune.\" Meet the Sleep Care Agent that understands your sleep status and room conditions to suggest a better rest.",
+              "result": [
+                "Don’t worry if you fall asleep while watching TV.",
+                "ThinQ Claw detects your sleep and automatically adjusts the TV and lighting, recommending a better sleep environment based on your personalized sleep data.",
+                "Experience the Sleep Care Agent beautifully tuned to your sleep patterns."
+              ]
+            },
+            {
+              "title": "Living",
+              "desc": "The moment returning home and home care get \"in tune.\" Experience a smart home briefing that lets you check indoor air quality and appliance status at a glance.",
+              "result": [
+                "When you return home, you are welcomed by a space perfectly prepared according to your preset Welcome Home mode.",
+                "ThinQ Claw provides a comprehensive briefing on your home's current status by analyzing indoor air quality and appliance conditions, suggesting the necessary air care and your next steps.",
+                "Experience the AI Home beautifully tuned to your arrival."
+              ]
+            }
+          ]
+        },
+        "elegance": {
+          "options": [
+            {
+              "title": "30\" Wall Oven",
+              "desc": "An oven that tunes cooking methods to your ingredients. Discover optimal cooking experiences suggested by Gourmet AI.",
+              "result": [
+                "Dining alone doesn't mean you have to eat the same meal every time.",
+                "Gourmet AI uses its internal camera to recognize ingredients and recommend optimal recipes,while AI Browning ensures highly precise cooking results.",
+                "Experience the Premium Cooking perfected by Gourmet AI."
+              ]
+            },
+            {
+              "title": "VN4 Refrigerator",
+              "desc": "A refrigerator that tunes your food storage. Discover a smart storage experience tailored to your eating schedule and habits.",
+              "result": [
+                "Living alone often means wondering when and how to store leftover ingredients.",
+                "By setting the food mode of the Convertible Drawer via AI voice recognition, it suggests and applies the ideal refrigeration mode to perfectly match your meal schedule.",
+                "Experience smart food storage that seamlessly adapts to your situation."
+              ]
+            },
+            {
+              "title": "WashCombo™",
+              "desc": "Laundry that tunes your solo high-end lifestyle. Discover a high-end space where timeless design meets a premium laundry experience.",
+              "result": [
+                "For a solo lifestyle pursuing high-end aesthetics, home appliances become a vital element in perfecting the space.",
+                "The new 24-inch WashCombo™ elevates your space with its Timeless Design, offering an optimal experience from washing to drying with the largest capacity in the washer-dryer market, low-noise engineering, and AI Wash & AI Dry technology.",
+                "Experience a high-end design that stands the test of time."
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "coordinator": {
+      "title": "THE CONNECTED FAMILY COORDINATOR",
+      "desc": "A home manager coordinating family meals and housework",
+      "section": "The best family moments happen \nwhen everyone’s tastes and \nrhythms come together.\n\nWith LG AI Orchestra, \ndiscover how your family’s everyday moments \ncome in tune with LG.",
+      "zone": {
+        "entertainment": {
+          "options": [
+            {
+              "title": "LG Sound Suite",
+              "desc": "The moment your family's tastes and sound get 'in tune.' Experience premium home audio customized to your content with LG Sound Suite.",
+              "result": [
+                "Sound that makes those happy moments watching enjoyable content with your family even more special.",
+                "With the AI Sound Pro Plus feature, LG Sound Suiteanalyzes the content and automatically tunes the sound optimally for the space,making the animations kids love and the dramas parents enjoy feel even more vividly alive.",
+                "Experience premium home audio designed specially for your family."
+              ]
+            },
+            {
+              "title": "LG StanbyME 2 Max",
+              "desc": "The moment your entire family's tastes get 'in tune.' Discover a boundless content experience in your family's everyday life.",
+              "result": [
+                "The screens we share in our daily family life accompany us in every corner of the home.",
+                "StanbyME 2 Max can be used freely without spatial constraints—whether on a wall, a table, or standing.From a child's online learning to family movie nights and smartphone mirroring,a single screen joins in on a diverse array of daily moments.",
+                "Experience a versatile, free-moving screen that brings the family together anywhere in the house."
+              ]
+            },
+            {
+              "title": "LG UltraGear",
+              "desc": "The moment your family's leisure time gets 'in tune.' Discover a next-level gaming experience with a fast and precise display.",
+              "result": [
+                "Family gaming time is even more special when everyone can enjoy it together.",
+                "LG UltraGear brings next-level clarity, deep colors, and an overwhelming 1000Hz screen response rate,making gameplay with the whole family more vibrant and deeply immersive.",
+                "Experience the ultimate gameplay enjoyed by the entire family."
+              ]
+            },
+            {
+              "title": "LG Gallery +",
+              "desc": "The moment your family's shared space gets 'in tune.' Bring together everyone's diverse tastes into a single, unified gallery.",
+              "result": [
+                "The time spent bonding and connecting with family is the most important part of the day.",
+                "LG Art TV and LG Gallery+ curate diverse artworks to turn your living space into a premium AI gallery, transforming the mood of your home to match your family's unique tastes.",
+                "Experience a gallery perfectly infused with your family's unique tastes."
+              ]
+            }
+          ]
+        },
+        "living": {
+          "options": [
+            {
+              "title": "Fit & Max Refrigerator",
+              "desc": "The moment your family's healthy dining gets 'in tune.' Experience food care that keeps the ingredients for your family's favorite meals fresher than ever.",
+              "result": [
+                "Managing the wide variety of ingredients loved by your family is no easy task.",
+                "The Convertible Drawer automatically applies the optimal storage temperature for each ingredient,maintaining freshness longer to significantly reduce food waste.",
+                "Experience food care that helps keep your family’s dining table healthier."
+              ]
+            },
+            {
+              "title": "Fit & Max Dishwasher",
+              "desc": "The moment your family's post-meal time gets 'in tune.' Experience smart dishwashing that perfectly balances powerful cleaning with delicate care.",
+              "result": [
+                "Managing piles of dishes after a family meal is never easy.",
+                "LG Dishwasher uses AI Sense Clean to analyze the soil level and apply the perfect wash cycle,while QuadWash, TrueSteam, and Dynamic Heat Dry deliver everything from powerful washing to spotless drying.",
+                "Experience smart dish care that frees up more time to spend with your family."
+              ]
+            },
+            {
+              "title": "Energy Leadership",
+              "desc": "The moment your family's lifestyle and energy savings get 'in tune.'\nExperience the difference in energy savings created by high-efficiency appliances.",
+              "result": [
+                "Even with the widely varying lifestyle patterns of each family member, LG's high-efficiency applianceshelp you use the exact right amount of energy precisely when needed.",
+                "They facilitate efficient energy usage across diverse living environments,helping to build a convenient daily life and a sustainable future together.",
+                "Experience firsthand LG's high-efficiency technology that tunes energy savings into your family's daily routine."
+              ]
+            },
+            {
+              "title": "Fit&Max Laundry",
+              "desc": "The moment your family's diverse laundry needs get 'in tune.' Experience smart laundry that automatically cares for a variety of fabrics.",
+              "result": [
+                "Individually managing each family member's different laundry is no easy feat.",
+                "By analyzing the fabric and soil level of the load, it recommends the optimal wash cycleand automatically adjusts the water volume, detergent amount, and washing time.",
+                "Experience the LG Total Laundry Solution that effortlessly orchestrates your family's laundry."
+              ]
+            }
+          ]
+        },
+        "harmony": {
+          "options": [
+            {
+              "title": "Entrance",
+              "desc": "The moment your family's outings and home management get 'in tune.' Experience the AI Home Solution with Claw, which intuitively manages your home even when everyone is away.",
+              "result": [
+                "Even during the moments when the house is empty every day, your home continues to be meticulously cared for according to your family's schedule.",
+                "ThinQ Claw recognizes when the family is out and switches appliances to energy-saving mode, orchestrating the operation of devices like climate control, lighting, and oven preheating to perfectly match your arrival time.",
+                "Experience the AI Home Solution with Claw, beautifully tuned to your family's schedule."
+              ]
+            },
+            {
+              "title": "Kitchen",
+              "desc": "The moment your ingredients and kitchen get 'in tune.' Discover a smart meal preparation process, from managing ingredients in the fridge to receiving menu recommendations tailored to your family's tastes.",
+              "result": [
+                "For moments when you must consider the diverse tastes and dietary needs of your entire family.",
+                "ThinQ Claw comprehensively understands your family’s schedule, dietary restrictions, and the ingredients in the fridge to propose customized menus,preparing the necessary cooking appliances to their optimal states.",
+                "Experience ThinQ Claw, which effortlessly tunes your family's meal preparation."
+              ]
+            },
+            {
+              "title": "Bed",
+              "desc": "The moment your family's sleep and bedroom environment get 'in tune.' Discover the Sleep Care Agent, which protects your family's sleep health by creating and managing the optimal sleep environment.",
+              "result": [
+                "Because every family member has different sleep times and lifestyle patterns, it’s hard for everyone to fall asleep comfortably.",
+                "ThinQ Claw analyzes your family's sleep patterns and bedroom environments,proposing the ideal bedtime and optimal sleep environment for each person.",
+                "Discover a Sleep Care Experience entirely tailored for your family."
+              ]
+            },
+            {
+              "title": "Living",
+              "desc": "The moment your lifestyle and home care get 'in tune.' Discover home care that optimizes your family's living space for comfort.",
+              "result": [
+                "The living room, where the family gathers, always requires a pleasant air environment.",
+                "ThinQ Claw expertly manages temperature, humidity, and air quality to optimal levels based on your family's lifestyle patterns, creating a living room where everyone can always relax comfortably.",
+                "Meet the living space experience that beautifully tunes the air environment to your family's daily life."
+              ]
+            }
+          ]
+        },
+        "elegance": {
+          "options": [
+            {
+              "title": "30” Wall Oven",
+              "desc": "An oven that tunes your family's meals. Discover the optimal cooking experience with ingredient-specific suggestions from Gourmet AI.",
+              "result": [
+                "Meals thoughtfully made with your family's health in mind should also be delicious for everyone.",
+                "Gourmet AI identifies ingredients using its internal camera to recommend the most complementary menus,and perfects your family's dining table with optimal cooking methods.",
+                "Experience smart cooking that makes your family's dining table even more special."
+              ]
+            },
+            {
+              "title": "VN4 Refrigerator",
+              "desc": "The moment your family's ingredients and storage methods get 'in tune.' Discover a smart storage experience that guides you on how to store food according to your family's needs.",
+              "result": [
+                "Ingredients for tonight's dinner and those saved for the weekend require entirely different storage methods.",
+                "The Convertible Drawer comprehensively understands your family's meal plansand automatically sets the optimal food mode for each ingredient, preserving freshness for longer.",
+                "Experience ingredient care beautifully tuned to your family's meal plans."
+              ]
+            },
+            {
+              "title": "WashCombo™",
+              "desc": "LG SIGNATURE Laundry that tunes the elegance of your family's space. Discover an extraordinary everyday life perfected by a high-end space and premium laundry care.",
+              "result": [
+                "For our family, who deserves nothing but the best, the laundry space is also an essential part of our lifestyle.",
+                "The new 24-inch WashCombo™ elevates the prestige of your laundry space with \nits Timeless Design and maximum capacity. \nIt effortlessly handles your family's diverse laundry needs, \nwhile AI Wash & AI Dry technologies provide convenient and delicate care from washing to drying.",
+                "Experience LG SIGNATURE Laundry, the perfect finishing touch to your family's space."
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "homemaker": {
+      "title": "THE SUSTAINABLE \nHOMEMAKER",
+      "desc": "A sustainable living advocate who values energy efficiency",
+      "section": "Everyday choices can lead toa more sustainable way of living.\nUsing energy and resources more efficiently is an important place to start.\n\nWith LG AI Orchestra,\ndiscover how your everyday life can come 'in tune'\nwith a more sustainable future.",
+      "zone": {
+        "entertainment": {
+          "options": [
+            {
+              "title": "LG Sound Suite",
+              "desc": "The moment your content and sound get 'in tune.' Experience optimal audio perfected by LG Sound Suite.",
+              "result": [
+                "You no longer need to adjust the audio settings every time you enjoy your favorite content.",
+                "LG Sound Suite analyzes your space and content, automatically fine-tuning the optimal sound quality tailored to the situation. Enjoy movies with lifelike realism and music with richer depth.",
+                "Experience truly immersive sound without the hassle of complicated settings."
+              ]
+            },
+            {
+              "title": "LG StanbyME 2 Max",
+              "desc": "The moment your space and screen get 'in tune.' Discover a boundless viewing experience that follows you anywhere in your home.",
+              "result": [
+                "Connecting diverse daily routines through a single screen is a far more efficient choice.",
+                "LG StanbyME 2 Max creates an unbound space utilization experienceby allowing you to freely use one screen across a variety of spaces.",
+                "Experience a new standard of space utilization via a single screen."
+              ]
+            },
+            {
+              "title": "LG UltraGear",
+              "desc": "The moment your time and gameplay get 'in tune.' Experience deeper immersion in less time.",
+              "result": [
+                "At the end of an efficiently spent day, even a short break is perfected with ultimate immersion.",
+                "LG UltraGear achieves a native 1000Hz refresh rate,ensuring that games played during brief rest periods can be enjoyed more smoothly and immersively.",
+                "Experience the overwhelming speed of 1000Hz."
+              ]
+            },
+            {
+              "title": "LG Gallery +",
+              "desc": "The moment your space and tastes get 'in tune.' Discover a new space transformed by a single TV.",
+              "result": [
+                "The atmosphere of a space can be completely transformed without having to buy new furniture or accessories.",
+                "LG Art TV and LG Gallery+ curate a space tailored to your personal style using just a single TV,featuring artworks perfectly matched to your tastes alongside generative AI content.",
+                "Experience efficient space styling that beautifully considers your unique tastes."
+              ]
+            }
+          ]
+        },
+        "living": {
+          "options": [
+            {
+              "title": "Fit & Max Refrigerator",
+              "desc": "A refrigerator that efficiently tunes your food storage. Store items smarter and keep them fresh for longer.",
+              "result": [
+                "The small habit of keeping ingredients fresh for longer drastically enhances daily efficiency.",
+                "The Convertible Drawer automatically applies the optimal storage temperature for each ingredient,preserving freshness longer while notably reducing unnecessary energy consumption.",
+                "Experience smart storage that thoughtfully considers energy efficiency as well."
+              ]
+            },
+            {
+              "title": "Fit & Max Dishwasher",
+              "desc": "A dishwasher that optimizes zero-waste cleaning. Experience smart cleaning that washes exactly as much as you need.",
+              "result": [
+                "You don't need the exact same wash cycle every time to achieve spotless dishes.",
+                "AI Sense Clean analyzes the soil level and applies the most appropriate wash cycle for each load,while QuadWash and TrueSteam simultaneously provide pristine cleanliness and delicate care.",
+                "Experience a wash that thoughtfully saves resources while maximizing cleanliness."
+              ]
+            },
+            {
+              "title": "Energy Leadership",
+              "desc": "High-efficiency appliances that smartly tune your daily energy usage. Discover a more sustainable everyday life through small choices.",
+              "result": [
+                "Sustainable living truly begins with choosing high-efficiency appliances.",
+                "Check the clear difference in energy consumption by energy efficiency rating through the Lighting Pole,and enjoy the exact same great performance while significantly reducing the daily energy used by your refrigerator, washing machine, and dishwasher.",
+                "Experience a smarter energy lifestyle with our high-efficiency appliances."
+              ]
+            },
+            {
+              "title": "Fit&Max Laundry",
+              "desc": "Laundry that efficiently tunes your fabric care and energy usage. Care for your clothes and energy more sustainably.",
+              "result": [
+                "Sustainable living is ultimately about wearing each piece of clothing longer and valuing it more.",
+                "AI Wash & AI Dry precisely recognize fabrics to apply the optimal wash and dry cycles,managing garment protection and energy efficiency simultaneously.",
+                "Experience laundry care that lets you wear your clothes longer and manages them far smarter."
+              ]
+            }
+          ]
+        },
+        "harmony": {
+          "options": [
+            {
+              "title": "Entrance",
+              "desc": "The moment your home and energy get 'in tune.' Experience the AI Home Solution with Claw, which manages your energy anytime, anywhere.",
+              "result": [
+                "Even while you are out, you can easily check for appliances left on unnecessarily and manage energy highly efficiently.",
+                "Reduce wasted energy, seamlessly check the status of lights and appliances, \nand receive instant Care notifications if a refrigerator door is detected to be slightly open.",
+                "Experience the AI Home Solution with Claw that meticulously manages your home's energy even when you're away."
+              ]
+            },
+            {
+              "title": "Kitchen",
+              "desc": "The moment your ingredient usage gets 'in tune.' Experience a more sustainable, healthy meal.",
+              "result": [
+                "You no longer need to worry about how to efficiently use ingredients nearing their expiration dates.",
+                "ThinQ Claw intelligently suggests Healthy Meals utilizing your leftover ingredients, \nand efficiently streamlines everything from cooking to ventilation, washing, and storage, thereby drastically reducing food waste.",
+                "Experience the highly sustainable kitchen journey thoughtfully guided by ThinQ Claw."
+              ]
+            },
+            {
+              "title": "Bath",
+              "desc": "The moment your bathroom environment gets 'in tune.' Experience Wellness Air Care designed with energy efficiency in mind.",
+              "result": [
+                "You don't have to personally worry about ventilation and dehumidification to maintain a pleasant bathroom after a shower.",
+                "By synthesizing bathroom temperature and humidity, outside weather, indoor air quality, and shower usage information, \nThinQ Claw efficiently tunes the BathAirSystem-based ventilation, dehumidification, and heating to exactly what is needed.",
+                "Experience Wellness Air Care that thoughtfully considers energy conservation."
+              ]
+            },
+            {
+              "title": "Living",
+              "desc": "The moment coming home and your energy management get 'in tune.' Experience the Energy Home Briefing, which checks your energy usage and appliance status.",
+              "result": [
+                "You can easily see at a glance the energy status of your home, actively managed in energy-saving mode while you're out.",
+                "By smartly integrating energy usage, indoor air quality, and appliance status, \nThinQ Claw proactively suggests the home care and energy-saving methods your house specifically needs right now.",
+                "Experience energy management perfectly tuned to your personal lifestyle."
+              ]
+            }
+          ]
+        },
+        "elegance": {
+          "options": [
+            {
+              "title": "30” Wall Oven",
+              "desc": "An oven that optimizes zero-waste cooking. Discover smart cooking that saves food and energy by preventing overcooking.",
+              "result": [
+                "Cooking only exactly what is necessary is the true beginning of sustainable cooking.",
+                "Gourmet AI automatically recognizes ingredients to highly recommend the optimal menus and recipes, \nand analyzes cooking stages to drastically reduce food waste and unnecessary energy consumption caused by overcooking.",
+                "Experience smart, zero-waste cooking masterfully perfected by Gourmet AI."
+              ]
+            },
+            {
+              "title": "VN4 Refrigerator",
+              "desc": "A refrigerator that maximizes the value of your ingredients. Discover a storage experience that lets you get the most value out of your ingredients.",
+              "result": [
+                "Using ingredients longer actively creates a far more sustainable daily life.",
+                "When you simply state your storage plans via AI voice recognition, the Convertible Drawer recommends a storage mode beautifully tailored to the situation, \nmaintaining ingredient freshness longer and drastically reducing unnecessary waste.",
+                "Discover a thoughtful storage experience that allows you to use your ingredients longer and much more valuably."
+              ]
+            },
+            {
+              "title": "WashCombo™",
+              "desc": "Laundry that elevates your sustainable space. Discover a high-end space filled with timeless value.",
+              "result": [
+                "Great design grows more valuable over time.",
+                "The new 24-inch WashCombo™ elevates the value of your space for years to come with its Timeless Design and maximum capacity, \nwhile AI Wash & AI Dry technology optimizes everything from washing to drying based on your laundry, delivering a more efficient experience.",
+                "Experience a premium space that becomes increasingly valuable with time."
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "worker": {
+      "title": "THE FLEXIBLE HYBRID WORKER",
+      "desc": "A hybrid worker who optimizes time and maximizes space",
+      "section": "Home has become a space for every part of the day—\nworking, relaxing, and living.\n\nWith LG AI Orchestra,\ndiscover how your day and \nyour spacecome in tune with LG.",
+      "zone": {
+        "entertainment": {
+          "options": [
+            {
+              "title": "LG Sound Suite",
+              "desc": "The moment your work and relaxation get 'in tune.' Experience optimal home audio perfected by LG Sound Suite.",
+              "result": [
+                "In a space where work and relaxation actively coexist, situation-appropriate sound is crucial.",
+                "LG Sound Suite analyzes playing content to automatically tune three-dimensional sound\nand optimal acoustics for the space, delivering an immersive feeling as if you are in entirely new surroundings right at home.",
+                "Experience sound that creates a brand-new space."
+              ]
+            },
+            {
+              "title": "LG StanbyME 2 Max",
+              "desc": "The moment work and relaxation get 'in tune' throughout your home. Discover a lifestyle free from spatial limitations.",
+              "result": [
+                "In a space where work and relaxation fluidly coexist, a freely moving screen adapted to the specific situation is crucial.",
+                "StanbyME 2 Max serves numerous roles in a single product. \nIt acts as a secondary monitor next to your desk while working, and supports video viewing and smartphone mirroring during breaks, \nseamlessly accompanying your daily life without spatial constraints.",
+                "Experience a brilliant new way of space utilization firsthand."
+              ]
+            },
+            {
+              "title": "LG UltraGear",
+              "desc": "The moment your personal time gets 'in tune', washing away your stress after work. Discover the optimal monitor that elevates your gaming immersion.",
+              "result": [
+                "In a space where work and relaxation coexist, dedicated time to actively relieve stress is also extremely crucial.",
+                "LG UltraGear delivers a highly immersive gaming experience by rendering game movements noticeably clearer and smoother \nwith its ultra-fast 1000Hz refresh rate and significantly superior picture quality.",
+                "Experience the moment stress lowers and deep immersion gets perfectly 'in tune."
+              ]
+            },
+            {
+              "title": "LG Gallery +",
+              "desc": "The moment your space's mood gets 'in tune' with your day. Experience your own personal gallery space that complements both work and relaxation.",
+              "result": [
+                "A workspace, a relaxation space, a vital living space. \nIt naturally tunes the mood of the space to beautifully match the flow of your day.",
+                "Using generative AI images, it gracefully styles your home like your very own gallery while you work and live, \nand provides a deeply captivating viewing experience with its high-definition display when you simply need to relax.",
+                "Experience LG Gallery+, which masterfully perfects your day into your own personal gallery."
+              ]
+            }
+          ]
+        },
+        "living": {
+          "options": [
+            {
+              "title": "Fit & Max Refrigerator",
+              "desc": "A refrigerator that elevates your meals while working from home. Experience smart ingredient management for your busy day.",
+              "result": [
+                "Whether it's a busy day you eat lunch at home or thoughtfully prepare dinner, the necessary storage environment vastly varies for each ingredient.",
+                "The Convertible Drawer automatically applies the optimal temperature for the ingredients, \nmanaging them exceptionally fresh even during a demanding day working from home.",
+                "Experience a refrigerator that thoughtfully takes care of your ingredients even while you are actively working."
+              ]
+            },
+            {
+              "title": "Fit & Max Dishwasher",
+              "desc": "A dishwasher that streamlines the chores of a busy hybrid worker. Experience smart cleaning that automatically takes care of your dishes after meals.",
+              "result": [
+                "Whether you're commuting to the office or working from home, doing the dishes is a chore that always awaits after a meal.",
+                "AI Sense Clean analyzes the soil level to flawlessly apply the optimal wash cycle, \nwhile QuadWash and TrueSteam masterfully combine to offer powerful cleaning and delicate dish care.",
+                "Experience a Dishwasher that significantly eases the burden of household chores during busy work hours."
+              ]
+            },
+            {
+              "title": "Energy Leadership",
+              "desc": "High-efficiency appliances that optimize your time at home. Experience energy efficiency that truly shines the longer you stay home.",
+              "result": [
+                "As the time spent working from home increases, electricity usage naturally rises significantly as well.",
+                "LG's high-efficiency appliances brilliantly use energy more efficiently in the exact same daily routines, \nand you can clearly see the differences in energy efficiency by individual product for yourself.",
+                "Experience LG's advanced high-efficiency technology that purposefully makes the home you spend so much time in even more efficient."
+              ]
+            },
+            {
+              "title": "Fit&Max Laundry",
+              "desc": "Laundry that effortlessly handles your washing. Experience smart laundry that takes care of itself while you work.",
+              "result": [
+                "The best way to make your time FIT your life is by actively reducing household chores.",
+                "LG Fit&Max Washing Machine intimately analyzes laundry to highly recommend the optimal wash cycle for the fabric and soil level, \neffortlessly providing a more convenient laundry experience entirely without any of the usual hassle.",
+                "Experience Laundry that proactively cuts down your washing worries and deliberately adds more time just for you."
+              ]
+            }
+          ]
+        },
+        "harmony": {
+          "options": [
+            {
+              "title": "Entrance",
+              "desc": "The moment your home gets 'in tune' with your work, even from the outside. Discover the AI Home Solution with Claw, which lets you control your home anytime, anywhere.",
+              "result": [
+                "Even on your commute home from work or while you're out, you can intelligently prepare your house in advance to be an optimal work environment.",
+                "ThinQ Claw expertly grasps your schedule and unique situation,\nautomatically configuring the home's temperature, air, and lighting into a highly work-optimized environment exactly on time for your arrival.",
+                "Experience the AI Home Solution with Claw that actively lets you jump straight into work the moment you arrive home."
+              ]
+            },
+            {
+              "title": "Kitchen",
+              "desc": "The moment even your meals get 'in tune' with your work schedule. Experience the perfect balance between work and dining.",
+              "result": [
+                "Your satisfying meal is perfectly prepared exactly when your video conference ends.",
+                "ThinQ Claw effectively understands your work schedule to smoothly prep the oven preheating, \nand after your meal, proactively recommends the Dishwasher's Night Quiet Mode and Oven Clean to minimize noise, \nensuring your busy workflow remains entirely uninterrupted.",
+                "Experience a smart Kitchen that actively thinks about your next task."
+              ]
+            },
+            {
+              "title": "Bed",
+              "desc": "The moment the balance of work and relaxation gets 'in tune.' Discover a sleep experience that prepares you to feel your best tomorrow.",
+              "result": [
+                "On days with exceptionally long meetings, your required sleep environment naturally needs to change.",
+                "ThinQ ON and the Smart Mattress analyze your sleep score, physical condition, sleep patterns, and bedroom environment \nto intelligently propose a better bedtime and highly tailored sleep care for the next day.",
+                "Experience the Sleep Care Agent that prepares you for a significantly better tomorrow."
+              ]
+            },
+            {
+              "title": "Living",
+              "desc": "The moment work and relaxation get 'in tune.' Experience a comfortable living space tailored to your ever-changing daily schedule.",
+              "result": [
+                "Working efficiently from home today, commuting to the office tomorrow.",
+                "As your demanding schedule changes daily, the role of your home must gracefully adapt as well. \nThinQ Claw comprehensively grasps air quality and appliance status to masterfully propose \nan environment highly conducive to concentration when working, and a cozy, pleasant living room environment when relaxing.",
+                "Experience a Living space that flawlessly transforms in tune with the natural flow of work and rest."
+              ]
+            }
+          ]
+        },
+        "elegance": {
+          "options": [
+            {
+              "title": "30” Wall Oven",
+              "desc": "An oven that tunes your meals to your work schedule. Experience a wider variety of meals using the exact same ingredients.",
+              "result": [
+                "Whether working from home or on a busy office day, you can enjoy a wider variety of dishes using the exact same ingredients.",
+                "Gourmet AI automatically recognizes 85 types of food items to recommend \ndiverse menus you can make with favorite ingredients alongside optimal oven cooking methods.",
+                "Experience Gourmet AI, which reduces mealtime worries and perfects a special dish even amidst a busy schedule."
+              ]
+            },
+            {
+              "title": "VN4 Refrigerator",
+              "desc": "A refrigerator that adapts to your changing daily meal plans. Experience smart storage that adapts seamlessly to your office commute and work-from-home schedule.",
+              "result": [
+                "Even if unexpected meetings or appointments alter your meal plans, there's no need to worry about ingredient storage.",
+                "Simply say, \"I'll eat this steak in 3 days\" via AI voice recognition, \nand the Convertible Drawer will proactively recommend and set the 'Soft Freezing Mode.'",
+                "Experience the Convertible Drawer that maintains freshness despite changing schedules."
+              ]
+            },
+            {
+              "title": "WashCombo™",
+              "desc": "LG SIGNATURE Laundry that elevates your space. Add a touch of high-end elegance to a space where work and life coexist.",
+              "result": [
+                "For a work-from-home professional, the laundry space is another essential element that completes the lifestyle.",
+                "The new 24-inch WashCombo™ elevates the sophistication of your laundry area with its sleek design, maximum capacity, and low-noise design. \nIts AI Wash & AI Dry technology automatically optimizes everything from washing to drying, \nfreeing you from household distractions during your workday.",
+                "Experience LG SIGNATURE Laundry that perfects the space where work and life seamlessly coexist."
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "report": {
+    "poweredBy": "with LG CLOiD",
+    "dailyRoutine": "Your daily life",
+    "routineDesc": "Chores made far simpler, and relaxation deeply immersive, effectively tuned to your personal lifestyle patterns. LG AI naturally and seamlessly connects your day.",
+    "takeSurvey": "Participate in the survey",
+    "extraReward": "Additional Rewards",
+    "reward": "Rewards",
+    "downloadReport": "Download Routine Report",
+    "download": "Download",
+    "snsSubscribe": "Subscribe to LG Electronics Official SNS",
+    "zone": {
+      "sound": "",
+      "fridge": "",
+      "entrance": "",
+      "oven": ""
+    }
+  },
+  "qrScanner": {
+    "alreadyDone": "You have already completed the experience.",
+    "cameraLoading": "Starting camera...",
+    "failed": "Failed to scan QR code. Please try again later.",
+    "invalid": "Invalid QR code. Please scan the QR code for the experience zone.",
+    "wrongZone": "This QR code is not for this zone. Please scan the QR code for your selected zone."
+  },
+  "situation": {
+    "subtitle": "Experience how LG AI tunes into your lifestyle.",
+    "question": "Which scenario would you like to experience?",
+    "soundSuiteDesc": "The moment your space and sound get \"in tune.\" Experience premium home audio perfected with LG Sound Suite.",
+    "next1": "",
+    "next2": "LG Sound Suite analyzes playing content to automatically tune three-dimensional sound\nand optimal acoustics for the space, delivering an immersive feeling as if you are in entirely new surroundings right at home.",
+    "next3": "Experience sound that creates a brand-new space.",
+    "qrScan": "Scan QR code",
+    "saveFailed": "Failed to save. Please try again later."
+  },
+  "survey": {
+    "popupTitle": "Participate in the survey",
+    "intro": "This survey is designed to \ncollect feedback on your experience \nat the LG booth during IFA 2026.\nWe kindly ask you to share \nyour honest opinions, which will be \nused for internal purposes only.",
+    "questionCount": "※ This survey consists of 5 questions.",
+    "submit": "Submit",
+    "scaleMin": "Strongly disagree",
+    "scaleMax": "Strongly agree",
+    "q1": {
+      "title": "How satisfied are you with your visit to the LG Booth?"
+    },
+    "q2": {
+      "title": "Which zone of the booth do you like the most ​",
+      "options": {
+        "0": "LG AI Orchestra​",
+        "1": "Entertainment in Tune",
+        "2": "Living in Tune",
+        "3": "Harmony in Tune",
+        "4": "Elegance in Tune"
+      }
+    },
+    "q3": {
+      "title": "Which aspects of the booth are you most satisfied with? (Multi-select)",
+      "options": {
+        "0": "Overall booth design & atmosphere",
+        "1": "New LG AI Appliances for European living",
+        "2": "LG AI Appliances Orchestra Showcase (Hero Stage)",
+        "3": "LG AI Lifestyle Routine (Mobile experience)"
+      }
+    },
+    "q4": {
+      "title": "Which products impressed you most? (Multi-select)",
+      "options": {
+        "0": "LG Best TV, Gallery TV",
+        "1": "UltraGear",
+        "2": "StanbyME 2 Max",
+        "3": "Sound Suite, xboom",
+        "4": "WebOS",
+        "5": "LG Fit&Max Refrigerator",
+        "6": "LG Fit&Max Laundry",
+        "7": "LG Fit&Max Dishwasher",
+        "8": "LG SIGNATURE Refrigerator",
+        "9": "LG SIGNATURE OLED T",
+        "10": "LG SIGNATURE Laundry"
+      }
+    },
+    "q5": {
+      "title": "What experience are you most looking forward to at the LG IFA 2027 exhibition?"
+    },
+    "popup": {
+      "title": "THANK YOU!"
+    }
+  },
+  "reward": {
+    "otp": {
+      "survey": {
+        "title": "Survey Completed"
+      },
+      "reward": {
+        "title": "Innovation in tune with you\nGeneration Complete"
+      },
+      "desc": "For staff use only.\nPlease show this screen to a staff member."
+    },
+    "popup": {
+      "title": "Reward Claim Instructions",
+      "label1": "Innovation in tune with you",
+      "label2": "Thank you for joining the experience.",
+      "label3": "",
+      "label4": "We hope your special lifestyle journey with LG CLOiD was an enjoyable experience."
+    }
+  }
+}

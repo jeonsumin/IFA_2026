@@ -1,0 +1,34 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec tsc --noEmit
+      - run: pnpm build
+      - run: pnpm exec playwright test tests/unit  # 유닛만(브라우저 불필요), e2e는 서버 필요라 제외
+  backend-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - name: php -l
+        run: find backend -name '*.php' -not -path 'backend/lib/*' -print0 | xargs -0 -n1 php -l

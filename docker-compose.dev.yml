@@ -1,0 +1,42 @@
+services:
+  frontend:
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: sh -c "corepack enable && pnpm install && pnpm dev --host"
+    ports:
+      - "3000:3000"
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/var/www/html/api
+    ports:
+      - "8080:80"
+    environment:
+      DB_HOST: mysql
+      DB_USER: ifa2026
+      DB_PASS: brightb8462@
+      DB_NAME: IFA_2026
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: IFA_2026
+      MYSQL_USER: ifa2026
+      MYSQL_PASSWORD: brightb8462@
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ifa-data:/var/lib/mysql
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+
+volumes:
+  ifa-data:

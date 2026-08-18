@@ -1,0 +1,30 @@
+name: Deploy
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+  packages: write
+env:
+  REGISTRY: ghcr.io
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build & push combined image to GHCR
+        env:
+          OWNER: ${{ github.repository_owner }}
+          TAG: ${{ github.sha }}
+        run: |
+          OWNER_LC=$(echo "$OWNER" | tr '[:upper:]' '[:lower:]')
+          IMAGE=$REGISTRY/$OWNER_LC/ifa_2026
+          # root Dockerfile = React dist + PHP apache 결합 이미지 ('/'·'/api' 한 컨테이너). context=repo root
+          docker build -t $IMAGE:$TAG -t $IMAGE:latest .
+          docker push $IMAGE:$TAG
+          docker push $IMAGE:latest

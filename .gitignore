@@ -1,0 +1,6 @@
+# AI 도구 로컬 폴더
+.claude/
+.serena/
+
+# pnpm 로컬 스토어
+frontend/.pnpm-store/
