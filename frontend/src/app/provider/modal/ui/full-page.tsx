@@ -37,7 +37,7 @@ export const FullPage = ({stack, progress, steps, pop, close}: Props) => {
                         </button>
                     )}
                     {!top.title && <img src="/images/logo.svg" alt={"logo"}/>}
-                    {top.title && <h2 className="text-lg font-bold">{top.title}</h2>}
+                    {top.title && <h2 className="text-lg font-bold text-center whitespace-pre-line">{top.title}</h2>}
                     <button
                         type="button"
                         onClick={close}

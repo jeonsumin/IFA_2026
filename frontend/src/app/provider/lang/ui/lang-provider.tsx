@@ -11,7 +11,7 @@ import {
 } from "react";
 import type {LangContextValue, Locale, TFn, TRawFn, Vars} from "../types/types";
 
-const DEFAULT_LOCALE: Locale = 'kor';
+const DEFAULT_LOCALE: Locale = 'eng';
 
 // 점 표기 키를 중첩 카피덱에서 해석: 'report.zone.sound'
 const resolve = (dict: unknown, key: string): unknown =>

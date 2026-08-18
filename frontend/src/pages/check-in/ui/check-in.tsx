@@ -60,7 +60,7 @@ export const CheckIn = () => {
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 onBlur={() => touch("name")}
-                                maxLength={8}
+                                maxLength={15}
                                 error={!!(touched.name && errors.name)}
                                 aria-label={t('checkIn.nameAria')}
                                 placeholder={t('checkIn.namePlaceholder')}

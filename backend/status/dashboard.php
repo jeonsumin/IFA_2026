@@ -29,7 +29,7 @@ $dateWhere = $checkinDt
 $sql = "SELECT
     U.ID
     , U.CHECKIN_DATE
-    , U.USER_GENDER
+    , IF(U.USER_GENDER = 'M', '남','여') AS USER_GENDER 
     , U.USER_AGE
     , IF(U.USER_REWARD = 1, 'O', 'X') AS USER_REWARD
     , P.PERSONA
@@ -115,8 +115,7 @@ foreach (rf_mysql_arr("SELECT PERSONA_CODE, COUNT(*) AS CNT FROM PERSONA GROUP B
 $PERSONAS = ['optimizer', 'coordinator', 'homemaker', 'worker'];
 
 // SELECT 별칭 순서 그대로 (헤더=바디 컬럼 동기화)
-$columns = [
-    'ID', 'CHECKIN_DATE', 'USER_GENDER', 'USER_AGE', 'USER_REWARD',
+$columns = ['CHECKIN_DATE', 'USER_GENDER', 'USER_AGE', 'USER_REWARD',
     'PERSONA', 'REASON',
     'ENTERTAINMENT', 'ENTERTAINMENT_QR',
     'LIVING', 'LIVING_QR',

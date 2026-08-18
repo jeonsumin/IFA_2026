@@ -17,17 +17,14 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build & push images to GHCR
+      - name: Build & push combined image to GHCR
         env:
           OWNER: ${{ github.repository_owner }}
           TAG: ${{ github.sha }}
         run: |
           OWNER_LC=$(echo "$OWNER" | tr '[:upper:]' '[:lower:]')
-          WEB=$REGISTRY/$OWNER_LC/ifa-web
-          API=$REGISTRY/$OWNER_LC/ifa-api
-          docker build -t $WEB:$TAG -t $WEB:latest ./frontend
-          docker build -t $API:$TAG -t $API:latest ./backend
-          docker push $WEB:$TAG
-          docker push $WEB:latest
-          docker push $API:$TAG
-          docker push $API:latest
+          IMAGE=$REGISTRY/$OWNER_LC/ifa_2026
+          # root Dockerfile = React dist + PHP apache 결합 이미지 ('/'·'/api' 한 컨테이너). context=repo root
+          docker build -t $IMAGE:$TAG -t $IMAGE:latest .
+          docker push $IMAGE:$TAG
+          docker push $IMAGE:latest

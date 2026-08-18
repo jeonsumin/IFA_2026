@@ -1,5 +1,5 @@
 // 지원 로케일. 카피덱 파일명과 1:1 (public/lang/<locale>.json). 언어 추가 시 여기에 확장.
-export type Locale = 'kor';
+export type Locale = 'kor' | 'eng';
 
 export type Vars = Record<string, string | number>;
 

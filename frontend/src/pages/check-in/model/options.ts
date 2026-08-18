@@ -5,7 +5,6 @@ export const GENDER_OPTIONS = [
 ];
 
 export const AGE_OPTIONS = [
-    {labelKey: "age.10", value: "10"},
     {labelKey: "age.20", value: "20"},
     {labelKey: "age.30", value: "30"},
     {labelKey: "age.40", value: "40"},
