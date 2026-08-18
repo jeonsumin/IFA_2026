@@ -15,3 +15,7 @@ export const setCookie = (
     if (options.maxAge !== undefined) cookie += `; max-age=${options.maxAge}`;
     document.cookie = cookie;
 };
+
+export const deleteCookie = (name: string): void => {
+    document.cookie = `${name}=; path=/; max-age=0`;
+};

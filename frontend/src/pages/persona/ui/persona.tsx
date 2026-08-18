@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {BottomSheet, Button} from "shared/ui";
 import {cn} from "shared/lib/cn";
 import {PERSONAS, PERSONA_REASON_COUNT} from '../model/persona'
@@ -10,11 +10,6 @@ import {useUserDraft} from "entities/user";
 import {useSubmitCheckIn} from "features/submit-check-in";
 
 // 인물 사진 좌측 경계를 카드 배경으로 부드럽게 페이드(디자인 alpha 마스크 근사)
-const photoFade =
-    "[mask-image:linear-gradient(to_right,transparent,#000_45%)] [-webkit-mask-image:linear-gradient(to_right,transparent,#000_45%)]";
-
-const outlineActive =
-    "border-2 border-transparent [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(90deg,var(--lg-red),var(--lg-ai-pink),var(--lg-ai-purple))_border-box]";
 export const Persona = () => {
     const navigate = useNavigate();
     const {t} = useTranslate();
@@ -61,6 +56,12 @@ export const Persona = () => {
         if (ok) navigate("/dashboard");
         else openAlert({message: t('checkIn.submitFailed')});
     }
+
+    useEffect(() => {
+        if(draft == null){
+            navigate('/')
+        }
+    }, [draft]);
 
     return (
         <div className="bg-bg-default ">
@@ -112,17 +113,27 @@ export const Persona = () => {
                                     onClick={() => selectedPersona(i)}
                                     aria-pressed={on}
                                     className={cn(
-                                        "relative  w-full overflow-hidden rounded-2xl bg-white/70 text-left",
-                                        on ? outlineActive : "border border-white",
+                                        "relative h-[130px] w-full overflow-hidden rounded-2xl bg-white/70 bg-cover bg-no-repeat bg-right text-left",
+                                        !on && "border border-white",
                                     )}
+                                    style={{ backgroundImage: `url('${p.img}')` }}
                                 >
-                                    <img
-                                        src={p.img}
-                                        alt=""
-                                        aria-hidden
-                                        className={cn("absolute right-0 top-0 h-full w-[55%] object-cover", photoFade)}
-                                    />
-                                    <div className="relative flex flex-col gap-2 p-4 ">
+                                    {on && (
+                                        <div
+                                            aria-hidden
+                                            className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-transparent"
+                                            style={{
+                                                background:
+                                                    "linear-gradient(#fff,#fff) padding-box, linear-gradient(90deg, var(--lg-red), var(--lg-ai-pink), var(--lg-ai-purple)) border-box",
+                                                WebkitMask:
+                                                    "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
+                                                WebkitMaskComposite: "xor",
+                                                maskComposite: "exclude",
+                                            }}
+                                        />
+                                    )}
+
+                                    <div className="relative flex flex-col gap-2 p-4">
                                         <p className={cn(
                                             "whitespace-pre-line text-xs leading-[1.4] tracking-[-0.24px]",
                                             on ? "text-[#a43d3a]" : "text-lg-gray-2"

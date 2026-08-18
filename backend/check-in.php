@@ -8,7 +8,7 @@ if (isset($zx) && $zx == 'y') {
     $age = "40";
     $persona = "THE CONNECTED\nFAMILY COORDINATOR";
     $reason = "지금의 내 일상과 가장 비슷해서";
-    $persona_code = "지금의 내 일상과 가장 비슷해서";
+    $persona_code = "optimizer";
     $deviceId = "test-device";
 } else {
     $JsonData = file_get_contents('php://input');
