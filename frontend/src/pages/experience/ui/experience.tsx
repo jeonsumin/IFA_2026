@@ -10,10 +10,6 @@ import {experienceOptionsKey} from "../lib/persona-options";
 import {Loading} from "shared/ui/loading";
 
 
-// 카드 하단 사진: 상단 42%까지 완전 투명 → 텍스트 영역은 항상 깨끗한 배경, 사진은 하단에만 노출(존 무관 일관)
-const photoFade =
-    "[mask-image:linear-gradient(to_bottom,transparent_0%,transparent_42%,#000_88%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,transparent_42%,#000_88%)]";
-
 // 완료(clear)된 존 위에 덮는 오버레이: 회색 + 블러 + CLEAR
 const ClearOverlay = () => (
     <div className="absolute inset-0 flex items-center justify-center bg-lg-gray-4/60 backdrop-blur-[2px]">
@@ -33,7 +29,7 @@ export const Experience = () => {
     const openPopup = (zone: Zone) => {
         // 페르소나×존별 옵션(persona.<key>.<zone>.options) 우선, 없으면 zone.<slug>.options fallback
         const optionsKey = experienceOptionsKey(
-            persona,
+            persona || 'optimizer',
             zone.slug,
             (key) => (tRaw<unknown[]>(key)?.length ?? 0) > 0,
             zone.optionsKey,
@@ -68,24 +64,24 @@ export const Experience = () => {
 
             <div className="relative flex flex-col items-center pb-10 ">
                 {/* 상단 히어로(하단 곡선) */}
-                <div className="relative h-[210px] w-full ">
+                <div className="relative w-full ">
                     <img src="/images/experience/hero-photo.png" alt=""
                          className="w-full"/>
                 </div>
 
                 {/* 코디네이터 원형 사진 (히어로에 겹침) */}
                 <div className="size-40 overflow-hidden rounded-full border-1 border-white">
-                    <img src={`/images/experience/${persona}.png`} alt=""
+                    <img src={`/images/experience/${persona || 'optimizer' }.png`} alt=""
                          className="size-full object-cover"/>
                 </div>
 
                 {/* 페르소나 타이틀 + 설명 */}
                 <div className="mt-4 flex flex-col gap-2 px-5 text-center">
                     <p className="whitespace-pre-line text-xl font-bold leading-[1.2] text-black">
-                        {t(`persona.${persona}.title`)}
+                        {t(`persona.${persona || 'optimizer'}.title`)}
                     </p>
                     <p className="whitespace-pre-line text-sm leading-[1.4] tracking-[-0.28px] text-lg-gray-2">
-                        {t(`persona.${persona}.section`)}
+                        {t(`persona.${persona || 'optimizer'}.section`)}
                     </p>
                 </div>
 
@@ -95,7 +91,7 @@ export const Experience = () => {
                 </p>
 
                 {/* 존 그리드 2×2 */}
-                <div className="w-full px-5 mt-4 grid grid-cols-2 gap-2">
+                <div className="w-full px-5 mt-[24px] grid grid-cols-2 gap-2">
                     {ZONES.map((z) => (
                         <div
                             key={z.title || "clear"}
@@ -106,12 +102,12 @@ export const Experience = () => {
                                 src={z.img}
                                 alt=""
                                 aria-hidden
-                                className={cn("absolute inset-0 h-full w-full object-cover", photoFade)}
+                                className={cn("absolute inset-0 h-full w-full object-cover")}
                             />
 
                             <div
                                 className="absolute inset-x-0 top-0 flex flex-col gap-1 bg-gradient-to-b from-white/60 to-transparent p-3">
-                                <p className="w-fit bg-lg-ai-gradient bg-clip-text text-sm font-bold text-transparent">
+                                <p className="w-fit bg-lg-ai-gradient bg-clip-text text-sm font-bold text-transparent leading-4 tracking-[-0.28px]">
                                     {t(z.title)}
                                 </p>
                                 <p className="whitespace-pre-line text-[10px] leading-[1.4] tracking-[-0.2px] text-black">

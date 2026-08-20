@@ -14,13 +14,13 @@
     "surveySuccessDesc": "You have successfully completed the survey.\nYour feedback will help us create a better LG.",
     "rewardSuccessDesc": "Thank you for joining the experience.\nWe hope your special lifestyle journey with LG CLOiD was an enjoyable experience.",
     "rewardDesk": {
-      "title": "Please claim your reward at the <l>Reward Desk.</l>",
-      "section": "Please do not press the Confirm button below and show this screen to a staff member."
+      "title": "Please claim your reward\n at the Reward Desk.",
+      "section": "Please do not press the Confirm button below\n and show this screen to a staff member."
     }
   },
   "home": {
     "category": "Appliances, spaces, and lifestyles—",
-    "rhythm": "LG AI orchestrates your scattered daily life into one perfect rhythm.",
+    "rhythm": "LG AI orchestrates\n your scattered daily life\ninto one perfect rhythm.",
     "orchestra": "Your personal orchestra begins now."
   },
   "promotion": {
@@ -78,7 +78,7 @@
     "desc": "Discover your lifestyle and experience tailored recommendations from LG AI Orchestra."
   },
   "experienceSuccess": {
-    "done": "You have successfully completed the experience."
+    "done": "You have successfully completed\n the experience."
   },
   "zone": {
     "entertainment": {
@@ -741,7 +741,7 @@
     }
   },
   "report": {
-    "poweredBy": "with LG CLOiD",
+    "poweredBy": "with",
     "dailyRoutine": "Your daily life",
     "routineDesc": "Chores made far simpler, and relaxation deeply immersive, effectively tuned to your personal lifestyle patterns. LG AI naturally and seamlessly connects your day.",
     "takeSurvey": "Participate in the survey",
@@ -840,8 +840,8 @@
       "title": "Reward Claim Instructions",
       "label1": "Innovation in tune with you",
       "label2": "Thank you for joining the experience.",
-      "label3": "",
-      "label4": "We hope your special lifestyle journey with LG CLOiD was an enjoyable experience."
+      "label3": "We hope your special lifestyle journey",
+      "label4": "was an enjoyable experience."
     }
   }
 }

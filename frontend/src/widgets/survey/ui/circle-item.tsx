@@ -22,7 +22,7 @@ export const CircleItem = ({error, value, onChange}: CircleItemProps) => {
                     className={cn(
                         "flex h-12 w-12 items-center justify-center rounded-full border text-xl font-bold transition-colors",
                         value === n
-                            ? "border-lg-active-red bg-lg-active-red text-white"
+                            ? "border-lg-active-red text-lg-active-red "
                             : "border-state-disable-2 bg-white text-state-disable-1",
                         error && value !== n && "border-lg-active-red"
                     )}

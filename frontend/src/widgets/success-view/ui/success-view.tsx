@@ -1,6 +1,6 @@
 import {Button} from "shared/ui";
 import {useNavigate} from "react-router-dom";
-import {Trans, useTranslate} from "app/provider/lang";
+import {useTranslate} from "app/provider/lang";
 import {cn} from "shared/lib";
 
 type SuccessViewProps = {
@@ -17,18 +17,19 @@ const RewardView = () => {
     const {t} = useTranslate();
     return (
         <>
-            <div className="flex flex-col items-center gap-4 text-center">
+            <div className="flex flex-col items-center gatext-center gap-4">
                 <p className="text-2xl font-bold leading-none text-black">{t("reward.popup.title")}</p>
-                <div>
-                    <p className="whitespace-pre-line text-base font-semibold leading-[1.4] text-lg-gray-2">{t("reward.popup.label1")}</p>
+
+                <p className="whitespace-pre-line text-base font-bold">{t("reward.popup.label1")}</p>
+
+                <div className="text-center flex flex-col justify-start gap-1">
                     <p className="whitespace-pre-line leading-[1.4] text-lg-gray-2">{t("reward.popup.label2")}</p>
-                </div>
-                <div className="text-center flex flex-col gap-1">
-                    <div className='flex items-center justify-center'>
+                    <p className="whitespace-pre-line leading-[1.4] text-lg-gray-2">{t("reward.popup.label3")}</p>
+                    <p className="text-base tracking-[-0.32px] text-black flex gap-1 self-center">
+                        {t("report.poweredBy")}
                         <img src="/images/report/cloid_logo.svg" alt=""/>
-                        <p className="whitespace-pre-line leading-[1.4] text-lg-gray-2">{t("reward.popup.label3")}</p>
-                    </div>
-                    <p className="whitespace-pre-line text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">{t("reward.popup.label4")}</p>
+                    </p>
+                    <p className="whitespace-pre-line text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">{t("reward.popup.label4")} </p>
                 </div>
             </div>
             <div className="flex flex-col gap-4 justify-center text-center pt-10">
@@ -36,8 +37,8 @@ const RewardView = () => {
                 <div
                     className={cn(outlineActive, 'rounded-2xl flex justify-center items-center text-start gap-4 py-4')}>
                     <img src="/images/gift.svg" alt="gift" sizes={"36"}/>
-                    <div className='text-sm whitespace-pre-line'>
-                        <Trans tKey="common.rewardDesk.title" components={[<span className="font-bold"/>]}/>
+                    <div className='text-sm whitespace-pre-line font-extrabold'>
+                        {t("common.rewardDesk.title")}
                     </div>
 
                 </div>
@@ -65,8 +66,8 @@ const SurveyView = ({title, desc}: { title: string; desc: string; }) => {
                 <div
                     className={cn(outlineActive, 'rounded-2xl flex justify-center items-center text-start gap-4 py-4')}>
                     <img src="/images/gift.svg" alt="gift" sizes={"36"}/>
-                    <div className='text-sm whitespace-pre-line'>
-                        <Trans tKey="common.rewardDesk.title" components={[<span className="font-bold"/>]}/>
+                    <div className='text-sm whitespace-pre-line font-extrabold'>
+                        {t("common.rewardDesk.title")}
                     </div>
 
                 </div>
@@ -74,6 +75,7 @@ const SurveyView = ({title, desc}: { title: string; desc: string; }) => {
                 <p className="text-xs whitespace-pre-line">
                     {t("common.rewardDesk.section")}
                 </p>
+
             </div>
         </>
     )
@@ -102,11 +104,11 @@ export const SuccessView = (props: SuccessViewProps) => {
                 className="pointer-events-none absolute inset-0 bg-gradient-to-b from-lg-active-red/25 to-bg-default/25"/>
 
             {/* 로봇(핑크 글로우) */}
-            <div className="relative flex flex-1 items-center justify-center mt-10">
+            <div className={cn("relative flex flex-1 items-center justify-center mt-10", section !== null && "px-20")}>
                 <img
                     src={image}
                     alt={t('common.robotAlt')}
-                    className="w-[360px] max-w-full"
+                    className={cn(" max-w-full", section == null ? "w-full" : "")}
                 />
             </div>
 

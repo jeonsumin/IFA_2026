@@ -27,11 +27,11 @@ const outlineActive =
     "border-2 border-transparent [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(90deg,var(--lg-red),var(--lg-ai-pink),var(--lg-ai-purple))_border-box]";
 
 // 비활성
-const outlineInactive = "border border-lg-gray-5 bg-white text-lg-gray-3";
+const outlineInactive = "border-2 border-white bg-white text-lg-gray-2";
 
 // 활성 outline 텍스트는 그라데이션 (배경은 테두리 트릭이 점유하므로 별도 span)
 const outlineActiveText =
-    "bg-lg-ai-gradient bg-clip-text text-primary font-medium";
+    "bg-lg-ai-gradient bg-clip-text text-primary ";
 
 const sizeClass: Record<Size, string> = {
     default: "text-base py-[17px]",
@@ -95,7 +95,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 {isOutline ? (
                     <>
                         <span className={cn(
-                            "flex items-center gap-2 justify-between px-5",
+                            "flex items-center  justify-between px-5 ",
                             active ? outlineActiveText : undefined)}
                         >
                             {startIcon && <CheckIcon active={active}/>}

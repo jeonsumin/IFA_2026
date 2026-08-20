@@ -113,7 +113,7 @@ export const OtpInput = ({
                     onKeyDown={(e) => handleKeyDown(i, e)}
                     onPaste={handlePaste}
                     className={cn(
-                        "h-12 w-12 rounded border bg-white text-center text-lg outline-none",
+                        "size-20 rounded-md border bg-white text-center text-lg outline-none",
                         "focus-visible:ring-2 focus-visible:ring-ring",
                         "disabled:opacity-50 disabled:pointer-events-none",
                         error ? "border-destructive" : "border-input"
