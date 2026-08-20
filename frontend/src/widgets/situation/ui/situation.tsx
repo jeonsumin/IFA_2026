@@ -43,7 +43,7 @@ const NextView = ({slug, result, optionTitle}: NextViewProps) => {
 
             <div className='relative flex flex-col justify-center  items-center '>
                 <div className="absolute z-10 top-4 text-white text-center flex flex-col justify-center gap-4 ">
-                    <p className='bg-lg-ai-gradient w-fit px-3 text-white rounded-full self-center'>
+                    <p className='bg-lg-ai-gradient w-fit px-3 text-white rounded-full self-center text-xs'>
                         {optionTitle}
                     </p>
                 </div>
@@ -88,6 +88,16 @@ export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProp
     const handleNext = async () => {
         if (selected === null || saving) return;
         const opt = options[selected];
+        if( import.meta.env.DEV) {
+            pushFullPage({
+                content: <NextView
+                    slug={slug}
+                    result={opt.result ?? tRaw<string[]>(resultKey) ?? []}
+                    optionTitle={opt.title}
+                />,
+            });
+            return
+        }
         const ok = await save(slug, opt.title, opt.desc);
         if (ok) {
             pushFullPage({
@@ -109,7 +119,7 @@ export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProp
 
             <div className='relative flex flex-col justify-center  items-center '>
                 <div className="absolute z-10 top-4 text-white text-center flex flex-col justify-center gap-4 ">
-                    <p className='bg-lg-ai-gradient w-fit px-3 text-white rounded-full self-center'>
+                    <p className='bg-lg-ai-gradient w-fit px-3 text-white rounded-full self-center text-xs font-extrabold'>
                         {t(titleKey)}
                     </p>
                     <p className="whitespace-pre-line">{t('situation.subtitle')}</p>

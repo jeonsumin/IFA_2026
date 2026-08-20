@@ -14,10 +14,10 @@ export const Promotion = () => {
                 className="pointer-events-none absolute inset-0 size-full object-cover"
             />
 
-            <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[960px] flex-col items-center justify-center gap-20 px-8 py-16 text-center">
+            <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[960px] flex-col items-center justify-center gap-20 px-8 py-8 text-center">
+                <img src="/images/welcome/logo.svg" alt={t('common.logoAlt')} className="h-10"/>
                 {/* 로고 + Life's Good + 슬로건 */}
                 <div className="flex flex-col items-center gap-6">
-                    <img src="/images/welcome/logo.svg" alt={t('common.logoAlt')} className="h-8"/>
                     <img src="/images/welcome/lifes-good.svg" alt={t('common.lifesGood')} className="w-[700px] max-w-full"/>
                     <p className="text-4xl font-semibold">{t('common.slogan')}</p>
                 </div>

@@ -66,7 +66,7 @@ export const OtpView = ({type, onConfirmed}: OtpViewProps) => {
             </div>
 
             <Button className="mt-auto font-bold" disabled={!filled} onClick={handleConfirm}>
-                확인
+                {t("common.confirm")}
             </Button>
         </div>
     );

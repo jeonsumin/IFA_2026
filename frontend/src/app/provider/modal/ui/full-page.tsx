@@ -11,7 +11,7 @@ type Props = {
 export const FullPage = ({stack, progress, steps, pop, close}: Props) => {
     const depth = stack.length;
     const top = stack[depth - 1];
-    const canGoBack = depth > 1;
+    const canGoBack = false;
 
     // 진행률 = 현재 단계 / 전체 단계. steps 미지정 시 스택 길이로 대체(항상 100%)
     const total = steps ?? depth;
@@ -22,10 +22,10 @@ export const FullPage = ({stack, progress, steps, pop, close}: Props) => {
             <div
                 role="dialog"
                 aria-modal="true"
-                className="relative flex h-full w-full max-w-[var(--maxWidth)] flex-col overflow-hidden bg-white"
+                className="relative flex h-full w-full max-w-[var(--maxWidth)] flex-col overflow-hidden bg-[#F0ECE4]"
             >
                 <header
-                    className="relative flex h-[var(--headerHeight)] shrink-0 items-center justify-center border-b border-lg-gray-5">
+                    className="relative flex h-[var(--headerHeight)] shrink-0 items-center justify-center border-b border-lg-gray-5 bg-white">
                     {canGoBack && (
                         <button
                             type="button"
@@ -37,7 +37,7 @@ export const FullPage = ({stack, progress, steps, pop, close}: Props) => {
                         </button>
                     )}
                     {!top.title && <img src="/images/logo.svg" alt={"logo"}/>}
-                    {top.title && <h2 className="text-lg font-bold text-center whitespace-pre-line">{top.title}</h2>}
+                    {top.title && <h2 className="text-base font-bold text-center whitespace-pre-line">{top.title}</h2>}
                     <button
                         type="button"
                         onClick={close}
@@ -61,7 +61,7 @@ export const FullPage = ({stack, progress, steps, pop, close}: Props) => {
                 )}
                 <div
                     key={depth}
-                    className="flex-1 overflow-y-auto scrollbar-hide bg-white"
+                    className="flex-1 overflow-y-auto scrollbar-hide "
                 >
                     {top.content}
                 </div>

@@ -39,7 +39,7 @@ export const CheckItem = ({questions, mult, error, value, onChange}: CheckItemPr
                         className={cn(
                             "flex items-center gap-4 w-full border bg-white py-4 text-left text-base text-state-text-body transition-colors",
                             q.img ? 'w-full rounded-md justify-start pr-3' : "rounded-full px-6",
-                            selected ? "border-lg-active-red" : "border-state-disable-2",
+                            selected ? "border-lg-active-red text-lg-active-red" : "border-state-disable-2",
                             error && "border-lg-active-red"
                         )}
                     >

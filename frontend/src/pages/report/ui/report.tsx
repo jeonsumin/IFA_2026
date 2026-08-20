@@ -43,6 +43,7 @@ export const Report = () => {
         content: (
             <SuccessView
                 section={"survey"}
+                image={"/images/cloid_welcome3.png"}
                 onClick={() => openReward(type, markSurveyRewarded)}
             />
         ),
@@ -66,6 +67,7 @@ export const Report = () => {
             title: "리워드",
             content: <SuccessView
                 section={type}
+                image={"/images/cloid_welcome3.png"}
                 onClick={() => openReward(type, onConfirmed)}
             />
         })
@@ -114,7 +116,7 @@ export const Report = () => {
         <div className="flex min-h-full flex-col items-center bg-bg-default">
             {/* 상단: 페르소나 히어로 */}
 
-            <img src="/images/report/result_persona01.png" alt=""/>
+            <img src={`/images/report/result_${reportStatus.persona || 'worker'}.png`} alt=""/>
             {/*클로이 로봇*/}
             <img
                 src="/images/welcome/cloi.png"
@@ -126,7 +128,7 @@ export const Report = () => {
                 {/*프로스트 글래스 웨이브 seam (패널과 동일 재질)*/}
                 <div
                     aria-hidden
-                    className="-mt-8 h-20 w-full bg-white/40 "
+                    className="h-20 w-full bg-white/40 "
                     style={{
                         maskImage: "url(/images/welcome/glass-wave-mask.svg)",
                         WebkitMaskImage: "url(/images/welcome/glass-wave-mask.svg)",
@@ -140,20 +142,20 @@ export const Report = () => {
                 {/*결과 요약 + 존 리스트*/}
                 <div className="flex flex-col gap-10 bg-white/40 px-5 pt-2 ">
                     <div className="flex flex-col items-center gap-4 text-center">
-                        <div className='rounded-[20px] bg-white px-3 py-1'>
+                        <div className='rounded-[20px] bg-white px-3 '>
                             <span
                                 className="bg-lg-ai-gradient bg-clip-text text-xs font-bold text-transparent">
-                                YOUR AI LIFESTYLE ROUTINE
+                                Innovation in tune with you
                             </span>
                         </div>
                         <div className="flex flex-col items-center">
-                            <p className="text-base font-semibold tracking-[-0.32px] text-black flex ">
-                                <img src="/images/report/cloid_logo.svg" alt=""/>
-                                {t("report.poweredBy")}
-                            </p>
                             <p className="text-2xl font-bold text-black">{t('report.dailyRoutine')}</p>
+                            <p className="text-base font-semibold tracking-[-0.32px] text-black flex gap-2">
+                                {t("report.poweredBy")}
+                                <img src="/images/report/cloid_logo.svg" alt=""/>
+                            </p>
                         </div>
-                        <p className="whitespace-pre-line text-sm font-semibold leading-[1.4] tracking-[-0.28px] text-lg-gray-2">
+                        <p className="whitespace-pre-line text-sm  leading-[1.4] tracking-[-0.28px] text-lg-gray-2">
                             {t('report.routineDesc')}
                         </p>
                     </div>
@@ -219,15 +221,15 @@ export const Report = () => {
                             <p className="text-base font-semibold tracking-[-0.32px] text-black">{t('report.download')}</p>
                         </div>
                         <div className="flex px-3.5 gap-2">
-                            <img src="/images/report/stores_google.svg"
+                            <img src="/images/report/stores_google.png"
                                  alt="Google Play"
-                                 className="w-[294px] max-w-full"
+                                 className="w-[140px] max-w-full"
                                  onClick={() => handleStore("google")}
                             />
 
-                            <img src="/images/report/stores_apple.svg"
+                            <img src="/images/report/stores_apple.png"
                                  alt="App Store"
-                                 className="w-[294px] max-w-full"
+                                 className="w-[140px] max-w-full"
                                  onClick={() => handleStore("apple")}
                             />
 

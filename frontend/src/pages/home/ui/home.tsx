@@ -42,9 +42,9 @@ export const Home = () => {
                     <img src="/images/welcome/logo.svg" alt={t('common.logoAlt')} className="h-10"/>
                 </div>
 
-                <div className="mt-[9%] flex flex-col items-center gap-4 px-5 text-center">
+                <div className="mt-[9%] flex flex-col items-center gap-4 px-[30px] text-center">
                     <p className="text-2xl font-bold">{t('common.slogan')}</p>
-                    <img src="/images/welcome/lifes-good.svg" alt={t('common.lifesGood')} className="w-[83%] max-w-[300px]"/>
+                    <img src="/images/welcome/lifes-good.svg" alt={t('common.lifesGood')} className="w-full "/>
                 </div>
 
                 <div className="mt-auto flex flex-col bg-gradient-to-b from-transparent to-black/70 pt-10">

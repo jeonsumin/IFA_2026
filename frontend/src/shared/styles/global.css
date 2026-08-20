@@ -70,7 +70,7 @@
 
     /* 설문(서베이) state 토큰 */
     --color-state-text-body: #4a4946;
-    --color-state-disable-1: #959595;
+    --color-state-disable-1: var(--disable);
     --color-state-disable-2: #dddddd;
     --color-state-line: #e6e1d6;
 
@@ -103,7 +103,7 @@
     --button-border: oklch(0.9106 0.0157 86.43);
     --input: oklch(0.92 0.004 286.32);
     --ring: oklch(0.704 0.191 22.216);
-    --disable: oklch(0.683 0 0);
+    --disable: oklch(0.67 0 89.876 / 0.4);
     --chart-1: oklch(0.808 0.114 19.571);
     --chart-2: oklch(0.637 0.237 25.331);
     --chart-3: oklch(0.577 0.245 27.325);
