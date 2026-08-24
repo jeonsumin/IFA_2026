@@ -82,7 +82,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 ref={ref}
                 type={type}
                 className={cn(
-                    "w-full rounded-full",
+                    "w-full rounded-full ",
                     isOutline && "",
                     "disabled:bg-none disabled:bg-disable disabled:pointer-events-none",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",

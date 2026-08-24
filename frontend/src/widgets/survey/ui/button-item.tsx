@@ -44,6 +44,7 @@ export const ButtonItem = ({title, questions, required, mult, error, value, endI
                         endIcon={endIcon}
                         startIcon={startIcon}
                         onClick={() => handleClick(q.content)}
+                        className="tracking-[-0.74px] rounded-2xl"
                     >
                         {q.content}
                     </Button>

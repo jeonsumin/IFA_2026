@@ -27,7 +27,7 @@ export const useCheckInForm = () => {
     const errors = {
         name: firstError(name, [
             is.match((v: string) => !!v.trim(), t("validation.nameRequired")),
-            is.match((v: string) => v.length <= 8, t("validation.nameMax")),
+            is.match((v: string) => v.length <= 15, t("validation.nameMax")),
         ]),
         email: firstError(email, [
             is.match((v: string) => !!v.trim(), t("validation.emailRequired")),

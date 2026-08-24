@@ -113,7 +113,7 @@ export const Persona = () => {
                                     onClick={() => selectedPersona(i)}
                                     aria-pressed={on}
                                     className={cn(
-                                        "relative h-[130px] w-full overflow-hidden rounded-2xl bg-white/70 bg-cover bg-no-repeat bg-right text-left",
+                                        "relative h-[130px] w-full overflow-hidden rounded-2xl bg-white/70 bg-cover bg-no-repeat bg-right text-left tracking-[-0.24px]",
                                         !on && "border border-white",
                                     )}
                                     style={{ backgroundImage: `url('${p.img}')` }}
@@ -181,7 +181,7 @@ export const Persona = () => {
                             variant="ghost"
                             disabled={!persona || !answers[persona.id]}
                             onClick={submitPersona}
-                            className="bg-lg-ai-gradient font-bold text-white"
+                            className="bg-lg-ai-gradient font-bold text-white "
                         >
                             {t('common.confirm')}
                         </Button>
