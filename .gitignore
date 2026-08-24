@@ -4,3 +4,5 @@
 
 # pnpm 로컬 스토어
 frontend/.pnpm-store/
+
+k3s/
