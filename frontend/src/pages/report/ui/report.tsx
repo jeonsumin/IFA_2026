@@ -64,7 +64,7 @@ export const Report = () => {
 
     const handleReward = (type: RewardType, onConfirmed: () => void) => {
         openFullPage({
-            title: "리워드",
+            title: t("report.reward"),
             content: <SuccessView
                 section={type}
                 image={"/images/cloid_welcome3.png"}
