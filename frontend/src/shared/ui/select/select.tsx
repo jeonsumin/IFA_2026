@@ -130,7 +130,7 @@ export const Select = ({
                     className
                 )}
             >
-                <span className={cn(!selectedOption && "text-muted-foreground", "text-placeholder")}>
+                <span className={cn(!selectedOption && "text-placeholder")}>
                     {selectedOption ? selectedOption.label : placeholder}
                 </span>
                 <ChevronDown className={cn("h-4 w-4 shrink-0 transition-transform", open && "rotate-180")}/>

@@ -10,6 +10,7 @@ $ALLOWED_IPS = [
 // 실제 클라 IP는 X-Forwarded-For의 마지막 값(Traefik이 append한 TCP 피어 = 스푸핑 방어).
 $clientIp = $_SERVER['REMOTE_ADDR'] ?? '';
 
+
 if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
     $xff = array_map('trim', explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']));
     $clientIp = end($xff);
@@ -87,37 +88,45 @@ LEFT JOIN (
     GROUP BY USER_ID
 ) SL
    ON SL.USER_ID = U.ID" . $dateWhere . "
+   ORDER BY U.CHECKIN_DATE DESC
   ";
 
 $row = rf_mysql_arr($sql, $DB);
 
 // ── 상단 KPI 카드용 집계 (raw 테이블과 별개, 가벼운 COUNT 쿼리) ──────────────
+// checkinDt 지정 시 KPI도 그 날짜로 필터. USER는 CHECKIN_DATE 직접, 나머지는 USER_ID로 한정.
+$kpiUserWhere = $checkinDt ? "\nWHERE CHECKIN_DATE = '" . ESC($checkinDt, $DB) . "'" : "";
+$kpiUserIdIn = $checkinDt
+    ? "USER_ID IN (SELECT ID FROM USER WHERE CHECKIN_DATE = '" . ESC($checkinDt, $DB) . "')"
+    : "";
+
 // USER: 전체 / 금일 체크인(KST CURDATE) / 리워드 수령
 $userStat = rf_mysql_row("SELECT
         COUNT(*)                       AS TOTAL
         , SUM(CHECKIN_DATE = CURDATE()) AS TODAY
         , SUM(USER_REWARD = 1)          AS REWARD_USER
-    FROM USER", $DB) ?: [];
+    FROM USER" . $kpiUserWhere, $DB) ?: [];
 
 // 존별 QR 체험완료 수 → [zone => cnt]
 $zoneCnt = [];
-foreach (rf_mysql_arr("SELECT `ZONE`, SUM(QR_SCANNED = 1) AS CNT FROM EX_DATA GROUP BY `ZONE`", $DB) ?: [] as $z) {
+$exWhere = $kpiUserIdIn ? "\nWHERE " . $kpiUserIdIn : "";
+foreach (rf_mysql_arr("SELECT `ZONE`, SUM(QR_SCANNED = 1) AS CNT FROM EX_DATA" . $exWhere . " GROUP BY `ZONE`", $DB) ?: [] as $z) {
     $zoneCnt[$z['ZONE']] = (int)$z['CNT'];
 }
 $ZONES = ['entertainment' => 'Entertainment', 'living' => 'Living', 'harmony' => 'Harmony', 'elegance' => 'Elegance'];
 
 // 4개 존 모두 QR 완료(CLEAR) 인원
 $clearStat = rf_mysql_row("SELECT COUNT(*) AS CLEAR FROM (
-        SELECT USER_ID FROM EX_DATA WHERE QR_SCANNED = 1
+        SELECT USER_ID FROM EX_DATA WHERE QR_SCANNED = 1" . ($kpiUserIdIn ? " AND " . $kpiUserIdIn : "") . "
         GROUP BY USER_ID HAVING COUNT(DISTINCT `ZONE`) = 4
     ) t", $DB) ?: [];
 
 // 서베이 참여 / 서베이 리워드 수령
-$surveyStat = rf_mysql_row("SELECT COUNT(*) AS SURVEY_CNT, SUM(REWARD = 1) AS SURVEY_REWARD FROM SURVEY", $DB) ?: [];
+$surveyStat = rf_mysql_row("SELECT COUNT(*) AS SURVEY_CNT, SUM(REWARD = 1) AS SURVEY_REWARD FROM SURVEY" . ($kpiUserIdIn ? "\nWHERE " . $kpiUserIdIn : ""), $DB) ?: [];
 
 // 페르소나 분포 → [PERSONA_CODE => cnt]. 고정 4종은 없어도 0으로 노출.
 $personaCnt = [];
-foreach (rf_mysql_arr("SELECT PERSONA_CODE, COUNT(*) AS CNT FROM PERSONA GROUP BY PERSONA_CODE", $DB) ?: [] as $p) {
+foreach (rf_mysql_arr("SELECT PERSONA_CODE, COUNT(*) AS CNT FROM PERSONA" . ($kpiUserIdIn ? "\nWHERE " . $kpiUserIdIn : "") . " GROUP BY PERSONA_CODE", $DB) ?: [] as $p) {
     $personaCnt[$p['PERSONA_CODE']] = (int)$p['CNT'];
 }
 $PERSONAS = ['optimizer', 'coordinator', 'homemaker', 'worker'];
@@ -130,7 +139,7 @@ $columns = ['CHECKIN_DATE', 'USER_GENDER', 'USER_AGE', 'USER_REWARD',
     'HARMONY', 'HARMONY_QR',
     'ELEGANCE', 'ELEGANCE_QR',
     'Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'SURVEY_REWARD',
-    'TARGET', 'CREATE_DT',
+    'TARGET', 'UPDATE_DT', 'CREATE_DT',
 ];
 
 ?>
@@ -141,157 +150,38 @@ $columns = ['CHECKIN_DATE', 'USER_GENDER', 'USER_AGE', 'USER_REWARD',
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box;}
+        body {margin: 0;padding: 20px;font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;background: #f5f6f8;color: #1a1a1a;}
+        h1 {font-size: 20px;margin: 0 0 4px;}
+        section {margin-bottom: 24px;}
+        table {border-collapse: collapse;width: 100%;font-size: 12px;background: #fff;}
+        th, td {border: 1px solid #ccc;padding: 6px 8px;text-align: left;white-space: nowrap;}
+        th {background: #f2f2f2;position: sticky;top: 0;}
+        tbody tr:nth-child(even) {background: #fafafa;}
 
-        body {
-            margin: 0;
-            padding: 20px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: #f5f6f8;
-            color: #1a1a1a;
-        }
+        .mt10{margin-top: 10px !important;}
+        .mt20{margin-top: 20px !important;}
+        .mt30{margin-top: 30px !important;}
+        .mt40{margin-top: 40px !important;}
+        .mt50{margin-top: 50px !important;}
 
-        h1 {
-            font-size: 20px;
-            margin: 0 0 4px;
-        }
-
-        .sub {
-            color: #888;
-            font-size: 12px;
-        }
-
-        .page-head {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .danger-btn {
-            font-size: 13px;
-            font-weight: 600;
-            padding: 8px 14px;
-            border: 1px solid #e02424;
-            border-radius: 8px;
-            background: #fff;
-            color: #e02424;
-            cursor: pointer;
-        }
-
-        .danger-btn:hover {
-            background: #e02424;
-            color: #fff;
-        }
-
-        section {
-            margin-bottom: 24px;
-        }
-
-        .sec-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: #555;
-            margin: 0 0 8px;
-        }
-
-        .sec-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .sec-head .sec-title {
-            margin-bottom: 8px;
-        }
-
-        .copy-btn {
-            font-size: 12px;
-            padding: 5px 12px;
-            border: 1px solid #d0d3d8;
-            border-radius: 6px;
-            background: #fff;
-            color: #333;
-            cursor: pointer;
-        }
-
-        .copy-btn:hover {
-            background: #f0f1f3;
-        }
-
-        .table-wrap {
-            width: 100%;
-            max-width: 100%;
-            overflow-x: auto;
-            border-radius: 8px;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 12px;
-        }
-
-        .card {
-            background: #fff;
-            border: 1px solid #e6e8eb;
-            border-radius: 10px;
-            padding: 14px 16px;
-        }
-
-        .card .label {
-            font-size: 12px;
-            color: #888;
-            margin-bottom: 6px;
-        }
-
-        .card .value {
-            font-size: 26px;
-            font-weight: 700;
-            line-height: 1;
-        }
-
-        .card .value small {
-            font-size: 13px;
-            font-weight: 500;
-            color: #aaa;
-        }
-
-        .card.accent {
-            background: linear-gradient(135deg, #ff3d5a, #a03cff);
-            border: none;
-            color: #fff;
-        }
-
-        .card.accent .label {
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            font-size: 12px;
-            background: #fff;
-        }
-
-        th, td {
-            border: 1px solid #ccc;
-            padding: 6px 8px;
-            text-align: left;
-            white-space: nowrap;
-        }
-
-        th {
-            background: #f2f2f2;
-            position: sticky;
-            top: 0;
-        }
-
-        tbody tr:nth-child(even) {
-            background: #fafafa;
-        }
+        .sub {color: #888;font-size: 12px;}
+        .page-head {display: flex;align-items: flex-start;justify-content: space-between;margin-bottom: 20px;}
+        .danger-btn {font-size: 13px;font-weight: 600;padding: 8px 14px;border: 1px solid #e02424;border-radius: 8px;background: #fff;color: #e02424;cursor: pointer;}
+        .danger-btn:hover {background: #e02424;color: #fff;}
+        .sec-title {font-size: 13px;font-weight: 700;color: #555;margin: 0 0 8px;}
+        .sec-head {display: flex;align-items: center;justify-content: space-between;}
+        .sec-head .sec-title {margin-bottom: 8px;}
+        .copy-btn {font-size: 12px;padding: 5px 12px;border: 1px solid #d0d3d8;border-radius: 6px;background: #fff;color: #333;cursor: pointer;}
+        .copy-btn:hover {background: #f0f1f3;}
+        .table-wrap {width: 100%;max-width: 100%;overflow-x: auto;border-radius: 8px;}
+        .cards {display: grid;grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));gap: 12px;}
+        .card {background: #fff;border: 1px solid #e6e8eb;border-radius: 10px;padding: 14px 16px;}
+        .card .label {font-size: 12px;color: #888;margin-bottom: 6px;}
+        .card .value {font-size: 26px;font-weight: 700;line-height: 1;}
+        .card .value small {font-size: 13px;font-weight: 500;color: #aaa;}
+        .card.accent {background: linear-gradient(135deg, #ff3d5a, #a03cff);border: none;color: #fff;}
+        .card.accent .label {color: rgba(255, 255, 255, 0.85);}
     </style>
 </head>
 <body>
@@ -299,7 +189,9 @@ $columns = ['CHECKIN_DATE', 'USER_GENDER', 'USER_AGE', 'USER_REWARD',
     <div>
         <h1>IFA 2026 Dashboard</h1>
         <div class="sub"><?= date('Y-m-d H:i') ?> 기준</div>
-        <div class="sub">날짜 조회: URL 끝에 <code>?checkinDt=YYYY-MM-DD</code> 추가 (미지정 시 전체)<?php if ($checkinDt): ?> · 현재 필터: <strong><?= htmlspecialchars($checkinDt) ?></strong><?php endif; ?></div>
+        <div class="sub">날짜 조회: URL 끝에 <code>?checkinDt=YYYY-MM-DD</code> 추가 (미지정 시
+            전체)<?php if ($checkinDt): ?> · 현재 필터: <strong><?= htmlspecialchars($checkinDt) ?></strong><?php endif; ?>
+        </div>
     </div>
     <form method="post" onsubmit="return confirm('금일(오늘) 체크인한 USER 데이터를 삭제합니다.\n되돌릴 수 없습니다. 계속할까요?');">
         <input type="hidden" name="action" value="delete_today">
@@ -308,14 +200,14 @@ $columns = ['CHECKIN_DATE', 'USER_GENDER', 'USER_AGE', 'USER_REWARD',
 </div>
 
 <section>
-    <p class="sec-title">전체 현황</p>
+    <p class="sec-title">체험 현황</p>
     <div class="cards">
         <div class="card accent">
             <div class="label">금일 체크인</div>
             <div class="value"><?= (int)($userStat['TODAY'] ?? 0) ?></div>
         </div>
         <div class="card">
-            <div class="label">전체 체크인</div>
+            <div class="label">체크인</div>
             <div class="value"><?= (int)($userStat['TOTAL'] ?? 0) ?></div>
         </div>
         <div class="card">
@@ -335,6 +227,15 @@ $columns = ['CHECKIN_DATE', 'USER_GENDER', 'USER_AGE', 'USER_REWARD',
             <div class="value"><?= (int)($surveyStat['SURVEY_REWARD'] ?? 0) ?></div>
         </div>
     </div>
+
+    <div class="cards mt10">
+        <?php foreach ($ZONES as $slug => $name): ?>
+            <div class="card">
+                <div class="label"><?= htmlspecialchars($name) ?></div>
+                <div class="value"><?= (int)($zoneCnt[$slug] ?? 0) ?></div>
+            </div>
+        <?php endforeach; ?>
+    </div>
 </section>
 
 
@@ -350,22 +251,10 @@ $columns = ['CHECKIN_DATE', 'USER_GENDER', 'USER_AGE', 'USER_REWARD',
     </div>
 </section>
 
-<section>
-    <p class="sec-title">존별 체험 수 (QR 완료)</p>
-    <div class="cards">
-        <?php foreach ($ZONES as $slug => $name): ?>
-            <div class="card">
-                <div class="label"><?= htmlspecialchars($name) ?></div>
-                <div class="value"><?= (int)($zoneCnt[$slug] ?? 0) ?></div>
-            </div>
-        <?php endforeach; ?>
-    </div>
-</section>
-
 
 <section>
     <div class="sec-head">
-        <p class="sec-title">Raw Data</p>
+        <p class="sec-title">Raw Data <? echo $checkinDt ?></p>
         <button type="button" id="copyRaw" class="copy-btn">복사</button>
     </div>
     <div class="table-wrap">
