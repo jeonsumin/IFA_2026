@@ -11,7 +11,7 @@ export const useDownloadReport = () => {
         try {
             await document.fonts.ready; // 폰트 로드 후 캡처(누락 방지)
             const canvas = await html2canvas(node, {
-                scale: 2,               // 레티나 선명도
+                scale: 3,               // 레티나 선명도
                 backgroundColor: "#f0ece4",
                 useCORS: true,
             });

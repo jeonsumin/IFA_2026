@@ -49,7 +49,7 @@ export const Home = () => {
 
                 <div className="mt-auto flex flex-col bg-gradient-to-b from-transparent to-black/70 pt-10">
                     <div
-                        className="flex flex-col items-center gap-4 px-5 text-center text-base leading-[1.4] tracking-[-0.32px]">
+                        className="flex flex-col items-center gap-4 px-5 text-center text-base leading-[1.3] tracking-[-0.32px]">
                         <p>{t('home.category')}</p>
                         <p className="whitespace-pre-line">{t('home.rhythm')}</p>
                         <p className="whitespace-pre-line">{t('home.orchestra')}</p>

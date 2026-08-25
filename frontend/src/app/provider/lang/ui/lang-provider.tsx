@@ -73,7 +73,7 @@ export const Trans = ({tKey, components, vars}: {
 }) => {
     const t = useT();
     // split(캡처그룹) 결과: [before, idx, inner, after, idx, inner, ...]
-    const parts = t(tKey, vars).split(/<(\d+)>(.*?)<\/\1>/g);
+    const parts = t(tKey, vars).split(/<(\d+)>(.*?)<\/\1>/gs); // s: 태그 안 \n 포함 매칭
     const nodes: ReactNode[] = [];
     for (let i = 0; i < parts.length; i++) {
         if (i % 3 === 0) {

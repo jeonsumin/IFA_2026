@@ -29,7 +29,7 @@ export const Experience = () => {
     const openPopup = (zone: Zone) => {
         // 페르소나×존별 옵션(persona.<key>.<zone>.options) 우선, 없으면 zone.<slug>.options fallback
         const optionsKey = experienceOptionsKey(
-            persona || 'optimizer',
+            persona || 'homemaker',
             zone.slug,
             (key) => (tRaw<unknown[]>(key)?.length ?? 0) > 0,
             zone.optionsKey,
@@ -71,17 +71,17 @@ export const Experience = () => {
 
                 {/* 코디네이터 원형 사진 (히어로에 겹침) */}
                 <div className="size-40 overflow-hidden rounded-full border-1 border-white">
-                    <img src={`/images/experience/${persona || 'optimizer' }.png`} alt=""
+                    <img src={`/images/experience/${persona || 'homemaker'}.png`} alt=""
                          className="size-full object-cover"/>
                 </div>
 
                 {/* 페르소나 타이틀 + 설명 */}
                 <div className="mt-4 flex flex-col gap-2 px-5 text-center">
                     <p className="whitespace-pre-line text-xl font-bold leading-[1.2] text-black">
-                        {t(`persona.${persona || 'optimizer'}.title`)}
+                        {t(`persona.${persona || 'homemaker'}.title`)}
                     </p>
-                    <p className="whitespace-pre-line text-sm leading-[1.4] tracking-[-0.28px] text-lg-gray-2">
-                        {t(`persona.${persona || 'optimizer'}.section`)}
+                    <p className="whitespace-pre-line text-sm leading-[1.3] tracking-[-0.28px] text-lg-gray-2">
+                        {t(`persona.${persona || 'homemaker'}.section`)}
                     </p>
                 </div>
 
@@ -96,26 +96,27 @@ export const Experience = () => {
                         <div
                             key={z.title || "clear"}
                             className="relative h-[170px] overflow-hidden rounded-2xl border border-white bg-[#E6E1D600]"
-                            onClick={() => openPopup(z)}
                         >
                             <img
                                 src={z.img}
                                 alt=""
                                 aria-hidden
                                 className={cn("absolute inset-0 h-full w-full object-cover")}
+                                onClick={() => openPopup(z)}
                             />
 
                             <div
+                                onClick={() => openPopup(z)}
                                 className="absolute inset-x-0 top-0 flex flex-col gap-1 bg-gradient-to-b from-white/60 to-transparent p-3">
                                 <p className="w-fit bg-lg-ai-gradient bg-clip-text text-sm font-bold text-transparent leading-4 tracking-[-0.28px]">
                                     {t(z.title)}
                                 </p>
-                                <p className="whitespace-pre-line text-[10px] leading-[1.4] tracking-[-0.2px] text-black">
+                                <p className="whitespace-pre-line text-[10px] leading-[1.3] tracking-[-0.2px] text-black">
                                     {t(z.descKey)}
                                 </p>
                             </div>
-
                             {clearedZones.has(z.slug) && <ClearOverlay/>}
+
                         </div>
                     ))}
                 </div>

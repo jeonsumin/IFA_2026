@@ -58,7 +58,7 @@ export const Persona = () => {
     }
 
     useEffect(() => {
-        if(draft == null){
+        if (draft == null) {
             navigate('/')
         }
     }, [draft]);
@@ -92,7 +92,7 @@ export const Persona = () => {
                 />
 
 
-                <div className="-mt-px flex flex-col bg-white/40 px-5 pb-15 backdrop-blur-[8px] space-y-10">
+                <div className="-mt-px flex flex-col bg-white/40 px-5  backdrop-blur-[8px] space-y-10">
 
                     {/* 배경 핑크→베이지 그라데이션 */}
                     <div className='flex flex-col w-full px-4 text-center gap-4'>
@@ -116,7 +116,7 @@ export const Persona = () => {
                                         "relative h-[130px] w-full overflow-hidden rounded-2xl bg-white/70 bg-cover bg-no-repeat bg-right text-left tracking-[-0.24px]",
                                         !on && "border border-white",
                                     )}
-                                    style={{ backgroundImage: `url('${p.img}')` }}
+                                    style={{backgroundImage: `url('${p.img}')`}}
                                 >
                                     {on && (
                                         <div
@@ -135,7 +135,7 @@ export const Persona = () => {
 
                                     <div className="relative flex flex-col gap-2 p-4">
                                         <p className={cn(
-                                            "whitespace-pre-line text-xs leading-[1.4] tracking-[-0.24px]",
+                                            "whitespace-pre-line text-xs leading-[1.3] tracking-[-0.24px]",
                                             on ? "text-[#a43d3a]" : "text-lg-gray-2"
                                         )}>
                                             {t(`${p.key}.desc`)}
@@ -150,7 +150,7 @@ export const Persona = () => {
                                 </button>
                             );
                         })}
-                        <div className='pt-12 pb-[60px]'>
+                        <div className='pt-10 pb-12'>
                             <Button disabled={!persona} onClick={() => setSheetOpen(true)}>{t('common.next')}</Button>
                         </div>
                     </div>
@@ -159,15 +159,16 @@ export const Persona = () => {
 
             <BottomSheet open={sheetOpen} onClose={() => setSheetOpen(false)}>
                 {/* 로봇(그라데이션 링 + 원형 페이스) */}
-                <div className="flex flex-col items-center gap-10 text-center mt-10">
+                <div className="flex flex-col items-center text-center mt-10 px-5">
+
                     <div className="flex items-center justify-center px-20">
                         <img src="/images/cloid_welcome3.png" alt="cloid_welcome3" className='w-[188px]'/>
                     </div>
-                    <div className="items-center">
-                        <p className="whitespace-pre-line">{t('persona.reasonQuestion')}</p>
-                    </div>
 
-                    <div className="w-full px-5 space-y-4 pb-10">
+                    <div className="flex flex-col w-full pt-10 gap-6">
+                        <div className="items-center">
+                            <p className="whitespace-pre-line">{t('persona.reasonQuestion')}</p>
+                        </div>
                         {persona && (
                             <ButtonItem
                                 title=""
@@ -177,6 +178,8 @@ export const Persona = () => {
                                 onChange={(v) => setAnswer(persona.id, v)}
                             />
                         )}
+                    </div>
+                    <div className='w-full pt-10 pb-12'>
                         <Button
                             variant="ghost"
                             disabled={!persona || !answers[persona.id]}

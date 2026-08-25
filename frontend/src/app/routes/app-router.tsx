@@ -12,6 +12,7 @@ import {Report} from "pages/report";
 import {QrScanner} from "pages/qr-scanner";
 import {ModalProvider} from "app/provider/modal";
 import {SuccessView} from "widgets/success-view";
+import {ReportCard} from "widgets/report-card";
 
 export const AppRouter = () => {
 
@@ -56,6 +57,40 @@ export const AppRouter = () => {
                                 <Route path={'/report'} element={<Report/>}/>
                             </Route>
                             <Route path={'*'} element={<Navigate to="/" replace/>}/>
+
+                                <Route path={'/routine-report'} element={   <ReportCard
+                                    ref={null}
+                                    personaTitle={`persona.coordinator.title`}
+                                    personaDesc={`persona.coordinator.desc`}
+                                    heroSrc={`/images/report/hero_coordinator.png`}
+                                    rows={[
+                                        {
+                                            "label": "Entertainment in Tune",
+                                            "situation": "LG Sound Suite",
+                                            "desc": "나의 공간과 사운드가 ‘in tune’ 되는 순간.\n" +
+                                                "LG Sound Suite로 완성되는 프리미엄 홈 오디오를 경험해보세요.\n"
+                                        },
+                                        {
+                                            "label": "Entertainment in Tune",
+                                            "situation": "LG Sound Suite",
+                                            "desc": "나의 공간과 사운드가 ‘in tune’ 되는 순간.\n" +
+                                                "LG Sound Suite로 완성되는 프리미엄 홈 오디오를 경험해보세요.\n"
+                                        },
+                                        {
+                                            "label": "Entertainment in Tune",
+                                            "situation": "LG Sound Suite",
+                                            "desc": "나의 공간과 사운드가 ‘in tune’ 되는 순간.\n" +
+                                                "LG Sound Suite로 완성되는 프리미엄 홈 오디오를 경험해보세요.\n"
+                                        },
+                                        {
+                                            "label": "Entertainment in Tune",
+                                            "situation": "LG Sound Suite",
+                                            "desc": "나의 공간과 사운드가 ‘in tune’ 되는 순간.\n" +
+                                                "LG Sound Suite로 완성되는 프리미엄 홈 오디오를 경험해보세요.\n"
+                                        }
+                                    ]}
+                                />}/>
+
                         </Route>
                     </Routes>
                 </MobileOnlyView>

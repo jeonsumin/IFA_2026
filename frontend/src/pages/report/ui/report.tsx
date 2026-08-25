@@ -73,42 +73,23 @@ export const Report = () => {
         })
     }
 
+    // 캡처 → 미리보기 노출 → (버튼) 저장. iOS Safari는 프로그램적 저장이 막혀 이미지 롱프레스 저장이 필요.
     const handleDownloadReport = async () => {
         await logSubmit("report")
         await download(cardRef.current);
     }
 
-    const handleStore = async (type: string) => {
-        switch (type) {
-            case "google" :
-                await logSubmit('google')
-                window.open('https://play.google.com/store/search?q=lg+thinq&c=apps', '_blank');
-                break;
-            case "apple" :
-                await logSubmit('apple')
-                window.open('https://apps.apple.com/kr/app/lg-thinq/id993504342', '_blank');
-                break;
-            default:
-                break;
-        }
-    }
-
-    const handleSns = async (type: string) => {
-        switch (type) {
-            case "facebook" :
-                await logSubmit('facebook')
-                window.open('https://www.facebook.com/LGGlobal', '_blank');
-                break
-            case "instagram" :
-                await logSubmit('instagram')
-                window.open('https://www.instagram.com/lg_global', '_blank');
-                break
-            case "youtube" :
-                await logSubmit('youtube')
-                window.open('https://www.youtube.com/@LGGlobal', '_blank');
-                break
-            default:
-                break;
+    const handleOnClick = async (type: string) => {
+        if (["google", "apple", "facebook", "instagram", "youtube"].includes(type)) {
+            const urlMap: Record<string, string> = {
+                "google": 'https://play.google.com/store/search?q=lg+thinq&c=apps',
+                "apple": 'https://apps.apple.com/kr/app/lg-thinq/id993504342',
+                "facebook": 'https://www.facebook.com/LGGlobal',
+                "instagram": 'https://www.instagram.com/lg_global/',
+                "Youtube": 'https://www.youtube.com/@LGGlobal',
+            };
+            window.open(urlMap[type], '_blank', 'noopener,noreferrer');
+            await logSubmit(type)
         }
     }
 
@@ -155,7 +136,7 @@ export const Report = () => {
                                 <img src="/images/report/cloid_logo.svg" alt=""/>
                             </p>
                         </div>
-                        <p className="whitespace-pre-line text-sm  leading-[1.4] tracking-[-0.28px] text-lg-gray-2">
+                        <p className="whitespace-pre-line text-sm  leading-[1.3] tracking-[-0.28px] text-lg-gray-2">
                             {t('report.routineDesc')}
                         </p>
                     </div>
@@ -177,7 +158,7 @@ export const Report = () => {
                                 >
                                     <p className="bg-lg-ai-gradient bg-clip-text text-[10px] font-bold text-transparent">{t(z.title)}</p>
                                     <p className="text-xl font-bold leading-[1.2] text-black">{option?.title ?? s.SITUATION}</p>
-                                    <p className="whitespace-pre-line text-[10px] leading-[1.4] tracking-[-0.2px] text-lg-gray-2">
+                                    <p className="whitespace-pre-line text-[10px] leading-[1.3] tracking-[-0.2px] text-lg-gray-2">
                                         {option?.desc ?? s.SITUATION_DESC}
                                     </p>
                                 </div>
@@ -224,13 +205,13 @@ export const Report = () => {
                             <img src="/images/report/stores_google.png"
                                  alt="Google Play"
                                  className="w-[140px] max-w-full"
-                                 onClick={() => handleStore("google")}
+                                 onClick={() => handleOnClick("google")}
                             />
 
                             <img src="/images/report/stores_apple.png"
                                  alt="App Store"
                                  className="w-[140px] max-w-full"
-                                 onClick={() => handleStore("apple")}
+                                 onClick={() => handleOnClick("apple")}
                             />
 
                         </div>
@@ -239,11 +220,11 @@ export const Report = () => {
                         <p className="text-base font-semibold tracking-[-0.32px] text-black">{t('report.snsSubscribe')}</p>
                         <div className={"flex gap-2"}>
                             <img src="/images/report/icn_facebook.svg" alt="Facebook" className="h-12"
-                                 onClick={() => handleSns("facebook")}/>
+                                 onClick={() => handleOnClick("facebook")}/>
                             <img src="/images/report/icn_instagram.svg" alt="Instagram" className="h-12"
-                                 onClick={() => handleSns("instagram")}/>
+                                 onClick={() => handleOnClick("instagram")}/>
                             <img src="/images/report/icn_youtube.svg" alt="YouTube" className="h-12"
-                                 onClick={() => handleSns("youtube")}/>
+                                 onClick={() => handleOnClick("youtube")}/>
                         </div>
                     </div>
                 </div>

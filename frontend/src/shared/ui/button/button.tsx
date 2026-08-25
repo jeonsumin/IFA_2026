@@ -17,8 +17,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const baseVariant: Record<Exclude<Variant, "outline">, string> = {
     // NEXT: 빨강→핑크→퍼플 그라데이션 채움
-    primary:
-        "bg-lg-ai-gradient text-white",
+    primary: "bg-lg-ai-gradient text-white font-extrabold",
     ghost: "bg-transparent",
 };
 

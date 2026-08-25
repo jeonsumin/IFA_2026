@@ -38,17 +38,17 @@ export const Welcome = () => {
                         WebkitMaskRepeat: "no-repeat",
                     }}
                 />
-                <div className="-mt-px flex flex-col bg-white/40 px-5 pb-15 ">
+                <div className="-mt-px flex flex-col bg-white/40 px-5 pb-10 gap-10">
                     <div className="flex flex-col items-center gap-4 text-center">
                         <p className="text-4xl font-bold leading-none text-black">{t('welcome.init')}</p>
                         {/* ponytail: 체크인 이름 연동 전까지 플레이스홀더 */}
-                        <p className="text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">{t('welcome.greeting', {name: draft?.name ?? "" })}</p>
-                        <p className="whitespace-pre-line text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">
+                        <p className="text-base leading-[1.3] tracking-[-0.32px] text-lg-gray-2">{t('welcome.greeting', {name: draft?.name ?? "" })}</p>
+                        <p className="whitespace-pre-line text-base leading-[1.3] tracking-[-0.32px] text-lg-gray-2">
                             {t('welcome.desc')}
                         </p>
                     </div>
 
-                    <Button onClick={() => navigate("/persona")} className="mt-12 font-bold">
+                    <Button onClick={() => navigate("/persona")} className="font-bold">
                         {t('common.start')}
                     </Button>
                 </div>
