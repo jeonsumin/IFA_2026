@@ -1,4 +1,4 @@
-import {forwardRef, useId} from "react";
+import {forwardRef} from "react";
 
 // 다운로드(캡처) 전용 카드 — Figma 385:8091. 화면 밖에서 렌더 후 html2canvas로 캡처.
 // 캡처-세이프 CSS만 사용: backdrop-blur/mask-image/bg-clip-text 금지.
@@ -17,36 +17,17 @@ type ReportCardProps = {
     rows: ReportCardRow[];
 };
 
-// LG AI 그라데이션 스톱 (near-vertical). global.css --color-common-* 와 동일 값.
-const AI_STOPS: [string, string][] = [
-    ["0.21", "#FD312E"],
-    ["0.62", "#F914EB"],
-    ["0.79", "#B432F5"],
-    ["0.95", "#8227FF"],
-];
-
 const FONT = '"LG EI Headline", sans-serif';
 
 // 그라데이션 텍스트 (bg-clip-text 대체) — 폭은 글자수 기반 추정(왼쪽 정렬, 넘침 무해).
-const GradientText = ({children, size, type}: {children: string; size: number, type?:string}) => {
-    const id = useId().replace(/:/g, "");
-    const w = Math.ceil(children.length * size * (type ? 0.43 : 0.6));
-    const h = Math.ceil(size * 1.25);
-    return (
-        <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{display: "block"}}>
-            <defs>
-                <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
-                    {AI_STOPS.map(([offset, color]) => (
-                        <stop key={offset} offset={offset} stopColor={color}/>
-                    ))}
-                </linearGradient>
-            </defs>
-            <text x="0" y={size} fontSize={size} fontWeight={700} fontFamily={FONT} fill={`url(#${id})`}>
-                {children}
-            </text>
-        </svg>
-    );
-};
+
+const badge: Record<string, string> = {
+    "Entertainment in Tune": "entertainment",
+    "Living in Tune": "living",
+    "Harmony in Tune": "harmony",
+    "Elegance in Tune": "elegance",
+}
+
 
 export const ReportCard = forwardRef<HTMLDivElement, ReportCardProps>(
     ({personaTitle, personaDesc, heroSrc, rows}, ref) => (
@@ -65,7 +46,7 @@ export const ReportCard = forwardRef<HTMLDivElement, ReportCardProps>(
                 {/* 헤더 텍스트 */}
                 <div className="absolute left-0 top-[30px] flex w-full flex-col items-start gap-[8px] px-[16px]">
                     <div className="rounded-full bg-white px-[16px] py-[4px]">
-                        <GradientText size={12} type={"title"}>Innovation in tune with you</GradientText>
+                        <img src="/images/report/head-badge.png" alt="head-badge" width={140}/>
                     </div>
                     <p className="whitespace-pre-line text-[24px] font-bold leading-[1.1] text-white"
                        style={{textShadow: "0px 2px 4px rgba(0,0,0,0.25)"}}>
@@ -80,13 +61,14 @@ export const ReportCard = forwardRef<HTMLDivElement, ReportCardProps>(
 
             {/* ZONE LIST */}
             <div className="relative -mt-[100px] px-[20px] pb-[20px]">
-                <div className="w-full overflow-hidden rounded-[16px] border border-white shadow-[3px_3px_16px_0px_rgba(0,0,0,0.1)]"
-                     style={{backgroundColor: "rgba(255,255,255,0.7)"}}>
+                <div
+                    className="w-full overflow-hidden rounded-[16px] border border-white shadow-[3px_3px_16px_0px_rgba(0,0,0,0.1)]"
+                    style={{backgroundColor: "rgba(255,255,255,0.7)"}}>
                     {rows.map((r, i) => (
                         <div key={r.label}
                              className="flex flex-col gap-[6px] px-[20px] py-[12px]"
                              style={i > 0 ? {borderTop: "1px solid #e5e2da"} : undefined}>
-                            <GradientText size={10}>{r.label}</GradientText>
+                            <img src={`/images/report/${badge[r.label]}.png`} alt={badge[r.label]} width={50}/>
                             <p className="text-[20px] font-bold leading-[1.2] text-black">{r.situation}</p>
                             <p className="whitespace-pre-line text-[10px] leading-[1.4] tracking-[-0.2px] text-[#4a4946]">
                                 {r.desc}

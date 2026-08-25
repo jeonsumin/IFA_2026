@@ -2,7 +2,7 @@ import {useState} from "react";
 import {Button} from "shared/ui";
 import {useNavigate} from "react-router-dom";
 import {useModal} from "app/provider/modal";
-import {useTranslate} from "app/provider/lang";
+import {Trans, useTranslate} from "app/provider/lang";
 import type {ZoneSlug} from "entities/experience";
 import {useSaveSituation} from "features/experience/save-situation";
 
@@ -43,7 +43,7 @@ const NextView = ({slug, result, optionTitle}: NextViewProps) => {
 
             <div className='relative flex flex-col justify-center  items-center '>
                 <div className="absolute z-10 top-4 text-white text-center flex flex-col justify-center gap-4 ">
-                    <p className='bg-lg-ai-gradient w-fit px-3 text-white rounded-full self-center text-xs'>
+                    <p className='bg-lg-ai-gradient w-fit px-3 py-1 text-white rounded-full self-center text-xs'>
                         {optionTitle}
                     </p>
                 </div>
@@ -61,7 +61,9 @@ const NextView = ({slug, result, optionTitle}: NextViewProps) => {
             <div className='relative px-5 text-center space-y-6 mt-6'>
                 <div className="flex flex-col gap-6 ">
                     {result.map((line, i) => (
-                        <p key={i} className="whitespace-pre-line">{line}</p>
+                        <p key={i} className="whitespace-pre-line">
+                            <Trans tKey={line} components={[<span className="font-bold"/>]}/>
+                        </p>
                     ))}
                 </div>
                 <div className='pt-10 pb-12'>
@@ -119,7 +121,7 @@ export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProp
 
             <div className='relative flex flex-col justify-center  items-center '>
                 <div className="absolute z-10 top-4 text-white text-center flex flex-col justify-center gap-4 ">
-                    <p className='bg-lg-ai-gradient w-fit px-3 text-white rounded-full self-center text-xs font-extrabold'>
+                    <p className='bg-lg-ai-gradient w-fit px-3 py-1 text-white rounded-full self-center text-xs font-extrabold'>
                         {t(titleKey)}
                     </p>
                     <p className="whitespace-pre-line">{t('situation.subtitle')}</p>
