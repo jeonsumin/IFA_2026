@@ -179,7 +179,7 @@ export const Persona = () => {
                             />
                         )}
                     </div>
-                    <div className='w-full pt-10 pb-12'>
+                    <div className='w-full pt-6 pb-10'>
                         <Button
                             variant="ghost"
                             disabled={!persona || !answers[persona.id]}
