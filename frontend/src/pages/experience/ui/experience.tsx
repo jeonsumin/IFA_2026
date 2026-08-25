@@ -80,7 +80,7 @@ export const Experience = () => {
                     <p className="whitespace-pre-line text-xl font-bold leading-[1.2] text-black">
                         {t(`persona.${persona || 'homemaker'}.title`)}
                     </p>
-                    <p className="whitespace-pre-line text-sm leading-[1.4] tracking-[-0.28px] text-lg-gray-2">
+                    <p className="whitespace-pre-line text-sm leading-[1.3] tracking-[-0.28px] text-lg-gray-2">
                         {t(`persona.${persona || 'homemaker'}.section`)}
                     </p>
                 </div>
@@ -111,7 +111,7 @@ export const Experience = () => {
                                 <p className="w-fit bg-lg-ai-gradient bg-clip-text text-sm font-bold text-transparent leading-4 tracking-[-0.28px]">
                                     {t(z.title)}
                                 </p>
-                                <p className="whitespace-pre-line text-[10px] leading-[1.4] tracking-[-0.2px] text-black">
+                                <p className="whitespace-pre-line text-[10px] leading-[1.3] tracking-[-0.2px] text-black">
                                     {t(z.descKey)}
                                 </p>
                             </div>

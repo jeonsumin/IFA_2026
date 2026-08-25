@@ -52,7 +52,7 @@ export const ReportCard = forwardRef<HTMLDivElement, ReportCardProps>(
                        style={{textShadow: "0px 2px 4px rgba(0,0,0,0.25)"}}>
                         {personaTitle}
                     </p>
-                    <p className="whitespace-pre-line text-[14px] leading-[1.4] tracking-[-0.28px] text-white"
+                    <p className="whitespace-pre-line text-[14px] leading-[1.3] tracking-[-0.28px] text-white"
                        style={{textShadow: "0px 2px 4px rgba(0,0,0,0.25)"}}>
                         {personaDesc}
                     </p>
@@ -70,7 +70,7 @@ export const ReportCard = forwardRef<HTMLDivElement, ReportCardProps>(
                              style={i > 0 ? {borderTop: "1px solid #e5e2da"} : undefined}>
                             <img src={`/images/report/${badge[r.label]}.png`} alt={badge[r.label]} width={50}/>
                             <p className="text-[20px] font-bold leading-[1.2] text-black">{r.situation}</p>
-                            <p className="whitespace-pre-line text-[10px] leading-[1.4] tracking-[-0.2px] text-[#4a4946]">
+                            <p className="whitespace-pre-line text-[10px] leading-[1.3] tracking-[-0.2px] text-[#4a4946]">
                                 {r.desc}
                             </p>
                         </div>

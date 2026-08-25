@@ -135,7 +135,7 @@ export const Persona = () => {
 
                                     <div className="relative flex flex-col gap-2 p-4">
                                         <p className={cn(
-                                            "whitespace-pre-line text-xs leading-[1.4] tracking-[-0.24px]",
+                                            "whitespace-pre-line text-xs leading-[1.3] tracking-[-0.24px]",
                                             on ? "text-[#a43d3a]" : "text-lg-gray-2"
                                         )}>
                                             {t(`${p.key}.desc`)}

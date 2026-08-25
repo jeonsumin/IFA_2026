@@ -117,7 +117,7 @@ export const CheckIn = () => {
                             <p className="text-base font-semibold text-black underline tracking-[-0.32px]">
                                 {t('checkIn.agreeRequired')}
                             </p>
-                            <p className="text-[10px] leading-[1.4] tracking-[-0.2px] text-lg-gray-2">
+                            <p className="text-[12px] leading-[1.3] tracking-[-0.2px] text-lg-gray-2">
                                 {t('checkIn.agreeNote')}
                             </p>
                         </div>

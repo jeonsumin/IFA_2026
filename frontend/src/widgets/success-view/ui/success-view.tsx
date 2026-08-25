@@ -23,13 +23,13 @@ const RewardView = () => {
                 <p className="whitespace-pre-line text-base font-bold">{t("reward.popup.label1")}</p>
 
                 <div className="text-center flex flex-col justify-start gap-1">
-                    <p className="whitespace-pre-line leading-[1.4] text-lg-gray-2">{t("reward.popup.label2")}</p>
-                    <p className="whitespace-pre-line leading-[1.4] text-lg-gray-2">{t("reward.popup.label3")}</p>
+                    <p className="whitespace-pre-line leading-[1.3] text-lg-gray-2">{t("reward.popup.label2")}</p>
+                    <p className="whitespace-pre-line leading-[1.3] text-lg-gray-2">{t("reward.popup.label3")}</p>
                     <p className="text-base tracking-[-0.32px] text-black flex gap-1 self-center">
                         {t("report.poweredBy")}
                         <img src="/images/report/cloid_logo.svg" alt=""/>
                     </p>
-                    <p className="whitespace-pre-line text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">{t("reward.popup.label4")} </p>
+                    <p className="whitespace-pre-line text-base leading-[1.3] tracking-[-0.32px] text-lg-gray-2">{t("reward.popup.label4")} </p>
                 </div>
             </div>
             <div className="flex flex-col gap-4 justify-center text-center pt-10">
@@ -57,7 +57,7 @@ const SurveyView = ({title, desc}: { title: string; desc: string; }) => {
         <>
             <div className="flex flex-col items-center gap-4 text-center">
                 <p className="text-5xl font-bold leading-none text-black">{title}</p>
-                <p className="whitespace-pre-line text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">
+                <p className="whitespace-pre-line text-base leading-[1.3] tracking-[-0.32px] text-lg-gray-2">
                     {desc}
                 </p>
             </div>
@@ -133,7 +133,7 @@ export const SuccessView = (props: SuccessViewProps) => {
                     {section == "reward" && <RewardView/>}
                     {section == null && <div className="flex flex-col items-center gap-4 text-center">
                         <p className="text-5xl font-bold leading-none text-black">{"CLEAR!"}</p>
-                        <p className="whitespace-pre-line text-base leading-[1.4] tracking-[-0.32px] text-lg-gray-2">
+                        <p className="whitespace-pre-line text-base leading-[1.3] tracking-[-0.32px] text-lg-gray-2">
                             {t("experienceSuccess.done")}
                         </p>
                     </div>}

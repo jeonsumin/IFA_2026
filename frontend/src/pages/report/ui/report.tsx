@@ -136,7 +136,7 @@ export const Report = () => {
                                 <img src="/images/report/cloid_logo.svg" alt=""/>
                             </p>
                         </div>
-                        <p className="whitespace-pre-line text-sm  leading-[1.4] tracking-[-0.28px] text-lg-gray-2">
+                        <p className="whitespace-pre-line text-sm  leading-[1.3] tracking-[-0.28px] text-lg-gray-2">
                             {t('report.routineDesc')}
                         </p>
                     </div>
@@ -158,7 +158,7 @@ export const Report = () => {
                                 >
                                     <p className="bg-lg-ai-gradient bg-clip-text text-[10px] font-bold text-transparent">{t(z.title)}</p>
                                     <p className="text-xl font-bold leading-[1.2] text-black">{option?.title ?? s.SITUATION}</p>
-                                    <p className="whitespace-pre-line text-[10px] leading-[1.4] tracking-[-0.2px] text-lg-gray-2">
+                                    <p className="whitespace-pre-line text-[10px] leading-[1.3] tracking-[-0.2px] text-lg-gray-2">
                                         {option?.desc ?? s.SITUATION_DESC}
                                     </p>
                                 </div>
