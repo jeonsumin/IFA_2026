@@ -40,7 +40,6 @@ const NextView = ({slug, result, optionTitle}: NextViewProps) => {
         <div className="bg-bg-default relative">
             <div
                 className="pointer-events-none absolute inset-0 bg-gradient-to-b from-lg-active-red/25 to-lg-gray-6/25"/>
-
             <div className='relative flex flex-col justify-center  items-center '>
                 <div className="absolute z-10 top-4 text-white text-center flex flex-col justify-center gap-4 ">
                     <p className='bg-lg-ai-gradient w-fit px-3 py-1 text-white rounded-full self-center text-xs'>
@@ -66,7 +65,7 @@ const NextView = ({slug, result, optionTitle}: NextViewProps) => {
                         </p>
                     ))}
                 </div>
-                <div className='pt-10 pb-12'>
+                <div className='pt-6 pb-10'>
                     <Button onClick={handlerQrScan}>
                         {t('situation.qrScan')}
                     </Button>
@@ -137,12 +136,12 @@ export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProp
                 />
             </div>
 
-            <div className='relative px-5 text-center space-y-6 mt-6'>
+            <div className='relative px-5 text-center mt-6'>
                 <p className="whitespace-pre-line text-xl font-bold text-black">
                     {t('situation.question')}
                 </p>
 
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 mt-6">
                     {options.map((o, i) => (
                         <Button
                             key={o.title}
@@ -160,7 +159,7 @@ export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProp
                     ))}
                 </div>
 
-                <div className='pt-10 pb-12'>
+                <div className='pt-6 pb-10'>
                     <Button
                         disabled={!chosen || saving}
                         onClick={handleNext}
