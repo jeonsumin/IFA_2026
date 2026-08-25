@@ -31,7 +31,7 @@ const badge: Record<string, string> = {
 
 export const ReportCard = forwardRef<HTMLDivElement, ReportCardProps>(
     ({personaTitle, personaDesc, heroSrc, rows}, ref) => (
-        <div ref={ref} style={{backgroundColor: "#f0ece4", fontFamily: FONT}} className="relative">
+        <div ref={ref} style={{fontFamily: FONT}} className="relative">
             {/* HERO */}
             <div className="relative h-[350px] overflow-hidden">
                 <img src={heroSrc} alt="" className="absolute inset-0 h-full w-full object-cover object-top"/>
