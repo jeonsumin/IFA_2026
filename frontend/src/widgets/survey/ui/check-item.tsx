@@ -8,6 +8,8 @@ interface CheckItemProps {
     value?: string | string[];
     onChange: (v: string | string[]) => void;
 }
+const outlineActive =
+    "border-2 border-transparent [background:linear-gradient(#fff,#fff)_padding-box,linear-gradient(90deg,var(--lg-red),var(--lg-ai-pink),var(--lg-ai-purple))_border-box]";
 
 export const CheckItem = ({questions, mult, error, value, onChange}: CheckItemProps) => {
     const isSelected = (content: string) =>
@@ -37,17 +39,17 @@ export const CheckItem = ({questions, mult, error, value, onChange}: CheckItemPr
                         aria-pressed={selected}
                         onClick={() => handleClick(q.content)}
                         className={cn(
-                            "flex items-center gap-4 w-full border bg-white py-4 text-left text-base text-state-text-body transition-colors",
+                            "flex items-center gap-4 w-full border bg-white py-4 text-left text-base text-state-text-body transition-colors whitespace-pre-line",
                             q.img ? 'w-full rounded-md justify-start pr-3' : "rounded-full px-6",
-                            selected ? "border-lg-active-red text-lg-active-red" : "border-state-disable-2",
+                            selected ? `${outlineActive} text-lg-active-red` : "border-state-disable-2",
                             error && "border-lg-active-red"
                         )}
                     >
                         {q.img && <img src={q.img} alt="" className={"size-24"}/>}
-                        <span className="flex-1">{q.content}</span>
+                        <span className="flex-1 whitespace-pre-line">{q.content}</span>
                         <span
                             className={cn(
-                                "flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white transition-colors",
+                                "flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white transition-colors whitespace-pre-line",
                                 selected ? "bg-lg-active-red" : "bg-state-disable-2"
                             )}
                         >

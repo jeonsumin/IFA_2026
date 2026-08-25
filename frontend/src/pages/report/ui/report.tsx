@@ -78,37 +78,17 @@ export const Report = () => {
         await download(cardRef.current);
     }
 
-    const handleStore = async (type: string) => {
-        switch (type) {
-            case "google" :
-                await logSubmit('google')
-                window.open('https://play.google.com/store/search?q=lg+thinq&c=apps', '_blank');
-                break;
-            case "apple" :
-                await logSubmit('apple')
-                window.open('https://apps.apple.com/kr/app/lg-thinq/id993504342', '_blank');
-                break;
-            default:
-                break;
-        }
-    }
-
-    const handleSns = async (type: string) => {
-        switch (type) {
-            case "facebook" :
-                await logSubmit('facebook')
-                window.open('https://www.facebook.com/LGGlobal', '_blank');
-                break
-            case "instagram" :
-                await logSubmit('instagram')
-                window.open('https://www.instagram.com/lg_global', '_blank');
-                break
-            case "youtube" :
-                await logSubmit('youtube')
-                window.open('https://www.youtube.com/@LGGlobal', '_blank');
-                break
-            default:
-                break;
+    const handleOnClick = async (type: string) => {
+        if (["google", "apple", "facebook", "instagram", "youtube"].includes(type)) {
+            const urlMap: Record<string, string> = {
+                "google": 'https://play.google.com/store/search?q=lg+thinq&c=apps',
+                "apple": 'https://apps.apple.com/kr/app/lg-thinq/id993504342',
+                "facebook": 'https://www.facebook.com/LGGlobal',
+                "instagram": 'https://www.instagram.com/lg_global/',
+                "Youtube": 'https://www.youtube.com/@LGGlobal',
+            };
+            window.open(urlMap[type], '_blank', 'noopener,noreferrer');
+            await logSubmit(type)
         }
     }
 
@@ -224,13 +204,13 @@ export const Report = () => {
                             <img src="/images/report/stores_google.png"
                                  alt="Google Play"
                                  className="w-[140px] max-w-full"
-                                 onClick={() => handleStore("google")}
+                                 onClick={() => handleOnClick("google")}
                             />
 
                             <img src="/images/report/stores_apple.png"
                                  alt="App Store"
                                  className="w-[140px] max-w-full"
-                                 onClick={() => handleStore("apple")}
+                                 onClick={() => handleOnClick("apple")}
                             />
 
                         </div>
@@ -239,11 +219,11 @@ export const Report = () => {
                         <p className="text-base font-semibold tracking-[-0.32px] text-black">{t('report.snsSubscribe')}</p>
                         <div className={"flex gap-2"}>
                             <img src="/images/report/icn_facebook.svg" alt="Facebook" className="h-12"
-                                 onClick={() => handleSns("facebook")}/>
+                                 onClick={() => handleOnClick("facebook")}/>
                             <img src="/images/report/icn_instagram.svg" alt="Instagram" className="h-12"
-                                 onClick={() => handleSns("instagram")}/>
+                                 onClick={() => handleOnClick("instagram")}/>
                             <img src="/images/report/icn_youtube.svg" alt="YouTube" className="h-12"
-                                 onClick={() => handleSns("youtube")}/>
+                                 onClick={() => handleOnClick("youtube")}/>
                         </div>
                     </div>
                 </div>

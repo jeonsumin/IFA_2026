@@ -28,9 +28,9 @@ const AI_STOPS: [string, string][] = [
 const FONT = '"LG EI Headline", sans-serif';
 
 // 그라데이션 텍스트 (bg-clip-text 대체) — 폭은 글자수 기반 추정(왼쪽 정렬, 넘침 무해).
-const GradientText = ({children, size}: {children: string; size: number}) => {
+const GradientText = ({children, size, type}: {children: string; size: number, type?:string}) => {
     const id = useId().replace(/:/g, "");
-    const w = Math.ceil(children.length * size * 0.62);
+    const w = Math.ceil(children.length * size * (type ? 0.43 : 0.6));
     const h = Math.ceil(size * 1.25);
     return (
         <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{display: "block"}}>
@@ -65,7 +65,7 @@ export const ReportCard = forwardRef<HTMLDivElement, ReportCardProps>(
                 {/* 헤더 텍스트 */}
                 <div className="absolute left-0 top-[30px] flex w-full flex-col items-start gap-[8px] px-[16px]">
                     <div className="rounded-full bg-white px-[16px] py-[4px]">
-                        <GradientText size={12}>Innovation in tune with you</GradientText>
+                        <GradientText size={12} type={"title"}>Innovation in tune with you</GradientText>
                     </div>
                     <p className="whitespace-pre-line text-[24px] font-bold leading-[1.1] text-white"
                        style={{textShadow: "0px 2px 4px rgba(0,0,0,0.25)"}}>

@@ -1,4 +1,5 @@
 import type {FullPageScreen} from "../types/types";
+import {X} from 'lucide-react';
 
 type Props = {
     stack: FullPageScreen[];
@@ -44,7 +45,7 @@ export const FullPage = ({stack, progress, steps, pop, close}: Props) => {
                         aria-label="close"
                         className="absolute right-[16px] flex h-8 w-8 items-center justify-center"
                     >
-                        ✕
+                        <X size={20}/>
                     </button>
                 </header>
                 {progress && (

@@ -2,6 +2,7 @@
 export const GENDER_OPTIONS = [
     {labelKey: "gender.male", value: "M"},
     {labelKey: "gender.female", value: "F"},
+    {labelKey: "gender.other", value: "O"},
 ];
 
 export const AGE_OPTIONS = [

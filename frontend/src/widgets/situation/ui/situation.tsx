@@ -64,7 +64,7 @@ const NextView = ({slug, result, optionTitle}: NextViewProps) => {
                         <p key={i} className="whitespace-pre-line">{line}</p>
                     ))}
                 </div>
-                <div className='pt-12 pb-[60px]'>
+                <div className='pt-10 pb-12'>
                     <Button onClick={handlerQrScan}>
                         {t('situation.qrScan')}
                     </Button>
@@ -151,14 +151,14 @@ export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProp
                             onClick={() => setSelected(i)}
                         >
                             <div className='flex flex-col gap-2'>
-                                <p className="font-bold text-base text-black">{o.title}</p>
+                                <p className="font-bold text-base ">{o.title}</p>
                                 <p className="whitespace-pre-line text-xs">{o.desc}</p>
                             </div>
                         </Button>
                     ))}
                 </div>
 
-                <div className='pt-12 pb-[60px]'>
+                <div className='pt-10 pb-12'>
                     <Button
                         disabled={!chosen || saving}
                         onClick={handleNext}

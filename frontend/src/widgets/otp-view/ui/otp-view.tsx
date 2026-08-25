@@ -5,7 +5,7 @@ import {useTranslate} from "app/provider/lang";
 import {useSubmitReward} from "features/reward/model/use-submit-reward.ts";
 import type {RewardType} from "features/reward/api/submit-reward.ts";
 
-const OTP_CODE = '1234';
+const OTP_CODE = '2026';
 
 type OtpViewProps = {
     type: RewardType;
@@ -59,7 +59,7 @@ export const OtpView = ({type, onConfirmed}: OtpViewProps) => {
                     />
                     {error && (
                         <p className="text-xs leading-[1.4] tracking-[-0.24px] text-lg-active-red">
-                            ※ 코드가 올바르지 않습니다.
+                            {t("reward.otp.invalid")}
                         </p>
                     )}
                 </div>

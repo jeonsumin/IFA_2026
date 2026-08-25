@@ -11,7 +11,6 @@ export const request: AxiosInstance = axios.create({
 
 request.interceptors.request.use((config) => {
     const deviceId = getCookie('device_id');
-    console.log(config);
     if (deviceId) {
         config.headers.set('X-Device-Id', deviceId);
     }
@@ -28,11 +27,14 @@ const handleFail = () => {
 request.interceptors.response.use(
     (response) => {
         // 200 + success:false 방어 (대부분은 아래 에러 핸들러로 감)
+        if(import.meta.env.DEV) return response;
+
         if (response.data?.success === false) handleFail();
         return response;
     },
     (error) => {
         // validateStatus가 200만 통과 → 비-200(400/409/500)은 여기로. success:false면 리디렉션
+        if(import.meta.env.DEV) return;
         if (error.response?.data?.success === false) handleFail();
         return Promise.reject(error);
     }
