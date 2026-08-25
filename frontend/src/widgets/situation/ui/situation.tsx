@@ -50,15 +50,15 @@ const NextView = ({slug, result, optionTitle}: NextViewProps) => {
                 <img src={`/images/experience/hero_${slugify(optionTitle)}.png`} alt="" aria-hidden className='w-full'/>
             </div>
             {/* 로봇(핑크 글로우) */}
-            <div className="relative flex flex-1 items-center justify-center ">
+            <div className="relative flex items-center justify-center ">
                 <img
                     src="/images/cloid_zone_exp.png"
                     alt={t('common.robotAlt')}
-                    className="w-full max-w-full px-16"
+                    className="w-[160px] h-[160px] max-w-full"
                 />
             </div>
 
-            <div className='relative px-5 text-center space-y-6 mt-6'>
+            <div className='relative px-5 text-center mt-6'>
                 <div className="flex flex-col gap-6 ">
                     {result.map((line, i) => (
                         <p key={i} className="whitespace-pre-line">
@@ -129,7 +129,7 @@ export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProp
                 <img src={`/images/experience/hero_${slug}.png`} alt="" aria-hidden className='w-full'/>
             </div>
             {/* 로봇(핑크 글로우) */}
-            <div className="relative flex flex-1 items-center justify-center ">
+            <div className="relative flex items-center justify-center">
                 <img
                     src="/images/welcome/cloi.png"
                     alt={t('common.robotAlt')}

@@ -165,9 +165,9 @@ export const Persona = () => {
                         <img src="/images/cloid_welcome3.png" alt="cloid_welcome3" className='w-[188px]'/>
                     </div>
 
-                    <div className="flex flex-col w-full pt-10 gap-6">
+                    <div className="flex flex-col w-full pt-6 gap-6">
                         <div className="items-center">
-                            <p className="whitespace-pre-line">{t('persona.reasonQuestion')}</p>
+                            <p className="whitespace-pre-line text-xl font-bold">{t('persona.reasonQuestion')}</p>
                         </div>
                         {persona && (
                             <ButtonItem

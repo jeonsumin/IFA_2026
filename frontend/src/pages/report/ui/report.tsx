@@ -97,12 +97,12 @@ export const Report = () => {
         <div className="flex min-h-full flex-col items-center bg-bg-default">
             {/* 상단: 페르소나 히어로 */}
 
-            <img src={`/images/report/result_${reportStatus.persona || 'worker'}.png`} alt=""/>
+            <img src={`/images/report/result_${reportStatus.persona}.png`} alt=""/>
             {/*클로이 로봇*/}
             <img
-                src="/images/welcome/cloi.png"
+                src="/images/report/result_cloi.png"
                 alt={t('common.robotAlt')}
-                className="w-[360px] max-w-full"
+                className="w-[200px] max-w-full"
             />
 
             <div className="w-full">
@@ -156,9 +156,9 @@ export const Report = () => {
                                     key={s.ZONE}
                                     className={`flex flex-col gap-2 p-5 ${i > 0 ? "border-t border-lg-gray-5" : ""}`}
                                 >
-                                    <p className="bg-lg-ai-gradient bg-clip-text text-[10px] font-bold text-transparent">{t(z.title)}</p>
+                                    <p className="bg-lg-ai-gradient bg-clip-text text-[11px] font-bold text-transparent w-fit">{t(z.title)}</p>
                                     <p className="text-xl font-bold leading-[1.2] text-black">{option?.title ?? s.SITUATION}</p>
-                                    <p className="whitespace-pre-line text-[10px] leading-[1.3] tracking-[-0.2px] text-lg-gray-2">
+                                    <p className="whitespace-pre-line text-[16px] leading-[1.3] tracking-[-0.2px] text-lg-gray-2">
                                         {option?.desc ?? s.SITUATION_DESC}
                                     </p>
                                 </div>
