@@ -123,7 +123,7 @@ export const Report = () => {
                 {/*결과 요약 + 존 리스트*/}
                 <div className="flex flex-col gap-10 bg-white/40 px-5 pt-2 ">
                     <div className="flex flex-col items-center gap-4 text-center">
-                        <div className='rounded-[20px] bg-white px-3 '>
+                        <div className='rounded-[20px] bg-white px-3 flex justify-start py-1'>
                             <span
                                 className="bg-lg-ai-gradient bg-clip-text text-xs font-bold text-transparent">
                                 Innovation in tune with you
