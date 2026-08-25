@@ -53,7 +53,7 @@ export const ReportCard = forwardRef<HTMLDivElement, ReportCardProps>(
         <div ref={ref} style={{backgroundColor: "#f0ece4", fontFamily: FONT}} className="relative">
             {/* HERO */}
             <div className="relative h-[350px] overflow-hidden">
-                <img src={heroSrc} alt="" className="absolute inset-0 h-fit w-full object-cover"/>
+                <img src={heroSrc} alt="" className="absolute inset-0 h-full w-full object-cover object-top"/>
                 {/* 상단 딤 */}
                 <div className="absolute inset-x-0 top-0 "
                      style={{background: "linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 88%)"}}/>

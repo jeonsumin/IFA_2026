@@ -73,6 +73,7 @@ export const Report = () => {
         })
     }
 
+    // 캡처 → 미리보기 노출 → (버튼) 저장. iOS Safari는 프로그램적 저장이 막혀 이미지 롱프레스 저장이 필요.
     const handleDownloadReport = async () => {
         await logSubmit("report")
         await download(cardRef.current);
