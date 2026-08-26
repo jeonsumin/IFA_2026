@@ -11,7 +11,7 @@ import {useSubmitSurvey} from "features/submit-survey";
 import {useReportStatus} from "../model/use-report-status.ts";
 import {ZONES} from "pages/experience/model/zone.ts";
 import {useSubmitLog} from "features/submit-log";
-import {useDownloadReport} from "features/download-report";
+import {useDownloadReport, useImagesReady} from "features/download-report";
 import type {RewardType} from "features/reward/api/submit-reward.ts";
 
 export const Report = () => {
@@ -25,6 +25,7 @@ export const Report = () => {
     // 다운로드 카드(화면 밖) 캡처 대상 + 캡처 훅
     const cardRef = useRef<HTMLDivElement>(null);
     const {download, loading: downloading} = useDownloadReport();
+    const cardReady = useImagesReady(cardRef); // 카드 이미지 로드 완료 전엔 다운로드 버튼 비활성화
 
     // 존별 SITUATION/DESC → 카드 행 (ZONES 순서, 완료 존만)
     const cardRows = ZONES.flatMap((z) => {
@@ -186,7 +187,7 @@ export const Report = () => {
                         <Gift size={20}/>
                         {t('report.reward')}
                     </Button>
-                    <button type="button" disabled={downloading}
+                    <button type="button" disabled={downloading || !cardReady}
                             className="mx-auto mt-2 flex items-center gap-2 border-b border-black pb-1 disabled:opacity-50"
                             onClick={handleDownloadReport}>
                         <Download size={16} className="text-black"/>
@@ -236,7 +237,7 @@ export const Report = () => {
                     ref={cardRef}
                     personaTitle={t(`persona.${reportStatus.persona}.title`)}
                     personaDesc={t(`persona.${reportStatus.persona}.desc`)}
-                    heroSrc={`/images/report/hero_${reportStatus.persona}.png`}
+                    heroSrc={`/images/report/hero_${reportStatus.persona}1.png`}
                     rows={cardRows}
                 />
             </div>

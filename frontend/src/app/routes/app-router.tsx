@@ -16,6 +16,27 @@ import {ReportCard} from "widgets/report-card";
 
 export const AppRouter = () => {
 
+    // report-card 미리보기(개발용) — /routine-report 에서 카드 레이아웃 확인 (데스크톱·모바일 공용)
+    const reportCardPreview = (
+        <div className="flex min-h-screen items-center justify-center bg-lg-gray-3 p-4">
+            <ReportCard
+                ref={null}
+                personaTitle="THE INDEPENDENT
+                URBAN OPTIMIZER"
+                personaDesc="혼자 살며 집을 효율적으로
+관리하고 싶은 도시생활자"
+                heroSrc="/images/report/hero_coordinator1.png"
+                rows={Array.from({length: 4}, () => ({
+                    label: "Entertainment in Tune",
+                    situation: "LG StanbyME 2 Max",
+                    desc: "나의 공간과 사운드가 ‘in tune’ 되는 순간.\n" +
+                        "LG Sound Suite로 완성되는 프리미엄 홈 \n" +
+                        "오디오를 경험해보세요.\n",
+                }))}
+            />
+        </div>
+    );
+
     return (
         <BrowserRouter>
             <ModalProvider>
@@ -23,6 +44,7 @@ export const AppRouter = () => {
                 <BrowserView>
                     <Routes>
                         <Route path='/' element={<Promotion/>}/>
+                        <Route path='/routine-report' element={reportCardPreview}/>
                         <Route path={'*'} element={<Navigate to="/" replace/>}/>
                     </Routes>
                 </BrowserView>
@@ -58,38 +80,7 @@ export const AppRouter = () => {
                             </Route>
                             <Route path={'*'} element={<Navigate to="/" replace/>}/>
 
-                                <Route path={'/routine-report'} element={   <ReportCard
-                                    ref={null}
-                                    personaTitle={`persona.coordinator.title`}
-                                    personaDesc={`persona.coordinator.desc`}
-                                    heroSrc={`/images/report/hero_coordinator.png`}
-                                    rows={[
-                                        {
-                                            "label": "Entertainment in Tune",
-                                            "situation": "LG Sound Suite",
-                                            "desc": "나의 공간과 사운드가 ‘in tune’ 되는 순간.\n" +
-                                                "LG Sound Suite로 완성되는 프리미엄 홈 오디오를 경험해보세요.\n"
-                                        },
-                                        {
-                                            "label": "Entertainment in Tune",
-                                            "situation": "LG Sound Suite",
-                                            "desc": "나의 공간과 사운드가 ‘in tune’ 되는 순간.\n" +
-                                                "LG Sound Suite로 완성되는 프리미엄 홈 오디오를 경험해보세요.\n"
-                                        },
-                                        {
-                                            "label": "Entertainment in Tune",
-                                            "situation": "LG Sound Suite",
-                                            "desc": "나의 공간과 사운드가 ‘in tune’ 되는 순간.\n" +
-                                                "LG Sound Suite로 완성되는 프리미엄 홈 오디오를 경험해보세요.\n"
-                                        },
-                                        {
-                                            "label": "Entertainment in Tune",
-                                            "situation": "LG Sound Suite",
-                                            "desc": "나의 공간과 사운드가 ‘in tune’ 되는 순간.\n" +
-                                                "LG Sound Suite로 완성되는 프리미엄 홈 오디오를 경험해보세요.\n"
-                                        }
-                                    ]}
-                                />}/>
+                                <Route path={'/routine-report'} element={reportCardPreview}/>
 
                         </Route>
                     </Routes>
