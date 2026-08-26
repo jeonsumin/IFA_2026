@@ -42,9 +42,9 @@ export const Survey = ({onSubmit}: SurveyProps) => {
             <div className="flex flex-col px-5 py-8 gap-10">
                 <div className="flex flex-col items-center space-y-4 text-center">
                     <img
-                        src="/images/welcome/cloi.png"
+                        src="/images/cloid_1.png"
                         alt={t('common.robotAlt')}
-                        className="w-full max-w-full"
+                        className="w-[160px] max-w-full"
                     />
 
                     <p className="whitespace-pre-line text-base leading-relaxed text-black font-semibold">

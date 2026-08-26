@@ -105,16 +105,17 @@ export const SuccessView = (props: SuccessViewProps) => {
 
             {/* 로봇(핑크 글로우) */}
             <div className={cn("relative flex flex-1 items-center justify-center mt-10", section !== null && "px-20")}>
-                <img
-                    src={image}
-                    alt={t('common.robotAlt')}
-                    className={cn(" max-w-full", section == null ? "w-full" : "")}
-                />
+
             </div>
 
             {/* 하단 글래스 패널 */}
             <div className="relative mt-auto">
                 {/* 웨이브 seam — 패널과 동일한 bg-white/40 + backdrop-blur에 웨이브 모양 마스크만 적용해 색 일치 */}
+                <img
+                    src={image}
+                    alt={t('common.robotAlt')}
+                    className={cn(" max-w-full", section == null ? "w-full" : "")}
+                />
                 <div
                     aria-hidden
                     className="h-20 w-full bg-white/40 backdrop-blur-[8px]"
