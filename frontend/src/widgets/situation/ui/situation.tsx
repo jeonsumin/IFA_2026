@@ -89,7 +89,7 @@ export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProp
     const handleNext = async () => {
         if (selected === null || saving) return;
         const opt = options[selected];
-        if( import.meta.env.DEV) {
+        if (import.meta.env.DEV) {
             pushFullPage({
                 content: <NextView
                     slug={slug}
@@ -153,7 +153,10 @@ export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProp
                         >
                             <div className='flex flex-col gap-2'>
                                 <p className="font-bold text-base ">{o.title}</p>
-                                <p className="whitespace-pre-line text-xs">{o.desc}</p>
+
+                                <p className="whitespace-pre-line text-xs">
+                                    <Trans tKey={o.desc} components={[<span className="font-bold"/>]}/>
+                                </p>
                             </div>
                         </Button>
                     ))}
