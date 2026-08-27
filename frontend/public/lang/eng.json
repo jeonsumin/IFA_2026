@@ -65,6 +65,7 @@
     "nameMax": "Maximum 15 characters allowed",
     "emailRequired": "Please enter your email address",
     "emailInvalid": "Invalid email format",
+    "emailDuplicated": "This email has already been checked in",
     "genderRequired": "Please select your gender",
     "ageRequired": "Please select your age"
   },

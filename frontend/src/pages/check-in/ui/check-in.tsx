@@ -1,3 +1,4 @@
+import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Button, Checkbox, Input, Select} from "shared/ui";
 import {Field} from "shared/ui/field";
@@ -7,6 +8,7 @@ import {useCheckInForm} from '../model/use-check-in-form';
 import {useModal} from "app/provider/modal";
 import {useTranslate} from "app/provider/lang";
 import {PrivacyMarkup} from "widgets/privacy";
+import {useEmailCheck} from "features/email-check";
 
 // 디자인상 필드는 흰 배경 + 무테두리 + rounded-8 + p-16
 const controlClass = "w-full rounded-lg border-transparent bg-white p-4 text-base";
@@ -21,10 +23,13 @@ export const CheckIn = () => {
         touched, touch,
         errors, valid, values,
     } = useCheckInForm();
+
     const {openFullPage} = useModal();
     const setDraft = useUserDraft((s) => s.setDraft);
     const {t} = useTranslate();
     const navigate = useNavigate();
+    const {checkEmail} = useEmailCheck();
+    const [emailError, setEmailError] = useState(""); // 서버 이메일 검증(중복) 실패 메시지
 
     // 카피덱 키(labelKey) → 표시 문자열
     const genderOptions = GENDER_OPTIONS.map((o) => ({label: t(o.labelKey), value: o.value}));
@@ -40,8 +45,18 @@ export const CheckIn = () => {
         )
     }
 
-    // 다음: 폼을 draft에 저장하고 persona로 이동. 실제 제출은 persona에서 한 번에.
-    const handleNext = () => {
+    // 다음: 이메일 검증 통과 시에만 draft 저장 후 이동. 실제 제출은 persona에서 한 번에.
+    const handleNext = async () => {
+        touch("email");
+        setEmailError("");
+        if (errors.email) return; // 형식/필수 오류 → errors.email 노출, 중단
+
+        const validateEmail = await checkEmail(email); // 서버 검증(중복)
+        if (!validateEmail) {
+            setEmailError(t("validation.emailDuplicated")); // 실패 → 에러 메시지 노출, 중단
+            return;
+        }
+
         setDraft(values);
         navigate("/welcome");
     };
@@ -68,13 +83,16 @@ export const CheckIn = () => {
                             />
                         </Field>
 
-                        <Field label={t('checkIn.emailLabel')} error={touched.email ? errors.email : ""}>
+                        <Field label={t('checkIn.emailLabel')} error={touched.email ? (errors.email || emailError) : ""}>
                             <Input
                                 type="email"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                    setEmailError(""); // 입력 바뀌면 서버 에러 초기화
+                                }}
                                 onBlur={() => touch("email")}
-                                error={!!(touched.email && errors.email)}
+                                error={!!(touched.email && (errors.email || emailError))}
                                 aria-label={t('checkIn.emailAria')}
                                 placeholder={t('checkIn.emailPlaceholder')}
                                 className={`${controlClass} tracking-[-0.32px] placeholder:text-placeholder`}
