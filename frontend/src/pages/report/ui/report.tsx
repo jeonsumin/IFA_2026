@@ -101,9 +101,9 @@ export const Report = () => {
             <img src={`/images/report/result_${reportStatus.persona}.png`} alt=""/>
             {/*클로이 로봇*/}
             <img
-                src="/images/report/result_cloi.png"
+                src="/images/welcome/cloi.png"
                 alt={t('common.robotAlt')}
-                className="w-[200px] max-w-full"
+                className="w-full max-w-full"
             />
 
             <div className="w-full">

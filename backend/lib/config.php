@@ -2,8 +2,9 @@
 
 if (PHP_VERSION >= '5.1.0') {
     //if (function_exists("date_default_timezone_set")) date_default_timezone_set("Asia/Seoul");
-    date_default_timezone_set("Asia/Seoul");
+    date_default_timezone_set('Europe/Berlin');
 }
+
 $http = 'http' . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on') ? 's' : '') . '://';
 $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
 if(isset($_SERVER['HTTP_HOST']) && preg_match('/:[0-9]+$/', $host))	$host = preg_replace('/:[0-9]+$/', '', $host);

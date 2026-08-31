@@ -130,9 +130,9 @@ export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProp
             {/* 로봇(핑크 글로우) */}
             <div className="relative flex items-center justify-center">
                 <img
-                    src="/images/welcome/cloi.png"
+                    src="/images/cloid_1.png"
                     alt={t('common.robotAlt')}
-                    className="w-full max-w-full"
+                    className="w-[160px] max-w-full"
                 />
             </div>
 
