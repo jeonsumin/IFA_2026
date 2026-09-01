@@ -26,7 +26,7 @@ export const Welcome = () => {
                 <PngSequence
                     frames={CLOID_SMILE_FRAMES}
                     alt={t('common.robotAlt')}
-                    className="w-[190px] mx-auto max-w-full"
+                    className="w-[240px] mx-auto max-w-full"
                 />
                 <div
                     aria-hidden
