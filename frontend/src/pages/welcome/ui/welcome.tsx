@@ -1,7 +1,13 @@
-import {Button} from "shared/ui";
+import {Button, PngSequence} from "shared/ui";
 import {useNavigate} from "react-router-dom";
 import {useTranslate} from "app/provider/lang";
 import {useUserDraft} from "entities/user";
+
+// cloid_smile00.png ~ cloid_smile71.png (72프레임)
+const CLOID_SMILE_FRAMES = Array.from(
+    {length: 72},
+    (_, i) => `/images/welcome/cloid_smile_pngs/cloid_smile${String(i).padStart(2, "0")}.png`
+);
 
 export const Welcome = () => {
     const navigate = useNavigate();
@@ -16,11 +22,11 @@ export const Welcome = () => {
 
             {/* 하단 글래스 패널 */}
             <div className="relative mt-auto">
-                {/* 웨이브 seam — 패널과 동일한 bg-white/40 + backdrop-blur에 웨이브 모양 마스크만 적용해 색 일치 */}
-                <img
-                    src="/images/welcome/cloi.png"
+                {/* 시퀀스 넣는 영역 */}
+                <PngSequence
+                    frames={CLOID_SMILE_FRAMES}
                     alt={t('common.robotAlt')}
-                    className="w-full max-w-full"
+                    className="w-[190px] mx-auto max-w-full"
                 />
                 <div
                     aria-hidden
