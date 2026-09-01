@@ -65,7 +65,7 @@ export const ReportCard = forwardRef<HTMLDivElement, ReportCardProps>(
             </div>
 
             {/* ZONE LIST — hero 위로 겹쳐 올림(-mt). flex-grow/% 미사용(캡처-세이프: html2canvas가 고정 레이아웃 그대로 렌더) */}
-            <div className="relative z-10 -mt-[40px] px-[20px] pb-[20px]">
+            <div className="relative z-10 -mt-[20px] px-[20px] pb-[20px]">
                 <div
                     className="overflow-hidden rounded-[16px] border border-white shadow-[3px_3px_16px_0px_rgba(0,0,0,0.1)]"
                     style={{backgroundColor: "rgba(255,255,255,0.7)"}}>
