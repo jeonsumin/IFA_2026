@@ -1,7 +1,7 @@
 import {Download, Gift, PenLine, Heart} from "lucide-react";
 import {useRef} from "react";
 import {Button} from "shared/ui";
-import {useTranslate} from "app/provider/lang";
+import {Trans, useTranslate} from "app/provider/lang";
 import {useModal} from "app/provider/modal";
 import {Survey} from "widgets/survey";
 import {SuccessView} from "widgets/success-view";
@@ -160,7 +160,7 @@ export const Report = () => {
                                     <p className="bg-lg-ai-gradient bg-clip-text text-[11px] font-bold text-transparent w-fit">{t(z.title)}</p>
                                     <p className="text-xl font-bold leading-[1.2] text-black">{option?.title ?? s.SITUATION}</p>
                                     <p className="whitespace-pre-line text-[14px] leading-[1.3] tracking-[-0.28px] text-lg-gray-2">
-                                        {option?.desc ?? s.SITUATION_DESC}
+                                        <Trans tKey={option?.desc ?? s.SITUATION_DESC} components={[<span className=""/>]}/>
                                     </p>
                                 </div>
                             );

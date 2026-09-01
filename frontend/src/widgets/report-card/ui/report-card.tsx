@@ -29,9 +29,10 @@ const badge: Record<string, string> = {
 }
 
 // html2canvas는 white-space:pre-line을 안정적으로 캡처 못 함 → \n을 명시적 줄바꿈으로 렌더(캡처-세이프).
+// 강조 마커 <1>..</1> 는 캡처 카드에선 볼드 없이 태그만 제거.
 const lines = (text: string) =>
     text.replace(/\n+$/, "").split("\n").map((line, i) => <span key={i} className="block">{line}</span>);
-
+//text.replace(/<\/?\d+>/g, "").replace(/\n+$/, "").split("\n").map((line, i) => <span key={i} className="block">{line}</span>);
 
 export const ReportCard = forwardRef<HTMLDivElement, ReportCardProps>(
     ({personaTitle, personaDesc, heroSrc, rows}, ref) => (
