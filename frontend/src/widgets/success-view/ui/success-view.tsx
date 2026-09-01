@@ -114,7 +114,7 @@ export const SuccessView = (props: SuccessViewProps) => {
                 <img
                     src={image}
                     alt={t('common.robotAlt')}
-                    className={cn(" max-w-full", section == null ? "w-full" : "")}
+                    className={cn(" max-w-full", section == null ? "w-full" : "w-[160px] mx-auto")}
                 />
                 <div
                     aria-hidden

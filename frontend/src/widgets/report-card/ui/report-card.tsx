@@ -31,8 +31,8 @@ const badge: Record<string, string> = {
 // html2canvas는 white-space:pre-line을 안정적으로 캡처 못 함 → \n을 명시적 줄바꿈으로 렌더(캡처-세이프).
 // 강조 마커 <1>..</1> 는 캡처 카드에선 볼드 없이 태그만 제거.
 const lines = (text: string) =>
-    text.replace(/\n+$/, "").split("\n").map((line, i) => <span key={i} className="block">{line}</span>);
-//text.replace(/<\/?\d+>/g, "").replace(/\n+$/, "").split("\n").map((line, i) => <span key={i} className="block">{line}</span>);
+    text.replace(/<\/?\d+>/g, "").replace(/\n+$/, "").split("\n").map((line, i) => <span key={i}
+                                                                                         className="block">{line}</span>);
 
 export const ReportCard = forwardRef<HTMLDivElement, ReportCardProps>(
     ({personaTitle, personaDesc, heroSrc, rows}, ref) => (
@@ -65,7 +65,7 @@ export const ReportCard = forwardRef<HTMLDivElement, ReportCardProps>(
             </div>
 
             {/* ZONE LIST — hero 위로 겹쳐 올림(-mt). flex-grow/% 미사용(캡처-세이프: html2canvas가 고정 레이아웃 그대로 렌더) */}
-            <div className="relative z-10 -mt-[80px] px-[20px] pb-[20px]">
+            <div className="relative z-10 -mt-[40px] px-[20px] pb-[20px]">
                 <div
                     className="overflow-hidden rounded-[16px] border border-white shadow-[3px_3px_16px_0px_rgba(0,0,0,0.1)]"
                     style={{backgroundColor: "rgba(255,255,255,0.7)"}}>
