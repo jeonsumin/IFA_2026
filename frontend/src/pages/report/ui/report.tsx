@@ -87,7 +87,7 @@ export const Report = () => {
                 "apple": 'https://apps.apple.com/kr/app/lg-thinq/id993504342',
                 "facebook": 'https://www.facebook.com/LGGlobal',
                 "instagram": 'https://www.instagram.com/lg_global/',
-                "Youtube": 'https://www.youtube.com/@LGGlobal',
+                "youtube": 'https://www.youtube.com/@LGGlobal',
             };
             window.open(urlMap[type], '_blank', 'noopener,noreferrer');
             await logSubmit(type)

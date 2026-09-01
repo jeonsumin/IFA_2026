@@ -60,7 +60,7 @@ const NextView = ({slug, result, optionTitle}: NextViewProps) => {
             <div className='relative px-5 text-center mt-6'>
                 <div className="flex flex-col gap-6 ">
                     {result.map((line, i) => (
-                        <p key={i} className="whitespace-pre-line">
+                        <p key={i} className="whitespace-pre-line tracking-[-0.24px]">
                             <Trans tKey={line} components={[<span className="font-bold"/>]}/>
                         </p>
                     ))}
@@ -125,7 +125,7 @@ export const Situation = ({slug, titleKey, optionsKey, resultKey}: SituationProp
                     </p>
                     <p className="whitespace-pre-line">{t('situation.subtitle')}</p>
                 </div>
-                <img src={`/images/experience/hero_${slug}.png`} alt="" aria-hidden className='w-full'/>
+                <img src={`/images/experience/hero_${slug}_zone.png`} alt="" aria-hidden className='w-full'/>
             </div>
             {/* 로봇(핑크 글로우) */}
             <div className="relative flex items-center justify-center">
