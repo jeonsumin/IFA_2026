@@ -159,7 +159,7 @@ export const Report = () => {
                                 >
                                     <p className="bg-lg-ai-gradient bg-clip-text text-[11px] font-bold text-transparent w-fit">{t(z.title)}</p>
                                     <p className="text-xl font-bold leading-[1.2] text-black">{option?.title ?? s.SITUATION}</p>
-                                    <p className="whitespace-pre-line text-[16px] leading-[1.3] tracking-[-0.2px] text-lg-gray-2">
+                                    <p className="whitespace-pre-line text-[14px] leading-[1.3] tracking-[-0.28px] text-lg-gray-2">
                                         {option?.desc ?? s.SITUATION_DESC}
                                     </p>
                                 </div>

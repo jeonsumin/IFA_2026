@@ -176,7 +176,7 @@
             },
             {
               "title": "Fit & Max Dishwasher",
-              "desc": "<1>Enjoy Your Meal. We'll Handle the Dishes.<1>\nEasy clean-up after every meal",
+              "desc": "<1>Enjoy Your Meal. We'll Handle the Dishes.</1>\nEasy clean-up after every meal",
               "result": [
                 "<1>Clean Care, Automatically.</1>",
                 "Even for a single household,\ndishwashing remains a daily task.\n\nAI Sense Clean automatically detects soil levels\nand selects the optimal cycle,\nwhile QuadWash™ Pro and TrueSteam™ deliver\npowerful and gentle cleaning.",
@@ -603,7 +603,7 @@
               "title": "LG StanbyME 2 Max",
               "desc": "<1>One screen, from work to downtime</1>\nMove easily between work and relaxation at home.",
               "result": [
-                "<1>When work and relaxation \nshare the same space,\na screen that works for both makes everyday life easier.</1>",
+                "<1>When work and relaxation \nshare the same space,\na screen that works for both makes\n everyday life easier.</1>",
                 "LG StanbyME 2 Max features\na 32-inch large screen that adapts \nto different moments throughout your day.\n\nUse it as a secondary monitor \nwhile working, then enjoy videos \nor smartphone mirroring \nduring breaks—all on one screen \nthat moves with you.",
                 "<1>Experience one flexible screen\nfor both work and relaxation.</1>"
               ]
