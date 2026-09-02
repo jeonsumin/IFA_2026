@@ -148,7 +148,7 @@
               "desc": "<1>Your space, your style.</1>\nRefresh your space to match your mood and taste.",
               "result": [
                 "<1>The atmosphere of your space\ncan change with your mood and tastes.</1>",
-                "LG Art TV and LG Gallery+ turn your space\ninto a personal gallery with curated artworks, \nwhile generative AI brings your ideas to life\nas connected artwork across multiple screens, \ngiving you an easy way to make \nthe space feel more like your own.",
+                "LG Art TV and LG Gallery+ turn your space into \na personal gallery with a wide variety of artworks.\n\nAcross a range of Art TV displays, works from The Met,\nNational Gallery, and Saatchi Art fill the space, creating\nan artistic atmosphere that feels more like your own.",
                 "<1>Experience a space\nthat reflects your personal style.</1>"
               ]
             }
@@ -306,7 +306,7 @@
               "desc": "<1>Different tastes, one family gallery.</1>\nBring everyone’s tastes together in one shared space.",
               "result": [
                 "<1>Spending time together is one of the most \nmeaningful moments for a family.</1>",
-                "LG Art TV and LG Gallery+ create a gallery space\nthat reflects your family’s tastes through a variety\nof curated artworks.\n\nGenerative AI also transforms a single word or idea\ninto connected artwork across multiple screens,\nbringing your family’s tastes and inspiration\ninto the space in a new way.",
+                "LG Art TV and LG Gallery+ create a gallery space for \nyour family through a wide variety of artworks.\n\nAcross a range of Art TV displays, works from The Met,\nNational Gallery, and Saatchi Art fill the space, creating\nan artistic experience your family can enjoy together.",
                 "<1>Experience a gallery \nshaped by your family’s tastes.</1>"
               ]
             }
@@ -464,7 +464,7 @@
               "desc": "<1>One TV, more ways to refresh your space.</1>\nGive your space a fresh new look\nthat reflects your taste, without adding more.",
               "result": [
                 "<1>The atmosphere of a space can be completely\ntransformed without having to buy new\nfurniture or accessories.</1>",
-                "LG Art TV and LG Gallery+ curate a space\ntailored to your personal style using just a single TV,\nfeaturing artworks perfectly matched to your tastes\nalongside generative AI content.",
+                "LG Art TV and LG Gallery+ bring art into \nyour space through a wide variety of artworks.\n\nWorks from The Met, National Gallery, and Saatchi Art\ncome to life across a range of Art TV displays, transforming\nthe entire space into an art gallery with a refined aesthetic.",
                 "<1>Experience effortless space styling\ntailored to your unique tastes.</1>"
               ]
             }
@@ -622,7 +622,7 @@
               "desc": "<1>Work mode off, your mood on</1>\nRefresh your space \nas you move from work to relaxation.",
               "result": [
                 "<1>From work to relaxation, your space can change\nwith the flow of your day.</1>",
-                "LG Art TV and LG Gallery+ bring curated artworks \nand generative AI content into your space,\nhelping create a different atmosphere \nas you move \nfrom work to relaxation.\n\nWhen it’s time to unwind, enjoy your favorite content\non a high-resolution display.",
+                "LG Art TV and LG Gallery+ bring a wide variety of artworks\ninto your space, helping create a different atmosphere\nas you move from work to relaxation.\n\nWorks from The Met, National Gallery, and Saatchi Art fill\na range of Art TV displays, transforming the space\ninto an immersive art gallery.\nWhen it’s time to unwind, enjoy your favorite content\non a high-resolution display.",
                 "<1>Experience one space that works beautifully \nfor both work and relaxation.</1>"
               ]
             }
@@ -643,7 +643,7 @@
               "title": "Fit & Max Refrigerator",
               "desc": "<1>Ready When You Are</1>\nFresh ingredients for your busy day.",
               "result": [
-                "<1>When your plans change, \nyour food storage needs\ncan change too.</1>",
+                "<1>When your plans change, \nyour food storage needs can change too.</1>",
                 "The Convertible Drawer helps create the right \nstorage conditions for different ingredients,\nkeeping them fresh whether you're preparing lunch\nbetween meetings or dinner at the end of the day.",
                 "<1>Experience food care\nthat adapts to your schedule.</1>"
               ]
@@ -813,18 +813,18 @@
         "2": "LG OLED evo AI (83W6)",
         "3": "LG QNED AI mini LED (115QNED90)",
         "4": "LG StanbyME 2 Max (32LX6)",
-        "5": "LG UltraGear™ AI(25G590B)",
-        "6": "LG UltraGear™ AI(39GX950B)",
+        "5": "LG UltraGear™ AI\n(25G590B)",
+        "6": "LG UltraGear™ AI\n(39GX950B)",
         "7": "LG Sound Suite AI (H7, M7, W7, M5)",
         "8": "LG SIGNATURE OLED T (77T4)",
         "9": "LG New InstaView I&W French Door",
         "10": "LG Washer Dryer  (X950)",
-        "11": "LG Dishwasher(XG 9S) ",
+        "11": "LG Dishwasher\n(XG 9S) ",
         "12": "LG ARTCOOL™ AI",
         "13": "LG Wash Tower",
         "14": "LG Styler",
         "15": "LG Built-in Oven",
-        "16": "LG PuriCare™ Bath Air System"
+        "16": "LG PuriCare™ \nBath Air System"
       }
     },
     "q5": {
