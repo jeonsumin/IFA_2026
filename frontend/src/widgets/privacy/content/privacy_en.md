@@ -15,6 +15,17 @@ This consent form is designed to protect your rights as a user. We collect only 
 5. Notice on Automated Processing
 - This content generates customized results in real-time through an automated analysis system based on your input and survey responses.
 - This process is based on your individual responses and does not include any separate profiling or marketing purposes.
+6. Notice on Functional Cookie Use
+- We use functional cookies to ensure the normal operation of the website and to provide the content (e.g., for page navigation, clicks, and maintaining your input status).
+- These cookies are a technical means for service provision. They are automatically collected without separate consent and are not transmitted externally or used for marketing purposes.
+7. Security Measures
+- Collected personal information is protected with reasonable technical and administrative safeguards, such as encrypted storage and access control, to prevent unauthorized access, leakage, forgery, alteration, and damage. This information is safely managed through continuous monitoring.
+8. Rights of the User
+- You have the right to refuse this consent. However, if you do not consent, you will not be able to participate in the experience.
+- You may request to access, correct, or delete your collected personal information. Please contact the personal information protection officer below for any related requests.
+9. Personal Information Protection Officer
+Title: LG Electronics Europe Data Protection Officer
+Contact information: dpo-eu@lge.com
 
 Bei Ihrer Teilnahme an den interaktiven Inhalten dieser Website werden die folgenden personenbezogenen Daten erhoben und verwendet.
 Diese Einverständniserklärung dient dem Schutz Ihrer Rechte als Nutzer. Wir erheben nur die minimal erforderlichen Informationen zur Bereitstellung des Services und geben diese nicht an Dritte weiter oder verwenden sie für Marketingzwecke.
@@ -42,5 +53,5 @@ Diese Einverständniserklärung dient dem Schutz Ihrer Rechte als Nutzer. Wir er
 - Sie haben das Recht, diese Einwilligung zu verweigern. Wenn Sie jedoch nicht einwilligen, können Sie nicht an der Erfahrung teilnehmen.
 - Sie können den Zugang, die Berichtigung oder Löschung Ihrer erhobenen personenbezogenen Daten beantragen. Bitte wenden Sie sich für entsprechende Anfragen an den unten genannten Datenschutzbeauftragten.
 9. Datenschutzbeauftragter
-   Titel: Datenschutzbeauftragter von LG Electronics Europe
-   Kontakt: dpo-eu@lge.com
+Titel: Datenschutzbeauftragter von LG Electronics Europe
+Kontakt: dpo-eu@lge.com
