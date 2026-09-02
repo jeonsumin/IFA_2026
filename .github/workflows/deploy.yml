@@ -28,3 +28,22 @@ jobs:
           docker build -t $IMAGE:$TAG -t $IMAGE:latest .
           docker push $IMAGE:$TAG
           docker push $IMAGE:latest
+
+  deploy:
+    needs: build-push
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: [prod, dev]   # 서버별 시크릿은 동명 GitHub Environment에 등록
+    environment: ${{ matrix.target }}
+    steps:
+      - name: SSH → rollout restart
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.DEPLOY_PORT || 22 }}
+          script: |
+            kubectl rollout restart deployment/ifa2026 -n infra
+            kubectl rollout status  deployment/ifa2026 -n infra --timeout=180s
