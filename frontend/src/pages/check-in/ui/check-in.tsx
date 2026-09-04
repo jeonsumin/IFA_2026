@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useRef, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Button, Checkbox, Input, Select} from "shared/ui";
 import {Field} from "shared/ui/field";
@@ -28,8 +28,9 @@ export const CheckIn = () => {
     const setDraft = useUserDraft((s) => s.setDraft);
     const {t} = useTranslate();
     const navigate = useNavigate();
-    const {checkEmail} = useEmailCheck();
+    const {checkEmail, loading} = useEmailCheck();
     const [emailError, setEmailError] = useState(""); // 서버 이메일 검증(중복) 실패 메시지
+    const submitting = useRef(false); // 더블클릭(재진입) 방지 — loading 리렌더 전 빠른 2번째 클릭 차단
 
     // 카피덱 키(labelKey) → 표시 문자열
     const genderOptions = GENDER_OPTIONS.map((o) => ({label: t(o.labelKey), value: o.value}));
@@ -47,18 +48,23 @@ export const CheckIn = () => {
 
     // 다음: 이메일 검증 통과 시에만 draft 저장 후 이동. 실제 제출은 persona에서 한 번에.
     const handleNext = async () => {
+        if (submitting.current) return; // 진행 중이면 재클릭 무시
         touch("email");
         setEmailError("");
         if (errors.email) return; // 형식/필수 오류 → errors.email 노출, 중단
 
-        const validateEmail = await checkEmail(email); // 서버 검증(중복)
-        if (!validateEmail) {
-            setEmailError(t("validation.emailDuplicated")); // 실패 → 에러 메시지 노출, 중단
-            return;
+        submitting.current = true;
+        try {
+            const validateEmail = await checkEmail(email); // 서버 검증(중복)
+            if (!validateEmail) {
+                setEmailError(t("validation.emailDuplicated")); // 실패 → 에러 메시지 노출, 중단
+                return;
+            }
+            setDraft(values);
+            navigate("/welcome");
+        } finally {
+            submitting.current = false;
         }
-
-        setDraft(values);
-        navigate("/welcome");
     };
 
     return (
@@ -83,7 +89,8 @@ export const CheckIn = () => {
                             />
                         </Field>
 
-                        <Field label={t('checkIn.emailLabel')} error={touched.email ? (errors.email || emailError) : ""}>
+                        <Field label={t('checkIn.emailLabel')}
+                               error={touched.email ? (errors.email || emailError) : ""}>
                             <Input
                                 type="email"
                                 value={email}
@@ -145,8 +152,17 @@ export const CheckIn = () => {
 
             <div className="mt-auto px-5 pt-6 pb-10">
                 {/* 비활성 시 디자인대로 그라데이션 대신 solid 회색(#999) */}
-                <Button disabled={!valid && !import.meta.env.DEV} onClick={handleNext}>
-                    {t('common.next')}
+                <Button disabled={loading || (!valid && !import.meta.env.DEV)} onClick={handleNext} className='flex justify-center'>
+                    {loading ?
+                        (<div className='self-center'>
+                                <div
+                                    className="size-8 animate-spin rounded-full border-2 border-lg-gray-5 border-t-lg-active-red  "
+                                    role="status"
+                                    aria-label="Loading"
+                                />
+                            </div>
+                        )
+                        : t('common.next')}
                 </Button>
             </div>
         </div>

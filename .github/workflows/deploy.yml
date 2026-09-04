@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [prod, dev]   # 서버별 시크릿은 동명 GitHub Environment에 등록
+        target: [prod]   # 서버별 시크릿은 동명 GitHub Environment에 등록
     environment: ${{ matrix.target }}
     steps:
       - name: SSH → rollout restart

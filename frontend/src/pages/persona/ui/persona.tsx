@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {BottomSheet, Button} from "shared/ui";
 import {cn} from "shared/lib/cn";
 import {PERSONAS, PERSONA_REASON_COUNT} from '../model/persona'
@@ -15,7 +15,8 @@ export const Persona = () => {
     const {t} = useTranslate();
     const {openAlert} = useModal();
     const draft = useUserDraft((s) => s.draft);
-    const {submit} = useSubmitCheckIn();
+    const {submit, loading} = useSubmitCheckIn();
+    const submitting = useRef(false); // 더블클릭(재진입) 방지 — loading 리렌더 전 빠른 2번째 클릭 차단
 
     const [selected, setSelected] = useState<number | null>(null);
     const [sheetOpen, setSheetOpen] = useState(false);
@@ -40,6 +41,7 @@ export const Persona = () => {
     // 체크인 draft + persona 선택을 한 번에 제출 (통합 제출). 성공 시에만 체크인 확정.
     const submitPersona = async () => {
         if (persona == null || draft == null) return;
+        if (submitting.current) return; // 진행 중이면 재클릭 무시
         const reason = answers[persona.id];
 
         // if (import.meta.env.DEV) {
@@ -47,14 +49,20 @@ export const Persona = () => {
         //     return;
         // }
 
-        const ok = await submit({
-            ...draft,
-            persona: t(`${persona.key}.title`),
-            personaCode: persona.id,
-            reason: Array.isArray(reason) ? reason.join(", ") : reason ?? "",
-        });
-        if (ok) navigate("/dashboard");
-        else openAlert({message: t('checkIn.submitFailed')});
+        submitting.current = true; // 재진입 차단(이 줄이 없어 가드가 무력이었음)
+        try {
+
+            const ok = await submit({
+                ...draft,
+                persona: t(`${persona.key}.title`),
+                personaCode: persona.id,
+                reason: Array.isArray(reason) ? reason.join(", ") : reason ?? "",
+            });
+            if (ok) navigate("/dashboard");
+            else openAlert({message: t('checkIn.submitFailed')});
+        } finally {
+            submitting.current = false;
+        }
     }
 
     useEffect(() => {
@@ -182,11 +190,21 @@ export const Persona = () => {
                     <div className='w-full pt-6 pb-10'>
                         <Button
                             variant="ghost"
-                            disabled={!persona || !answers[persona.id]}
+                            disabled={!persona || !answers[persona.id] || loading}
                             onClick={submitPersona}
-                            className="bg-lg-ai-gradient font-bold text-white "
+                            className="bg-lg-ai-gradient font-bold text-white flex justify-center"
                         >
-                            {t('common.confirm')}
+                            {loading ?
+                                (<div className='self-center'>
+                                        <div
+                                            className="size-8 animate-spin rounded-full border-2 border-lg-gray-5 border-t-lg-active-red  "
+                                            role="status"
+                                            aria-label="Loading"
+                                        />
+                                    </div>
+                                )
+                                : t('common.confirm')
+                            }
                         </Button>
                     </div>
                 </div>
