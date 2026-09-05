@@ -763,8 +763,8 @@
     "alreadyDone": "You have already completed the experience.",
     "cameraLoading": "Starting camera...",
     "failed": "Failed to scan QR code.\nPlease try again later.",
-    "invalid": "Invalid QR code. \nPlease scan the QR code\n <1>held by an LG staff member</1>\n in the experience zone to continue",
-    "wrongZone": "Invalid QR code. \nPlease scan the QR code\n <1>held by an LG staff member</1>\n in the experience zone to continue"
+    "invalid": "Invalid QR code. \nPlease scan the QR code\n held by an LG staff member\n in the experience zone to continue",
+    "wrongZone": "Invalid QR code. \nPlease scan the QR code\n held by an LG staff member\n in the experience zone to continue"
   },
   "situation": {
     "subtitle": "Experience how LG AI tunes into your lifestyle.",
